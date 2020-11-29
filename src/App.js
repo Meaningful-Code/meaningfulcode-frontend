@@ -75,9 +75,15 @@ function About() {
     This website is meant to facilitate finding those projects, and project that match your aspirations (health, society, environment, ...) and skills.</p>
     <p>By providing a easier way to find meaningful projects that people truly want to contribute to, we hope to accelerate those initiative, and their positive impact on our society.</p>
 
-    <Header as='h2'>Contact / Authors</Header>
+    <Header as='h2'>For more information</Header>
 
-    <p>You can contact us via email at 'contact at meaningfulcode dot org'</p>
+    <Header as='h3'>Contact</Header>
+    <p>You can contact us via email at 'contact at meaningfulcode dot org', or via <a href='https://github.com/Meaningful-Code/meaningfulcode-frontend'>GitHub</a>.</p>
+
+    <Header as='h3'>Source code</Header>
+    <p>The source code of this website is hosted on <a href='https://github.com/Meaningful-Code/meaningfulcode-frontend'>GitHub</a>, contributors are welcome!</p>
+
+    <Header as='h3'>Author(s)</Header>
 
     <List relaxed='very'>
       <List.Item>
@@ -85,7 +91,7 @@ function About() {
         <List.Content>
           <List.Header><a href='https://www.linkedin.com/in/adrienleravat/'>Adrien Leravat</a></List.Header>
           <List.Description>
-            Passionate about learning and teaching.
+            Working on embedded software by day, passionate about learning and teaching technology.
         </List.Description>
         </List.Content>
       </List.Item>
@@ -93,18 +99,17 @@ function About() {
 
     <Header as='h2'>Thank you! <Emoji label='sparks' symbol='🎉' /></Header>
 
-    <p>We are all building on the contribution of everyone before us, and this website is no exception. While it would be impossible to list everyone, we wanted to share a special thanks to:</p>
+    <p>We are standing on the shoulders of giants, countless contributions, and this website is no exception. While it would be impossible to list everyone, we wanted to thank:</p>
     <ul>
       <li>John and Hank Green, for being such an inspiration to help others, along with many others</li>
-      <li>Fatos Morina, for his article "<a href='https://towardsdatascience.com/make-a-social-impact-by-contributing-to-these-open-source-projects-1d6d34e2b8b1'>Make a social impact by contributing to these open source projects</a>"</li>
-      <li><a href='https://github.com/'>GitHub</a>, and its ecosystem, for hosting all these projects for free</li>
-      <li><a href='https://www.codetriage.com/'>Code triage</a>, for setting an example of open souce contribution</li>
+      <li>Fatos Morina, for his article "<a href='https://towardsdatascience.com/make-a-social-impact-by-contributing-to-these-open-source-projects-1d6d34e2b8b1'>Make a social impact by contributing to these open source projects</a>", which kickstarted this project</li>
+      <li><a href='https://github.com/'>GitHub</a> and its ecosystem (for hosting all these projects for free), <a href='https://www.codetriage.com/'>Code triage</a>, React, Semantic UI, Isotope and the people behind those.</li>
     </ul>
 
-    Thank you to:
+    And more generally, thank you to:
     <ul>
       <li>all open-source developers</li>
-      <li>maintainers of meaningful open-source projects</li>
+      <li>the maintainers of meaningful and open-source projects</li>
       <li>those who shared and continue sharing these projects to a broader audience</li>
       <li>... and everyone who is giving their time to make a social impact</li>
     </ul>
