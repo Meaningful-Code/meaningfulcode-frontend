@@ -34,7 +34,7 @@ export default class ProjectView extends Component {
       }
     });
 
-    this.languages = Array.from(languagesSet)
+    this.languages = Array.from(languagesSet).sort()
 
     this.setState({
       loading: false,
