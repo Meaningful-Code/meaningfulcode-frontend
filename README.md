@@ -8,12 +8,14 @@ The goal of this website is to promote **meaningful** and opensource **projects*
 
 ## Contributing
 
-Contributors are very welcome, whether by:
+Contributors are very welcome, to help us you can:
 
-* Reporting issues
-* Suggesting new projects to be added to our database
-* Suggesting features
-* Contributing to the code base in general
+* [Suggest a meaningul project](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+)
+  *  If accepted, the project will be listed on [meaningfulcode.org](https://meaningfulcode.org)
+* [Report an issue](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+)
+* [Suggest a new feature](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=Feature%3A+)
+* Contribute to the code base directly
+    * Clone this repository, and create a pull request with your changes
 
 ## Build
 
