@@ -2,8 +2,6 @@ import React from 'react';
 import { Button, Header, Grid, Icon } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 
-import AddProjectButton from './AddProjectButton'
-
 export default function PageHeader() {
   return (
     <header>
@@ -21,14 +19,10 @@ export default function PageHeader() {
             </Header>
           </Link>
         </Grid.Column>
-        <Grid.Column tablet={16} computer={8} id='links'>
-          <Link to="/about">
-            <Button floated='right'>About</Button>
-          </Link >
-          <AddProjectButton />
-          <Link to="/get-started">
-            <Button floated='right'>Get started</Button>
-          </Link >
+        <Grid.Column id='links' textAlign='right' tablet={16} computer={8}>
+          <Button as='a' href='/about'>About</Button>
+          <Button as='a' target='_blank' href='https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+'>Add a project</Button>
+          <Button as='a' href='/get-started'>Get started</Button>
         </Grid.Column>
       </Grid>
     </header >
