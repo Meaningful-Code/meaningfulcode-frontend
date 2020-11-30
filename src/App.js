@@ -75,19 +75,19 @@ function GetStarted() {
       <Header as="h1">Get Started</Header>
       <p>
         Contributing can be daunting at first, but this is the first step of a rewarding
-        journey, using your experience to benefit others, while learning and meeting new
+        journey, using your experience to benefit others while learning and meeting new
         passionate people.
       </p>
       <Header as="h2">Every project is different</Header>
       <p>
-        Every project is different, so don&apos;t hesitate to look at multiple initiative,
-        to find what makes the most sense to you. Look at the project page and website,
+        Every project is different, so don&apos;t hesitate to look at multiple initiatives
+        to find what makes the most sense to you. Look at their project page and website,
         issues tagged &quot;goodfirstissue&quot;, and contact them if you have any
-        questions
+        questions.
       </p>
       <p>
-        You can also check the contribution guidelines when available, or past pull
-        requests, to have a better idea of how the team works, and how to help.
+        To have a better idea of how the team works and how to help, you can also check
+        the contribution guidelines and past pull requests.
       </p>
       <Header as="h2">You don&apos;t need to be an expert, all support matters</Header>
       <p>
@@ -100,10 +100,11 @@ function GetStarted() {
       <p>
         Contributing to the code base is also one of many ways to help: some need support
         translating, improving documentation or tutorials, reviewing, or using it. And the
-        simple act of sharing a project to others is also a great way to help.
+        simple act of sharing a project with others is also a great way to help.
       </p>
       <Header as="h2">More inspirational guides to get you started</Header>
-      If you want to learn more first, these are some good guides to help you:
+      If you want to learn more before diving in, these are some great guides to get you
+      started:
       <ul>
         <li>
           <a href="https://www.firsttimersonly.com/">
@@ -130,23 +131,22 @@ function About() {
     <>
       <Header as="h1">Why this website?</Header>
       <p>
-        There are many ways to make have an impact on our society, and open source is one
-        of those.But finding those impactful projects among all is this challenging, and
-        the open source map is changing every day. This website is meant to facilitate
-        finding those projects, and project that match your aspirations (health, society,
-        environment, ...) and skills.
+        There are many ways to have an impact on our society, and open source is one of
+        those. But finding those impactful projects among all is this challenging, and the
+        open-source map is changing every day. This website helps you find them: projects
+        that matching your aspirations (health, society, environment, ...), and skills.
       </p>
       <p>
-        By providing a easier way to find meaningful projects that people truly want to
-        contribute to, we hope to accelerate those initiative, and their positive impact
-        on our society.
+        By providing an easier way to find meaningful projects that people truly want to
+        contribute to, we hope to accelerate those initiative and their positive impact on
+        our society.
       </p>
       <Header as="h2">For more information</Header>
       <Header as="h3">Contact</Header>
       <p>
         You can contact us via email at &quot;contact at meaningfulcode dot org&quot;, or
-        via{' '}
-        <a href="https://github.com/Meaningful-Code/meaningfulcode-frontend">GitHub</a>.
+        on <a href="https://github.com/Meaningful-Code/meaningfulcode-frontend">GitHub</a>
+        .
       </p>
       <Header as="h3">Source code</Header>
       <p>
