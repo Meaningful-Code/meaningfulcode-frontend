@@ -107,6 +107,19 @@ function categories() {
   return ['health', 'education', 'environment', 'society', 'humanitarian'];
 }
 
+function shuffle(array) {
+  let i = array.length - 1;
+  for (; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    // eslint-disable-next-line no-param-reassign
+    array[i] = array[j];
+    // eslint-disable-next-line no-param-reassign
+    array[j] = temp;
+  }
+  return array;
+}
+
 function PlaceholderProjectsContainer() {
   return (
     <Grid style={{ margin: '0 60px' }} columns={3} stackable>
@@ -147,7 +160,7 @@ export default class ProjectView extends Component {
 
     this.setState({
       loading: false,
-      projects: updatedProjects,
+      projects: shuffle(updatedProjects),
       languages: Array.from(languagesSet).sort()
     });
   }
