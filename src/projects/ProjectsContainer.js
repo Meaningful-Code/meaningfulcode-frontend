@@ -1,28 +1,20 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Isotope from 'isotope-layout';
-
 
 export default class ProjectsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { isotope: null };
-    this.category = null
-    this.language = null
-  }
-
-  render() {
-    return (
-      <div className="item-grid">
-        {this.props.children}
-      </div>
-    )
+    this.category = null;
+    this.language = null;
   }
 
   // set up isotope
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this);
-    if (!this.state.isotope) {
+    const { node } = this;
+    const { isotope } = this.state;
+
+    if (!isotope) {
       this.setState({
         isotope: new Isotope(node, {
           itemSelector: '.project-item',
@@ -38,27 +30,33 @@ export default class ProjectsContainer extends Component {
         })
       });
     } else {
-      this.state.isotope.reloadItems();
+      isotope.reloadItems();
     }
   }
 
   // update isotope layout
   componentDidUpdate() {
-    if (this.state.isotope) {
-      this.state.isotope.reloadItems();
-      this.state.isotope.layout();
+    const { isotope } = this.state;
+
+    if (isotope) {
+      isotope.reloadItems();
+      isotope.layout();
     }
   }
 
   sortByStars() {
-    this.state.isotope.arrange({
+    const { isotope } = this.state;
+
+    isotope.arrange({
       sortBy: 'stars',
       sortAscending: false
     });
   }
 
   sortByLastCommit() {
-    this.state.isotope.arrange({
+    const { isotope } = this.state;
+
+    isotope.arrange({
       sortBy: 'lastUpdate',
       sortAscending: true
     });
@@ -66,53 +64,65 @@ export default class ProjectsContainer extends Component {
 
   sortByBookmarked() {
     // Update everytime, as bookmarks are dynamic. To be improved.
-    this.state.isotope.updateSortData()
-    this.state.isotope.arrange({
+    const { isotope } = this.state;
+
+    isotope.updateSortData();
+    isotope.arrange({
       sortBy: 'bookmarked',
       sortAscending: false
     });
   }
 
   updateFilter() {
-    const category = this.category
-    const languages = this.language
-    var categoryFilter = function (itemElement) {
-      if (category)
-        return itemElement.getAttribute("data-category").split(" ").includes(category)
-      else
-        return true
-    }
-    var languagesFilter = function (itemElement) {
-      if (languages)
-        return itemElement.querySelector(".languages").innerText.split(", ").includes(languages);
-      else
-        return true
-    }
+    const { category, language } = this;
+    const { isotope } = this.state;
 
-    this.state.isotope.arrange({
-      filter: function (itemElement) {
-        return categoryFilter(itemElement) && languagesFilter(itemElement)
+    const categoryFilter = (itemElement) => {
+      if (category) {
+        return itemElement.getAttribute('data-category').split(' ').includes(category);
+      }
+      return true;
+    };
+
+    const languagesFilter = (itemElement) => {
+      if (language) {
+        return itemElement
+          .querySelector('.languages')
+          .innerText.split(', ')
+          .includes(language);
+      }
+      return true;
+    };
+
+    isotope.arrange({
+      filter: (itemElement) => {
+        return categoryFilter(itemElement) && languagesFilter(itemElement);
       }
     });
   }
 
   filterByCategory(category) {
-    if (category === "")
-      category = null
-
-    this.category = category
-    this.updateFilter()
+    this.category = category === '' ? null : category;
+    this.updateFilter();
   }
 
   filterByLanguage(language) {
-    if (language === "")
-      language = null
-
-    this.language = language
-    this.updateFilter()
+    this.language = language === '' ? null : language;
+    this.updateFilter();
   }
 
   shuffle() {
-    this.state.isotope.shuffle();
+    const { isotope } = this.state;
+    isotope.shuffle();
+  }
+
+  render() {
+    const { children } = this.props;
+
+    return (
+      <div className="item-grid" ref={(node) => (this.node = node)}>
+        {children}
+      </div>
+    );
   }
 }
