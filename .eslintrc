@@ -4,6 +4,8 @@
 		"no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
 		"react/jsx-max-props-per-line": [0, { "maximum": 3, "when": "multiline" }],
+		"react/forbid-prop-types": [1],
+		"no-constant-condition": ["error", { "checkLoops": false }],
 		"max-len": [1, { "code": 90 }]
 	},
 	"extends": [

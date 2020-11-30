@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Icon, List } from 'semantic-ui-react';
 
 function getCategoryColor(type) {
@@ -60,6 +61,10 @@ function CategoryIcon(props) {
   );
 }
 
+CategoryIcon.propTypes = {
+  type: PropTypes.string.isRequired
+};
+
 function CategoryListIcon(props) {
   const { type } = props;
 
@@ -72,6 +77,10 @@ function CategoryListIcon(props) {
     />
   );
 }
+
+CategoryListIcon.propTypes = {
+  type: PropTypes.string.isRequired
+};
 
 export default CategoryIcon;
 export { CategoryListIcon };

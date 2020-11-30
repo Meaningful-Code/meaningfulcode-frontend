@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Container, Dropdown } from 'semantic-ui-react';
 
 function SortButton(props) {
@@ -10,6 +11,11 @@ function SortButton(props) {
     </Button>
   );
 }
+
+SortButton.propTypes = {
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
 
 function LanguageFilterButton(props) {
   function mapLanguageOptions(languages) {
@@ -40,6 +46,11 @@ function LanguageFilterButton(props) {
     />
   );
 }
+
+LanguageFilterButton.propTypes = {
+  languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
 function ProjectsSortingMenu(props) {
   const { isotopeRef, languages } = props;
@@ -84,5 +95,13 @@ function ProjectsSortingMenu(props) {
     </Container>
   );
 }
+
+ProjectsSortingMenu.propTypes = {
+  isotopeRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ]).isRequired,
+  languages: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
 export default ProjectsSortingMenu;

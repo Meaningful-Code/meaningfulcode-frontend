@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Button } from 'semantic-ui-react';
 
 import CategoryIcon from './CategoryIcon';
 
 function ProjectsCategoryFilterMenu(props) {
-  const isotopeRef = props.isotopeRef;
+  const { categories, isotopeRef } = props;
   const categoryAll = 'all';
-  const categories = [categoryAll].concat(props.categories);
+  const allCategories = [categoryAll].concat(categories);
   const [category, setCategory] = useState(categoryAll);
 
   return (
     <Container className="categories" textAlign="center">
-      {categories.map((btnCategory) => (
+      {allCategories.map((btnCategory) => (
         <FilterButton
           key={btnCategory}
           label={btnCategory}
@@ -29,18 +30,29 @@ function ProjectsCategoryFilterMenu(props) {
   );
 }
 
+ProjectsCategoryFilterMenu.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isotopeRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ]).isRequired
+};
+
 function FilterButton(props) {
+  const { label, active, onClick } = props;
+
   return (
-    <Button
-      as="h2"
-      size="big"
-      className={props.active ? 'active' : null}
-      onClick={props.onClick.bind(this)}
-    >
-      <CategoryIcon type={props.label} />
-      {props.label}
+    <Button as="h2" size="big" className={active ? 'active' : null} onClick={onClick}>
+      <CategoryIcon type={label} />
+      {label}
     </Button>
   );
 }
+
+FilterButton.propTypes = {
+  label: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired
+};
 
 export default ProjectsCategoryFilterMenu;

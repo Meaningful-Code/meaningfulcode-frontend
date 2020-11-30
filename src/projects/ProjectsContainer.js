@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Isotope from 'isotope-layout';
 
 export default class ProjectsContainer extends Component {
@@ -120,9 +121,14 @@ export default class ProjectsContainer extends Component {
     const { children } = this.props;
 
     return (
+      // eslint-disable-next-line no-return-assign
       <div className="item-grid" ref={(node) => (this.node = node)}>
         {children}
       </div>
     );
   }
 }
+
+ProjectsContainer.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.object).isRequired
+};

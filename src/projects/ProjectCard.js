@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   Icon,
@@ -42,16 +43,18 @@ function formatLastUpdateAge(lastCommitAgeInDays) {
 
 function ProjectCard(props) {
   const {
-    categories,
-    description,
-    languages,
-    lastCommitTime,
-    name,
-    owner,
-    stars,
-    url,
-    websiteUrl
-  } = props.project;
+    project: {
+      categories,
+      description,
+      languages,
+      lastCommitTime,
+      name,
+      owner,
+      stars,
+      url,
+      websiteUrl
+    }
+  } = props;
 
   const bookmarkKey = `${url}.bookmarked`;
   const prevBookmarked = localStorage.getItem(bookmarkKey) === '1';
@@ -144,6 +147,20 @@ function ProjectCard(props) {
     </div>
   );
 }
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    description: PropTypes.string.isRequired,
+    languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    lastCommitTime: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    owner: PropTypes.string.isRequired,
+    stars: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
+    websiteUrl: PropTypes.string.isRequired
+  }).isRequired
+};
 
 function ProjectPlaceholder() {
   return (

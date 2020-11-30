@@ -124,8 +124,8 @@ export default class ProjectView extends Component {
     super(props);
     this.state = {
       loading: true,
-      projects: undefined,
-      languages: undefined
+      projects: [],
+      languages: []
     };
 
     this.isotopeRef = React.createRef();
@@ -156,11 +156,12 @@ export default class ProjectView extends Component {
     let sleepTime = 5000;
     while (true) {
       try {
+        // eslint-disable-next-line no-await-in-loop
         const projectsModel = await getProjects();
         this.setProjects(projectsModel);
         break;
       } catch (err) {
-        console.error(`Failed to retrieve project list:  ${err}`);
+        // eslint-disable-next-line no-await-in-loop
         await sleep(sleepTime);
         sleepTime = Math.min(1 + sleepTime * 1.3, 30000);
       }
@@ -223,7 +224,7 @@ function IntroductionText() {
           <b>Pick a cause to support</b>, and <b>find Open Source projects</b> that make
           our world better.
           <br />
-          From the environment to health, accessibility, and humanitarian, we believe that{' '}
+          From the environment to health, accessibility, and humanitarian, we believe that
           <b>code can make a difference</b> when contributed to the right projects.
           Connecting great projects and developers, to make a difference.
         </p>
