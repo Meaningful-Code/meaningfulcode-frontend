@@ -226,20 +226,18 @@ function IntroductionText() {
     <>
       <Responsive as={Container} maxWidth={991}>
         <p>
-          <b>Pick a cause to support</b>, and <b>find Open Source projects</b> there to
-          make our world better. From the environment to health, accessibility, and
-          humanitarian, we believe that <b>code can make a difference</b> when contributed
-          to the right projects.
+          <b>Pick a cause to support</b>, and <b>find Open Source projects</b> willing to
+          make our world better. From the environment to health and humanitarian, we
+          believe that <b>code can make a difference</b> when contributed to the right
+          projects.
         </p>
       </Responsive>
       <Responsive as={Container} minWidth={992}>
-        <p>
-          <b>Pick a cause to support</b>, and <b>find Open Source projects</b> that make
-          our world better.
-          <br />
-          From the environment to health, accessibility, and humanitarian, we believe that
+        <p style={{ textAlign: 'center', margin: '0 5em', fontSize: '20px' }}>
+          <b>Pick a cause to support</b>, and <b>find Open Source projects</b> willing to
+          make our world better. <br />
+          From the environment to health, accessibility, and humanitarian, we believe that{' '}
           <b>code can make a difference</b> when contributed to the right projects.
-          Connecting great projects and developers, to make a difference.
         </p>
       </Responsive>
     </>
