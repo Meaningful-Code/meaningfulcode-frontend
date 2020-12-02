@@ -14,6 +14,10 @@ import {
 import { CategoryListIcon } from './CategoryIcon';
 
 function formatLastUpdateAge(lastCommitAgeInDays) {
+  if (Number.isNaN(lastCommitAgeInDays)) {
+    return 'never';
+  }
+
   const monthDuration = 30;
   const yearDuration = 365;
   let lastUpdateText = '';
