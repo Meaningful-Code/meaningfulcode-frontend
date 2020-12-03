@@ -20,18 +20,20 @@ export default function PageHeader() {
           </Link>
         </Grid.Column>
         <Grid.Column id="links" textAlign="right" tablet={16} computer={8}>
-          <Button as="a" href="/about">
-            About
-          </Button>
           <Button
+            id="addProject"
             as="a"
             target="_blank"
+            color="teal"
             href="https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+"
           >
-            Add a project
+            Add a project!
           </Button>
           <Button as="a" href="/get-started">
             Get started
+          </Button>
+          <Button as="a" href="/about">
+            About
           </Button>
         </Grid.Column>
       </Grid>

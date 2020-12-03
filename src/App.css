@@ -21,6 +21,11 @@ header>div {
   margin-left: 0.5em
 }
 
+#links  #addProject {
+  background-color: #35b87b;
+  border: 1px solid transparent;
+}
+
 @media only screen and (max-width: 575px) {
   #links .ui.button {
     padding-left: 1em;
