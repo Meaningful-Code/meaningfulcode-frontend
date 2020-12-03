@@ -77,6 +77,26 @@ function ProjectCard(props) {
   const lastCommitAgeInDays = Math.floor((new Date() - lastCommitDate) / msInADay);
   const maxDescription = 300;
 
+  let websiteButton;
+  if (websiteUrl) {
+    websiteButton = (
+      <Button className="project-button" fluid icon as="a" href={websiteUrl}>
+        <Icon name="globe" />
+        &nbsp;Website
+      </Button>
+    );
+  }
+
+  let githubButton;
+  if (url) {
+    githubButton = (
+      <Button className="project-button" fluid icon as="a" href={url}>
+        View on GitHub&nbsp;
+        <Icon name="right arrow" />
+      </Button>
+    );
+  }
+
   return (
     <div
       className="project-item"
@@ -134,18 +154,8 @@ function ProjectCard(props) {
             : description}
         </p>
         <Grid columns={2} className="buttons-row">
-          <Grid.Column className="left-column">
-            <Button className="project-button" fluid icon as="a" href={websiteUrl}>
-              <Icon name="globe" />
-              &nbsp;Website
-            </Button>
-          </Grid.Column>
-          <Grid.Column className="right-column">
-            <Button className="project-button" fluid icon as="a" href={url}>
-              View on GitHub&nbsp;
-              <Icon name="right arrow" />
-            </Button>
-          </Grid.Column>
+          <Grid.Column className="left-column">{websiteButton}</Grid.Column>
+          <Grid.Column className="right-column">{githubButton}</Grid.Column>
         </Grid>
       </Segment>
     </div>
