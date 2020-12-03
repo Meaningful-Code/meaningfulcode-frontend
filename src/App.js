@@ -141,20 +141,31 @@ function About() {
         contribute to, we hope to accelerate those initiative and their positive impact on
         our society.
       </p>
-      <Header as="h2">For more information</Header>
-      <Header as="h3">Contact</Header>
-      <p>
-        You can contact us via email at &quot;contact at meaningfulcode dot org&quot;, or
-        on <a href="https://github.com/Meaningful-Code/meaningfulcode-frontend">GitHub</a>
-        .
-      </p>
-      <Header as="h3">Source code</Header>
+      <br />
+      <Header as="h2">Contact</Header>
+      <Button color="teal" as="a" href="https://discord.gg/KPAm7wd7fJ">
+        <Icon name="discord" />
+        Discord
+      </Button>
+      <Button
+        color="teal"
+        as="a"
+        href="https://github.com/Meaningful-Code/meaningfulcode-frontend"
+      >
+        <Icon name="github" />
+        GitHub
+      </Button>
+      <Button color="teal" as="a" href="mailto:contact@meaningfulcode.org">
+        <Icon name="discord" />
+        Email
+      </Button>
+      <Header as="h2">Source code</Header>
       <p>
         The source code of this website is hosted on{' '}
         <a href="https://github.com/Meaningful-Code/meaningfulcode-frontend">GitHub</a>,
         contributors are welcome!
       </p>
-      <Header as="h3">Author(s)</Header>
+      <Header as="h2">Author(s)</Header>
       <List relaxed="very">
         <List.Item>
           <Image avatar src="/img/adrien.svg" />
@@ -169,6 +180,7 @@ function About() {
           </List.Content>
         </List.Item>
       </List>
+      <br />
       <Header as="h2">
         Thank you! <Emoji label="sparks" symbol="🎉" />
       </Header>
@@ -204,7 +216,17 @@ function About() {
         </li>
         <li>... and everyone who is giving their time to make a social impact</li>
       </ul>
-      We are all forever grateful.
+      <p>We are all forever grateful.</p>
+      <br />
+      <Header as="h2">Partners</Header>
+      <Image
+        as="a"
+        alt="alt text"
+        size="medium"
+        href="https://thefuturistfoundation.com/"
+        src="/img/futurist-foundation.png"
+        style={{ backgroundColor: '#040c16' }}
+      />
     </>
   );
 }
