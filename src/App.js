@@ -218,14 +218,13 @@ function About() {
       </ul>
       <p>We are all forever grateful.</p>
       <br />
-      <Header as="h2">Partners</Header>
+      <Header as="h2">Supported by</Header>
       <Image
         as="a"
         alt="alt text"
         size="medium"
         href="https://thefuturistfoundation.com/"
         src="/img/futurist-foundation.png"
-        style={{ backgroundColor: '#040c16' }}
       />
     </>
   );
