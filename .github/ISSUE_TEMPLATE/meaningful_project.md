@@ -9,7 +9,7 @@ assignees: ''
 **Project information**
 - Name: 
 - Website:
-- Category: Health/Humanitarian/Education/Accessibility/Society
+- Category: Accessibility/Education/Environment/Health/Humanitarian/Society
 - Source repository: e.g. GitHub URL
 
 **How is this project meaningful/impactful?**
