@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'semantic-ui-css/semantic.min.css';
+import './semantic-ui/semantic.less';
 
 ReactGA.initialize('UA-177770802-1');
 ReactGA.pageview(window.location.pathname + window.location.search);

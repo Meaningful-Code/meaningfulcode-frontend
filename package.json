@@ -10,14 +10,13 @@
     "react-ga": "^3.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
-    "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^1.2.1"
   },
   "scripts": {
-    "dev": "BROWSER=none react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "BROWSER=none craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "browserslist": [
     ">0.2%",
@@ -26,6 +25,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@craco/craco": "^5.9.0",
+    "@semantic-ui-react/craco-less": "^1.2.1",
     "babel-eslint": "^10.1.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",
@@ -33,6 +34,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.0.0"
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "semantic-ui-less": "^2.4.1"
   }
 }
