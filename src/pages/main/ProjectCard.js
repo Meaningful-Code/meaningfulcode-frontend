@@ -97,9 +97,11 @@ function ProjectCard(props) {
     );
   }
 
+  const isNew = name === 'ThePhysicsHub';
+
   return (
     <div
-      className="project-item"
+      className={`project-item ${isNew ? 'new' : ''}`}
       data-category={categories}
       data-last-update={lastCommitAgeInDays}
       data-bookmarked={bookmarked}

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Grid, Responsive } from 'semantic-ui-react';
 
-import ProjectsContainer from './ProjectsContainer';
-import ProjectCard, { ProjectPlaceholder } from './ProjectCard';
-import ProjectsCategoryFilterMenu from './ProjectsCategoryFilterMenu';
-import ProjectsSortingMenu from './ProjectsSortingMenu';
+import ProjectsContainer from './main/ProjectsContainer';
+import ProjectCard, { ProjectPlaceholder } from './main/ProjectCard';
+import ProjectsCategoryFilterMenu from './main/ProjectsCategoryFilterMenu';
+import ProjectsSortingMenu from './main/ProjectsSortingMenu';
+
+import './main/Main.css';
 
 const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -236,8 +238,8 @@ function IntroductionText() {
         <p style={{ textAlign: 'center', margin: '0 5em', fontSize: '20px' }}>
           <b>Pick a cause to support</b>, and <b>find Open Source projects</b> willing to
           make our world better. <br />
-          From the environment to health, accessibility, and humanitarian, we believe that{' '}
-          <b>code can make a difference</b> when contributed to the right projects.
+          From the environment to health, accessibility, and humanitarian, we believe
+          that <b>code can make a difference</b> when contributed to the right projects.
         </p>
       </Responsive>
     </>

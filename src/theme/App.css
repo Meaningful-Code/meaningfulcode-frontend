@@ -1,0 +1,97 @@
+#root {
+  margin-top: 2em;
+}
+
+header {
+  margin-bottom: 2em;
+}
+
+header>div {
+  margin-top: 1em
+}
+
+#links .ui.button {
+  background: none;
+  border: 1px solid gray;
+  margin-left: 0.5em
+}
+
+#links  #addProject {
+  background-color: #35b87b;
+  border: 1px solid transparent;
+}
+
+@media only screen and (max-width: 575px) {
+  #links .ui.button {
+    padding-left: 1em;
+    padding-right: 1em
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #links .ui.button {
+    padding-left: 0.5em;
+    padding-right: 0.5em
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  #links .ui.button {
+    padding-left: 0.25em;
+    padding-right: 0.25em
+  }
+}
+
+#title {
+  color: #35b87b
+}
+
+#title>.sub.header {
+  font-size: 1.4rem
+}
+
+#title-icon {
+  color: #3e692347
+}
+
+#header-grid {
+  margin-bottom: 1em;
+}
+
+main {
+  margin-top: 3em
+}
+
+footer {
+  margin-top: 2em;
+  padding-bottom: 2em;
+  min-height: 3em;
+}
+
+#social {
+  text-align: center;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+h2 {
+  margin-top: 1.5em;
+}
+
+main, p {
+  font-size: 18px;
+}
+
+a {
+  border-bottom: 1px solid white;
+  color: #0076ff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  border-bottom: 1px solid #0076ff;
+}

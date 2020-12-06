@@ -3,90 +3,6 @@
   --accent-dim-color: #81d4ae;
 }
 
-#root {
-  margin-top: 2em;
-}
-
-header {
-  margin-bottom: 2em;
-}
-
-header>div {
-  margin-top: 1em
-}
-
-#links .ui.button {
-  background: none;
-  border: 1px solid gray;
-  margin-left: 0.5em
-}
-
-#links  #addProject {
-  background-color: #35b87b;
-  border: 1px solid transparent;
-}
-
-@media only screen and (max-width: 575px) {
-  #links .ui.button {
-    padding-left: 1em;
-    padding-right: 1em
-  }
-}
-
-#title {
-  color: #35b87b
-}
-
-#title>.sub.header {
-  font-size: 1.4rem
-}
-
-#title-icon {
-  color: #3e692347
-}
-
-#header-grid {
-  margin-bottom: 1em;
-}
-
-main {
-  margin-top: 3em
-}
-
-footer {
-  margin-top: 2em;
-  padding-bottom: 2em;
-  min-height: 3em;
-}
-
-#social {
-  text-align: center;
-}
-
-h1 {
-  font-size: 45px;
-}
-
-h2 {
-  margin-top: 1.5em;
-}
-
-main, p {
-  font-size: 18px;
-}
-
-a {
-  border-bottom: 1px solid white;
-  color: #0076ff;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-a:hover {
-  border-bottom: 1px solid #0076ff;
-}
-
 /*-----------------------------------
   Categories and sortings
 */
@@ -163,10 +79,44 @@ a:hover {
   Project cards
 */
 
+.project-item.starred::before {
+  content: "\f005";
+  font-family: 'Icons';
+  font-size: 10em;
+  color: #ffd000;
+  opacity: 0.25;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 100px;
+  position: absolute;
+  overflow: hidden
+}
+
+.project-item.new::before {
+  content: "\f1d8";
+  font-family: 'Icons';
+  font-size: 10em;
+  color: #25ca72;
+  opacity: 0.15;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 150px;
+  position: absolute;
+  overflow: hidden
+}
+
 .project-item {
   position: relative;
   width: 330px;
   margin-bottom: 20px;
+}
+
+.project-item .ui.segment {
+  background: none;
 }
 
 .project-item .ui.list>.item>i.icon {
@@ -194,6 +144,7 @@ a:hover {
 .project-item .buttons-row>.right-column {
   padding-left: 2px !important;
 }
+
 
 .ui.button.bookmark-button {
   background-color: #ebebeb;
