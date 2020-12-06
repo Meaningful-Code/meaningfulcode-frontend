@@ -6,7 +6,7 @@
 		"react/jsx-max-props-per-line": [0, { "maximum": 3, "when": "multiline" }],
 		"react/forbid-prop-types": [1],
 		"no-constant-condition": ["error", { "checkLoops": false }],
-		"max-len": [1, { "code": 90 }]
+		"max-len": [0, { "code": 90 }]
 	},
 	"extends": [
 		"airbnb",
