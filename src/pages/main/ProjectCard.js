@@ -171,7 +171,7 @@ ProjectCard.propTypes = {
   project: PropTypes.shape({
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
     description: PropTypes.string.isRequired,
-    languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    languages: PropTypes.arrayOf(PropTypes.string),
     lastCommitTime: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     owner: PropTypes.string.isRequired,
