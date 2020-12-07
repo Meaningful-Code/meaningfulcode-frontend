@@ -60,6 +60,10 @@
   color: #2f2d25;
   margin-bottom: 4px
 }
+.sorting> .ui.dropdown, .sorting> .ui.input {
+  margin-right: 0.25em;
+  margin-bottom: 0.25em;
+}
 
 /*-----------------------------------
   Project grid
