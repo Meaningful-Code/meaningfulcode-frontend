@@ -6,16 +6,22 @@ This repository holds the frontend code of [meaningfulcode.org](https://meaningf
 
 The goal of this website is to promote **meaningful** and opensource **projects** that accept new contributors, willing to make a difference. Projects are regrouped in different categories: Health, Education, Environment, Society, and Humanitarian.
 
-## Contributing
+## Contributing / Help wanted!
 
 Contributors are very welcome, to help us you can:
 
-* [Suggest a meaningul project](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+)
-  *  If accepted, the project will be listed on [meaningfulcode.org](https://meaningfulcode.org)
+* [Suggest meaningul projects](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+): Finding those is though, this is the best way to help
+* Be part of the team
+  * UX and Graphical design
+  * Frontend/Backend dev
+  * Reach out on GitHub or [Discord](https://discord.gg/KPAm7wd7fJ)
+
+But you can also...
 * [Report an issue](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+)
 * [Suggest a new feature](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=Feature%3A+)
 * Contribute to the code base directly
-    * Clone this repository, and create a pull request with your changes
+    * Something doesn't work? Create a pull request with your changes!
+    * Have a look at opened tickets, feel free to ask if you have any doubts regarding the changes you want to push
 
 ## Build
 
