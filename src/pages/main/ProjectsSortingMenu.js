@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Dropdown } from 'semantic-ui-react';
+import { Button, Container, Dropdown, Input } from 'semantic-ui-react';
 
 function SortButton(props) {
   const { onClick, label } = props;
@@ -37,7 +37,7 @@ function LanguageFilterButton(props) {
   const { languages, onChange } = props;
   return (
     <Dropdown
-      placeholder="Language"
+      placeholder="language"
       clearable
       search
       selection
@@ -52,7 +52,16 @@ LanguageFilterButton.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-function ProjectsSortingMenu(props) {
+function SearchFilterButton(props) {
+  const { onChange } = props;
+  return <Input placeholder="search" onChange={onChange} />;
+}
+
+SearchFilterButton.propTypes = {
+  onChange: PropTypes.func.isRequired
+};
+
+export default function ProjectsSortingMenu(props) {
   const { isotopeRef, languages } = props;
 
   function sortByStars() {
@@ -85,6 +94,12 @@ function ProjectsSortingMenu(props) {
     }
   }
 
+  function filterBySearch(searchbox, changeEvent) {
+    if (isotopeRef.current) {
+      isotopeRef.current.filterBySearch(changeEvent.value);
+    }
+  }
+
   return (
     <Container className="sorting" textAlign="center">
       <SortButton label="shuffle!" onClick={shuffle} />
@@ -92,6 +107,7 @@ function ProjectsSortingMenu(props) {
       <SortButton label="last updated" onClick={sortByLastCommit} />
       <SortButton label="bookmarked" onClick={sortByBookmarked} />
       <LanguageFilterButton languages={languages} onChange={filterByLanguage} />
+      <SearchFilterButton onChange={filterBySearch} />
     </Container>
   );
 }
@@ -103,5 +119,3 @@ ProjectsSortingMenu.propTypes = {
   ]).isRequired,
   languages: PropTypes.arrayOf(PropTypes.string).isRequired
 };
-
-export default ProjectsSortingMenu;

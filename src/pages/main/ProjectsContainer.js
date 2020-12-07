@@ -75,7 +75,7 @@ export default class ProjectsContainer extends Component {
   }
 
   updateFilter() {
-    const { category, language } = this;
+    const { category, language, search } = this;
     const { isotope } = this.state;
 
     const categoryFilter = (itemElement) => {
@@ -95,9 +95,24 @@ export default class ProjectsContainer extends Component {
       return true;
     };
 
+    const searchFilter = (itemElement) => {
+      if (search) {
+        return (
+          itemElement.getAttribute('data-name').includes(search) ||
+          itemElement.getAttribute('data-owner').includes(search) ||
+          itemElement.getAttribute('data-desc').includes(search)
+        );
+      }
+      return true;
+    };
+
     isotope.arrange({
       filter: (itemElement) => {
-        return categoryFilter(itemElement) && languagesFilter(itemElement);
+        return (
+          categoryFilter(itemElement) &&
+          languagesFilter(itemElement) &&
+          searchFilter(itemElement)
+        );
       }
     });
   }
@@ -109,6 +124,11 @@ export default class ProjectsContainer extends Component {
 
   filterByLanguage(language) {
     this.language = language === '' ? null : language;
+    this.updateFilter();
+  }
+
+  filterBySearch(search) {
+    this.search = search === '' ? null : search.toLowerCase();
     this.updateFilter();
   }
 

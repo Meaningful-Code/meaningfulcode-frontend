@@ -105,6 +105,9 @@ function ProjectCard(props) {
       data-category={categories}
       data-last-update={lastCommitAgeInDays}
       data-bookmarked={bookmarked}
+      data-name={name.toLowerCase()}
+      data-owner={owner.toLowerCase()}
+      data-desc={description.toLowerCase()}
     >
       <Segment raised>
         <Header
@@ -112,7 +115,7 @@ function ProjectCard(props) {
           className="name"
           style={{ fontSize: '1.5em', marginBottom: '1em' }}
         >
-          <Header.Content>{name}</Header.Content>
+          <Header.Content className="project-name">{name}</Header.Content>
           <Header.Subheader>{owner}</Header.Subheader>
         </Header>
         <Button
@@ -150,7 +153,7 @@ function ProjectCard(props) {
             </Label>
           </Grid.Column>
         </Grid>
-        <p style={{ marginBottom: '1.5em' }}>
+        <p style={{ marginBottom: '1.5em' }} className="project-desc">
           {description.length > maxDescription
             ? `${description.substring(0, maxDescription)}...`
             : description}
