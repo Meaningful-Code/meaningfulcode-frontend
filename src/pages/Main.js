@@ -23,7 +23,7 @@ function sampleProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-a',
       websiteUrl: 'https://websitea.com',
-      lastCommitTime: '2020-02-27T19:35:32Z'
+      lastCommitTimestamp: '1607894587'
     },
     {
       name: 'Project B',
@@ -34,7 +34,7 @@ function sampleProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-b',
       websiteUrl: 'https://websiteb.com',
-      lastCommitTime: '2016-10-27T19:35:32Z'
+      lastCommitTimestamp: '1607824587'
     },
     {
       name: 'Project C',
@@ -45,7 +45,7 @@ function sampleProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-c',
       websiteUrl: 'https://websitec.com',
-      lastCommitTime: '2020-09-15T19:35:32Z'
+      lastCommitTimestamp: '1607124587'
     },
     {
       name: 'Project D',
@@ -57,7 +57,7 @@ function sampleProjects() {
         'Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-d',
       websiteUrl: 'https://websited.com',
-      lastCommitTime: '2013-02-27T19:35:32Z'
+      lastCommitTimestamp: '1607824117'
     },
     {
       name: 'Project E',
@@ -68,7 +68,7 @@ function sampleProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-e',
       websiteUrl: 'https://websited.com',
-      lastCommitTime: '2016-10-27T19:35:32Z'
+      lastCommitTimestamp: '1507824117'
     },
     {
       name: 'Project F',
@@ -79,7 +79,7 @@ function sampleProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-f',
       websiteUrl: 'https://websitef.com',
-      lastCommitTime: '2020-02-27T19:35:32Z'
+      lastCommitTimestamp: '1587824117'
     }
   ];
 }

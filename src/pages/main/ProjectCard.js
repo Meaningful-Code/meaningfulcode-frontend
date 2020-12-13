@@ -51,7 +51,7 @@ function ProjectCard(props) {
       categories,
       description,
       languages,
-      lastCommitTime,
+      lastCommitTimestamp,
       name,
       owner,
       stars,
@@ -72,10 +72,14 @@ function ProjectCard(props) {
     }
   });
 
-  const msInADay = 1000 * 3600 * 24;
-  const lastCommitDate = Date.parse(lastCommitTime);
-  const lastCommitAgeInDays = Math.floor((new Date() - lastCommitDate) / msInADay);
   const maxDescription = 300;
+
+  const secInADay = 3600 * 24;
+  const now = new Date() / 1000;
+  let lastCommitAgeInDays = null;
+  if (lastCommitTimestamp > 0) {
+    lastCommitAgeInDays = Math.floor((now - lastCommitTimestamp) / secInADay);
+  }
 
   let websiteButton;
   if (websiteUrl) {
@@ -172,7 +176,7 @@ ProjectCard.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
     description: PropTypes.string.isRequired,
     languages: PropTypes.arrayOf(PropTypes.string),
-    lastCommitTime: PropTypes.string.isRequired,
+    lastCommitTimestamp: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     owner: PropTypes.string.isRequired,
     stars: PropTypes.number.isRequired,
