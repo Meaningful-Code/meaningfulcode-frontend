@@ -46,13 +46,18 @@ header>div {
   color: #35b87b
 }
 
-#title>.sub.header {
-  font-size: 1.4rem
+@media only screen and (min-width: 320px) {
+  #title {
+    font-size: 1.6rem
+  }
 }
 
-#title-icon {
-  color: #3e692347
+@media only screen and (min-width: 400px) {
+  #title>.sub.header {
+    font-size: 1.4rem
+  }
 }
+
 
 #header-grid {
   margin-bottom: 1em;
