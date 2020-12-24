@@ -87,6 +87,36 @@
   Project cards
 */
 
+.project-item.featured::before {
+  border: 6px solid #009c95;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  content: '';
+  opacity: 0.25;
+}
+
+.project-item.featured.environment::before {
+  border-color: #21ba45;
+}
+.project-item.featured.humanitarian::before {
+  border-color: #f2711c;
+}
+.project-item.featured.accessibility::before {
+  border-color: #2185d0;
+}
+.project-item.featured.society::before {
+  border-color: #6435c9;
+}
+.project-item.featured.health::before {
+  border-color: #00b5ad;
+}
+.project-item.featured.education::before {
+  border-color: #db2828;
+}
+
 .project-item.starred::before {
   content: '\f005';
   font-family: 'Icons';
@@ -160,8 +190,8 @@
   position: absolute;
   border-radius: 4px;
   margin-right: 0px;
-  top: -1px;
-  right: -1px;
+  top: 5px;
+  right: 5px;
 }
 
 .ui.button.bookmark-button:hover,

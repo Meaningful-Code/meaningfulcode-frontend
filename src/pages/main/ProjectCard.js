@@ -45,6 +45,15 @@ function formatLastUpdateAge(lastCommitAgeInDays) {
   return lastUpdateText;
 }
 
+function FeaturedListItem() {
+  return (
+    <List.Item>
+      <Icon name="star" />
+      <List.Content className="categories">featured</List.Content>
+    </List.Item>
+  );
+}
+
 function ProjectCard(props) {
   const {
     project: {
@@ -101,11 +110,18 @@ function ProjectCard(props) {
     );
   }
 
-  const isNew = name === 'ThePhysicsHub';
+  const isFeatured =
+    name === 'covid19_scenarios' ||
+    name === 'ifme' ||
+    name === 'terrastories' ||
+    name === 'platform-client';
+  const isNew = false;
 
   return (
     <div
-      className={`project-item ${isNew ? 'new' : ''}`}
+      className={`project-item ${categories} ${isNew ? 'new' : ''} ${
+        isFeatured ? 'featured' : ''
+      }`}
       data-category={categories}
       data-last-update={lastCommitAgeInDays}
       data-bookmarked={bookmarked}
@@ -136,6 +152,7 @@ function ProjectCard(props) {
                 <CategoryListIcon type={categories[0]} />
                 <List.Content className="categories">{categories}</List.Content>
               </List.Item>
+              {isFeatured ? FeaturedListItem() : ''}
               <List.Item>
                 <List.Icon name="code" />
                 <List.Content className="languages">
