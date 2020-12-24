@@ -9,58 +9,62 @@
 
 .categories {
   margin-top: 5em;
-  margin-bottom: 3em
+  margin-bottom: 3em;
 }
 
 @media only screen and (max-width: 767px) {
   .categories {
     margin-top: 3.5em;
-    margin-bottom: 2em
+    margin-bottom: 2em;
   }
 }
 
-#root .categories>.ui.button {
+#root .categories > .ui.button {
   text-transform: capitalize;
   font-weight: 400;
   font-size: 20px;
   color: #4d4d4d;
   background: none;
   margin-bottom: 4px;
-  padding: .5em 0.9em;
+  padding: 0.5em 0.9em;
   border: 1px solid transparent;
   border-radius: 36px;
 }
 
 @media only screen and (max-width: 767px) {
-  #root .categories>.ui.button {
+  #root .categories > .ui.button {
     font-size: 18px;
-    padding: .3em 0.5em;
+    padding: 0.3em 0.5em;
   }
 }
 
-#root .categories>.ui.button:hover, #root .categories>.ui.button.active, .categories>.ui.button.active:hover {
+#root .categories > .ui.button:hover,
+#root .categories > .ui.button.active,
+.categories > .ui.button.active:hover {
   border-color: gray;
   background: none;
-  color: #131210
+  color: #131210;
 }
 
 .sorting {
-  margin: 3em
+  margin: 3em;
 }
 
-.sorting>.ui.button {
+.sorting > .ui.button {
   background: none;
   border: 1px solid lightgray;
   color: #2f2d25;
-  margin-bottom: 4px
+  margin-bottom: 4px;
 }
 
-.sorting>.ui.button:hover, .sorting>.ui.button:focus {
+.sorting > .ui.button:hover,
+.sorting > .ui.button:focus {
   background-color: var(--accent-dim-color);
   color: #2f2d25;
-  margin-bottom: 4px
+  margin-bottom: 4px;
 }
-.sorting> .ui.dropdown, .sorting> .ui.input {
+.sorting > .ui.dropdown,
+.sorting > .ui.input {
   margin-right: 0.25em;
   margin-bottom: 0.25em;
 }
@@ -84,7 +88,7 @@
 */
 
 .project-item.starred::before {
-  content: "\f005";
+  content: '\f005';
   font-family: 'Icons';
   font-size: 10em;
   color: #ffd000;
@@ -95,11 +99,11 @@
   right: 0;
   line-height: 100px;
   position: absolute;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .project-item.new::before {
-  content: "\f1d8";
+  content: '\f1d8';
   font-family: 'Icons';
   font-size: 10em;
   color: #25ca72;
@@ -110,7 +114,7 @@
   right: 0;
   line-height: 150px;
   position: absolute;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .project-item {
@@ -123,32 +127,33 @@
   background: none;
 }
 
-.project-item .ui.list>.item>i.icon {
+.project-item .ui.list > .item > i.icon {
   min-width: 28px;
 }
 
-.project-item .ui.list>.item>div.categories {
+.project-item .ui.list > .item > div.categories {
   text-transform: capitalize;
   font-weight: bold;
   vertical-align: middle;
 }
 
 .project-item .ui.icon.project-button {
-  background: none
+  background: none;
 }
 
-.project-item .ui.icon.project-button:hover, .project-item .ui.icon.project-button.active, .project-item .ui.icon.project-button.active:hover {
-  background-color: var(--accent-dim-color)
+.project-item .ui.icon.project-button:hover,
+.project-item .ui.icon.project-button.active,
+.project-item .ui.icon.project-button.active:hover {
+  background-color: var(--accent-dim-color);
 }
 
-.project-item .buttons-row>.left-column {
+.project-item .buttons-row > .left-column {
   padding-right: 2px !important;
 }
 
-.project-item .buttons-row>.right-column {
+.project-item .buttons-row > .right-column {
   padding-left: 2px !important;
 }
-
 
 .ui.button.bookmark-button {
   background-color: #ebebeb;
@@ -159,6 +164,8 @@
   right: -1px;
 }
 
-.ui.button.bookmark-button:hover, .ui.button.bookmark-button.active, .ui.button.bookmark-button.active:hover {
+.ui.button.bookmark-button:hover,
+.ui.button.bookmark-button.active,
+.ui.button.bookmark-button.active:hover {
   background-color: var(--accent-color);
 }
