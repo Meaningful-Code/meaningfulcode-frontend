@@ -1,6 +1,6 @@
 {
   "name": "meaningfulcode",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "private": true,
   "dependencies": {
     "isotope-layout": "^3.0.6",
