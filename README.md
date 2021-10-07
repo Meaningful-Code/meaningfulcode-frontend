@@ -31,7 +31,7 @@ This frontend is based on [React](https://reactjs.org/), [Semantic UI](https://r
 
 The following steps guide you to setup your environment
 
-1. Install Node (https://nodejs.org/en/download/package-manager/), the latest LTS is recommended.
+1. Install Node 14 (https://nodejs.org/en/download/package-manager/)
 1. Clone this repository, and run `npm install`
 
 ### Development build
