@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Grid, Responsive } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
+import HeaderText from './main/HeaderText';
 import ProjectsContainer from './main/ProjectsContainer';
 import ProjectCard, { ProjectPlaceholder } from './main/ProjectCard';
 import ProjectsCategoryFilterMenu from './main/ProjectsCategoryFilterMenu';
@@ -118,7 +119,7 @@ export default class ProjectView extends Component {
 
     return (
       <>
-        <IntroductionText />
+        <HeaderText />
         <ProjectsCategoryFilterMenu
           isotopeRef={this.isotopeRef}
           categories={categories()}
@@ -151,27 +152,4 @@ export default class ProjectView extends Component {
       </>
     );
   }
-}
-
-function IntroductionText() {
-  return (
-    <>
-      <Responsive as={Container} maxWidth={991}>
-        <p>
-          <b>Pick a cause to support</b>, and <b>find Open Source projects</b> willing to
-          make our world better. From the environment to health and humanitarian, we
-          believe that <b>code can make a difference</b> when contributed to the right
-          projects.
-        </p>
-      </Responsive>
-      <Responsive as={Container} minWidth={992}>
-        <p style={{ textAlign: 'center', margin: '0 5em', fontSize: '20px' }}>
-          <b>Pick a cause to support</b>, and <b>find Open Source projects</b> willing to
-          make our world better. <br />
-          From the environment to health, accessibility, and humanitarian, we believe
-          that <b>code can make a difference</b> when contributed to the right projects.
-        </p>
-      </Responsive>
-    </>
-  );
 }
