@@ -128,7 +128,7 @@ export default class ProjectsSortingMenu extends Component {
 ProjectsSortingMenu.propTypes = {
   isotopeRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any })
+    PropTypes.shape({ current: PropTypes.instanceOf(Component) })
   ]).isRequired,
   languages: PropTypes.arrayOf(PropTypes.string).isRequired
 };
