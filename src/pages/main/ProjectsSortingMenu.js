@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Container, Dropdown, Input } from 'semantic-ui-react';
 
@@ -61,55 +61,68 @@ SearchFilterButton.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default function ProjectsSortingMenu(props) {
-  const { isotopeRef, languages } = props;
+export default class ProjectsSortingMenu extends Component {
+  constructor(props) {
+    super(props)
+    this.isotopeRef = props.isotopeRef;
 
-  function sortByStars() {
-    if (isotopeRef.current) {
-      isotopeRef.current.sortByStars();
+    this.sortByStars = this.sortByStars.bind(this)
+    this.sortByLastCommit = this.sortByLastCommit.bind(this)
+    this.sortByBookmarked = this.sortByBookmarked.bind(this)
+    this.shuffle = this.shuffle.bind(this)
+    this.filterByLanguage = this.filterByLanguage.bind(this);
+    this.filterBySearch = this.filterBySearch.bind(this);
+  }
+
+  sortByStars() {
+    if (this.isotopeRef.current) {
+      this.isotopeRef.current.sortByStars();
     }
   }
 
-  function sortByLastCommit() {
-    if (isotopeRef.current) {
-      isotopeRef.current.sortByLastCommit();
+  sortByLastCommit() {
+    if (this.isotopeRef.current) {
+      this.isotopeRef.current.sortByLastCommit();
     }
   }
 
-  function sortByBookmarked() {
-    if (isotopeRef.current) {
-      isotopeRef.current.sortByBookmarked();
+  sortByBookmarked() {
+    if (this.isotopeRef.current) {
+      this.isotopeRef.current.sortByBookmarked();
     }
   }
 
-  function shuffle() {
-    if (isotopeRef.current) {
-      isotopeRef.current.shuffle();
+  shuffle() {
+    if (this.isotopeRef.current) {
+      this.isotopeRef.current.shuffle();
     }
   }
 
-  function filterByLanguage(dropdown, changeEvent) {
-    if (isotopeRef.current) {
-      isotopeRef.current.filterByLanguage(changeEvent.value);
+  filterByLanguage(dropdown, changeEvent) {
+    if (this.isotopeRef.current) {
+      this.isotopeRef.current.filterByLanguage(changeEvent.value);
     }
   }
 
-  function filterBySearch(searchbox, changeEvent) {
-    if (isotopeRef.current) {
-      isotopeRef.current.filterBySearch(changeEvent.value);
+  filterBySearch(searchbox, changeEvent) {
+    if (this.isotopeRef.current) {
+      this.isotopeRef.current.filterBySearch(changeEvent.value);
     }
   }
 
-  return (
-    <Container className="sorting" textAlign="center">
-      <SortButton label="shuffle!" onClick={shuffle} />
-      <SortButton label="most starred" onClick={sortByStars} />
-      <SortButton label="last updated" onClick={sortByLastCommit} />
-      <SortButton label="bookmarked" onClick={sortByBookmarked} />
-      <LanguageFilterButton languages={languages} onChange={filterByLanguage} />
-      <SearchFilterButton onChange={filterBySearch} />
-    </Container>
-  );
+  render() {
+    const { languages } = this.props
+    return (
+      <Container className="sorting" textAlign="center">
+        <SortButton label="shuffle!" onClick={this.shuffle} />
+        <SortButton label="most starred" onClick={this.sortByStars} />
+        <SortButton label="last updated" onClick={this.sortByLastCommit} />
+        <SortButton label="bookmarked" onClick={this.sortByBookmarked} />
+        <LanguageFilterButton languages={languages} onChange={this.filterByLanguage} />
+        <SearchFilterButton onChange={this.filterBySearch} />
+      </Container>
+    );
+  }
 }
 
 ProjectsSortingMenu.propTypes = {
