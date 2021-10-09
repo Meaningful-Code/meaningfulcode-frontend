@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Button } from 'semantic-ui-react';
 
@@ -34,7 +34,7 @@ ProjectsCategoryFilterMenu.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   isotopeRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any })
+    PropTypes.shape({ current: PropTypes.instanceOf(Component) })
   ]).isRequired
 };
 
