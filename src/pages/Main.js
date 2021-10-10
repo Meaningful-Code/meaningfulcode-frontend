@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import qs from 'qs';
 
 import HeaderText from './main/HeaderText';
 import ProjectsContainer from './main/ProjectsContainer';
 import ProjectCard, { ProjectPlaceholder } from './main/ProjectCard';
-import ProjectsCategoryFilterMenu from './main/ProjectsCategoryFilterMenu';
+import CategoryFilterMenu from './main/CategoryFilterMenu';
 import ProjectsSortingMenu from './main/ProjectsSortingMenu';
 
-import getMockProjects from '../data/mock'
+import getMockProjects from '../data/mock';
 
 import './main/Main.css';
 
@@ -65,20 +68,46 @@ function PlaceholderProjectsContainer() {
     </Grid>
   );
 }
-export default class ProjectView extends Component {
+
+function stateFromQueryStrings(queryString) {
+  const { cat } = qs.parse(queryString, {
+    ignoreQueryPrefix: true
+  });
+
+  return {
+    category: cat
+  };
+}
+
+export class ProjectPage extends Component {
   constructor(props) {
     super(props);
+    const { location } = this.props;
+    const { category } = stateFromQueryStrings(location.search);
+
     this.state = {
       loading: true,
       projects: [],
-      languages: []
+      languages: [],
+      category
     };
 
+    this.onCategoryChanged = this.onCategoryChanged.bind(this);
     this.isotopeRef = React.createRef();
   }
 
   async componentDidMount() {
     this.tryGetProjects();
+  }
+
+  onCategoryChanged(category) {
+    const { routerRef } = this.props;
+    const categoryFilter = category !== '' ? category : null;
+    routerRef.current.history.push(categoryFilter ? `/?cat=${category}` : '/');
+
+    this.setState({
+      category
+    });
   }
 
   setProjects(updatedProjects) {
@@ -115,14 +144,15 @@ export default class ProjectView extends Component {
   }
 
   headerAndMenus() {
-    const { languages } = this.state;
+    const { category, languages } = this.state;
 
     return (
       <>
         <HeaderText />
-        <ProjectsCategoryFilterMenu
-          isotopeRef={this.isotopeRef}
+        <CategoryFilterMenu
           categories={categories()}
+          initialCategory={category}
+          onCategorySelected={this.onCategoryChanged}
         />
         <ProjectsSortingMenu isotopeRef={this.isotopeRef} languages={languages} />
       </>
@@ -130,7 +160,7 @@ export default class ProjectView extends Component {
   }
 
   render() {
-    const { loading, projects } = this.state;
+    const { category, loading, projects } = this.state;
 
     if (loading) {
       return (
@@ -144,7 +174,7 @@ export default class ProjectView extends Component {
     return (
       <>
         {this.headerAndMenus()}
-        <ProjectsContainer ref={this.isotopeRef}>
+        <ProjectsContainer ref={this.isotopeRef} category={category}>
           {projects.map((project) => (
             <ProjectCard key={project.url} project={project} />
           ))}
@@ -153,3 +183,15 @@ export default class ProjectView extends Component {
     );
   }
 }
+
+ProjectPage.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  location: PropTypes.object.isRequired,
+  routerRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Component) })
+  ]).isRequired
+};
+
+const ProjectPageWithRouter = withRouter(ProjectPage);
+export default ProjectPageWithRouter;

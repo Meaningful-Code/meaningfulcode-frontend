@@ -12,8 +12,10 @@ import About from './pages/About';
 import './theme/App.css';
 
 export default function App() {
+  const routerRef = React.createRef();
+
   return (
-    <Router>
+    <Router ref={routerRef}>
       <Container>
         <PageHeader />
         <main>
@@ -25,7 +27,7 @@ export default function App() {
               <GetStarted />
             </Route>
             <Route path="/">
-              <ProjectsPage />
+              <ProjectsPage routerRef={routerRef} />
             </Route>
           </Switch>
         </main>

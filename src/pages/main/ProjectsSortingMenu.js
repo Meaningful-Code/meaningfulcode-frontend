@@ -63,13 +63,13 @@ SearchFilterButton.propTypes = {
 
 export default class ProjectsSortingMenu extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.isotopeRef = props.isotopeRef;
 
-    this.sortByStars = this.sortByStars.bind(this)
-    this.sortByLastCommit = this.sortByLastCommit.bind(this)
-    this.sortByBookmarked = this.sortByBookmarked.bind(this)
-    this.shuffle = this.shuffle.bind(this)
+    this.sortByStars = this.sortByStars.bind(this);
+    this.sortByLastCommit = this.sortByLastCommit.bind(this);
+    this.sortByBookmarked = this.sortByBookmarked.bind(this);
+    this.shuffle = this.shuffle.bind(this);
     this.filterByLanguage = this.filterByLanguage.bind(this);
     this.filterBySearch = this.filterBySearch.bind(this);
   }
@@ -111,7 +111,7 @@ export default class ProjectsSortingMenu extends Component {
   }
 
   render() {
-    const { languages } = this.props
+    const { languages } = this.props;
     return (
       <Container className="sorting" textAlign="center">
         <SortButton label="shuffle!" onClick={this.shuffle} />
