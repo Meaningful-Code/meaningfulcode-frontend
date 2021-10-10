@@ -1,28 +1,24 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Button } from 'semantic-ui-react';
 
 import CategoryIcon from './CategoryIcon';
 
-function ProjectsCategoryFilterMenu(props) {
-  const { categories, isotopeRef } = props;
-  const categoryAll = 'all';
+const categoryAll = '';
+export default function CategoryFilterMenu(props) {
+  const { categories, onCategorySelected, initialCategory } = props;
+  const [category, setCategory] = useState(initialCategory);
   const allCategories = [categoryAll].concat(categories);
-  const [category, setCategory] = useState(categoryAll);
-
   return (
     <Container className="categories" textAlign="center">
       {allCategories.map((btnCategory) => (
         <FilterButton
           key={btnCategory}
-          label={btnCategory}
+          label={btnCategory || 'all'}
           active={category === btnCategory}
           onClick={() => {
             setCategory(btnCategory);
-            if (isotopeRef.current) {
-              const categoryFilter = btnCategory !== categoryAll ? btnCategory : null;
-              isotopeRef.current.filterByCategory(categoryFilter);
-            }
+            onCategorySelected(btnCategory);
           }}
         />
       ))}
@@ -30,12 +26,14 @@ function ProjectsCategoryFilterMenu(props) {
   );
 }
 
-ProjectsCategoryFilterMenu.propTypes = {
+CategoryFilterMenu.propTypes = {
+  initialCategory: PropTypes.string,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  isotopeRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Component) })
-  ]).isRequired
+  onCategorySelected: PropTypes.func.isRequired
+};
+
+CategoryFilterMenu.defaultProps = {
+  initialCategory: categoryAll
 };
 
 function FilterButton(props) {
@@ -54,5 +52,3 @@ FilterButton.propTypes = {
   active: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 };
-
-export default ProjectsCategoryFilterMenu;

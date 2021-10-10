@@ -6,8 +6,11 @@ export default class ProjectsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { isotope: null };
-    this.category = null;
-    this.language = null;
+
+    const { category } = this.props;
+    this.filterByCategory(category);
+    this.filterByLanguage(null);
+    this.filterBySearch(null);
   }
 
   // set up isotope
@@ -27,7 +30,8 @@ export default class ProjectsContainer extends Component {
           masonry: {
             isFitWidth: true,
             gutter: 20
-          }
+          },
+          filter: this.currentFilterFunc
         })
       });
     } else {
@@ -35,13 +39,11 @@ export default class ProjectsContainer extends Component {
     }
   }
 
-  // update isotope layout
-  componentDidUpdate() {
-    const { isotope } = this.state;
+  componentDidUpdate(prevProps) {
+    const { category } = this.props;
 
-    if (isotope) {
-      isotope.reloadItems();
-      isotope.layout();
+    if (category !== prevProps.category) {
+      this.filterByCategory(category);
     }
   }
 
@@ -74,9 +76,8 @@ export default class ProjectsContainer extends Component {
     });
   }
 
-  updateFilter() {
+  filterFunction() {
     const { category, language, search } = this;
-    const { isotope } = this.state;
 
     const categoryFilter = (itemElement) => {
       if (category) {
@@ -106,35 +107,44 @@ export default class ProjectsContainer extends Component {
       return true;
     };
 
-    isotope.arrange({
-      filter: (itemElement) => {
-        return (
-          categoryFilter(itemElement) &&
-          languagesFilter(itemElement) &&
-          searchFilter(itemElement)
-        );
-      }
-    });
+    return (itemElement) => {
+      return (
+        categoryFilter(itemElement) &&
+        languagesFilter(itemElement) &&
+        searchFilter(itemElement)
+      );
+    };
+  }
+
+  updateFilter() {
+    const { isotope } = this.state;
+    this.currentFilterFunc = this.filterFunction();
+
+    if (isotope) {
+      isotope.arrange({ filter: this.currentFilterFunc });
+    }
   }
 
   filterByCategory(category) {
-    this.category = category === '' ? null : category;
+    this.category = category || null;
     this.updateFilter();
   }
 
   filterByLanguage(language) {
-    this.language = language === '' ? null : language;
+    this.language = language || null;
     this.updateFilter();
   }
 
   filterBySearch(search) {
-    this.search = search === '' ? null : search.toLowerCase();
+    this.search = search ? search.toLowerCase() : null;
     this.updateFilter();
   }
 
   shuffle() {
     const { isotope } = this.state;
-    isotope.shuffle();
+    if (isotope) {
+      isotope.shuffle();
+    }
   }
 
   render() {
@@ -150,5 +160,10 @@ export default class ProjectsContainer extends Component {
 }
 
 ProjectsContainer.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  category: PropTypes.string
+};
+
+ProjectsContainer.defaultProps = {
+  category: null
 };
