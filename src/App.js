@@ -27,7 +27,7 @@ export default function App() {
               <GetStarted />
             </Route>
             <Route path="/">
-              <ProjectsPage routerRef={routerRef} />
+              <ProjectsPage />
             </Route>
           </Switch>
         </main>
