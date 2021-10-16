@@ -30,10 +30,10 @@ export default function PageHeader() {
           >
             Add a project!
           </Button>
-          <Button as="a" href="/get-started">
+          <Button as={Link} to="/get-started">
             Get started
           </Button>
-          <Button as="a" href="/about">
+          <Button as={Link} to="/about">
             About
           </Button>
         </Grid.Column>
