@@ -9,39 +9,13 @@ import ProjectsContainer from './main/ProjectsContainer';
 import ProjectCard, { ProjectPlaceholder } from './main/ProjectCard';
 import CategoryMenu from './main/CategoryMenu';
 import ProjectsSortingMenu from './main/ProjectsSortingMenu';
-
-import getMockProjects from '../data/mock';
+import getProjects, { categories } from '../projects/projects';
 
 import './main/Main.css';
 
 const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
-
-async function getProjects() {
-  if (process.env.REACT_APP_FORCE_API === 'stub') {
-    return getMockProjects();
-  }
-
-  let getProjectsApiUrl = '/api/projects';
-  if (process.env.REACT_APP_FORCE_API === 'prod') {
-    const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-    const url = 'https://meaningfulcode.org/api/projects';
-    getProjectsApiUrl = proxyurl + url;
-  }
-
-  const res = await fetch(getProjectsApiUrl);
-  const updatedProjects = await res.text();
-  if (!res.ok) {
-    const error = `An error occured calling "${getProjectsApiUrl}": ${res.statusText}`;
-    throw new Error(error);
-  }
-
-  return JSON.parse(updatedProjects);
-}
-function categories() {
-  return ['health', 'education', 'environment', 'society', 'humanitarian'];
-}
 
 function shuffle(array) {
   let i = array.length - 1;
@@ -150,7 +124,7 @@ export class ProjectPage extends Component {
       <>
         <HeaderText />
         <CategoryMenu
-          categories={categories()}
+          categories={categories}
           category={category}
           urlTemplate="/?cat=:"
         />
