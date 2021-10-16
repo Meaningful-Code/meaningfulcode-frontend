@@ -126,7 +126,7 @@ export default class ProjectsContainer extends Component {
   }
 
   filterByCategory(category) {
-    this.category = category || null;
+    this.category = category !== 'all' ? category || null : null;
     this.updateFilter();
   }
 

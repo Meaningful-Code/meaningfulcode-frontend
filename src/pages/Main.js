@@ -7,7 +7,7 @@ import qs from 'qs';
 import HeaderText from './main/HeaderText';
 import ProjectsContainer from './main/ProjectsContainer';
 import ProjectCard, { ProjectPlaceholder } from './main/ProjectCard';
-import CategoryFilterMenu from './main/CategoryFilterMenu';
+import CategoryMenu from './main/CategoryMenu';
 import ProjectsSortingMenu from './main/ProjectsSortingMenu';
 
 import getMockProjects from '../data/mock';
@@ -75,7 +75,7 @@ function stateFromQueryStrings(queryString) {
   });
 
   return {
-    category: cat
+    category: cat || null
   };
 }
 
@@ -92,7 +92,6 @@ export class ProjectPage extends Component {
       category
     };
 
-    this.onCategoryChanged = this.onCategoryChanged.bind(this);
     this.isotopeRef = React.createRef();
   }
 
@@ -100,14 +99,15 @@ export class ProjectPage extends Component {
     this.tryGetProjects();
   }
 
-  onCategoryChanged(category) {
-    const { routerRef } = this.props;
-    const categoryFilter = category !== '' ? category : null;
-    routerRef.current.history.push(categoryFilter ? `/?cat=${category}` : '/');
-
-    this.setState({
-      category
-    });
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
+    if (location.search !== prevProps.location.search) {
+      const { category } = stateFromQueryStrings(location.search);
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        category
+      });
+    }
   }
 
   setProjects(updatedProjects) {
@@ -149,10 +149,10 @@ export class ProjectPage extends Component {
     return (
       <>
         <HeaderText />
-        <CategoryFilterMenu
+        <CategoryMenu
           categories={categories()}
-          initialCategory={category}
-          onCategorySelected={this.onCategoryChanged}
+          category={category}
+          urlTemplate="/?cat=:"
         />
         <ProjectsSortingMenu isotopeRef={this.isotopeRef} languages={languages} />
       </>
@@ -186,11 +186,7 @@ export class ProjectPage extends Component {
 
 ProjectPage.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  location: PropTypes.object.isRequired,
-  routerRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Component) })
-  ]).isRequired
+  location: PropTypes.object.isRequired
 };
 
 const ProjectPageWithRouter = withRouter(ProjectPage);
