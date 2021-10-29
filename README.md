@@ -10,7 +10,7 @@ The goal of this website is to promote **meaningful** and opensource **projects*
 
 Contributors are very welcome, to help us you can:
 
-* [Suggest meaningul projects](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+): Finding those is though, this is the best way to help
+* [Suggest meaningul projects](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+): Finding those is tough, this is the best way to help
 * Be part of the team
   * UX and Graphical design
   * Frontend/Backend dev
