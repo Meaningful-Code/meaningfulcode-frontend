@@ -12,7 +12,10 @@
     "react-ga": "^3.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "semantic-ui-react": "^2.0.4"
+    "semantic-ui-react": "^2.0.4",
+    "@vercel/node": "^1.12.1",
+    "@octokit/rest": "^18.12.0",
+    "aws-sdk": "^2.1018.0"
   },
   "scripts": {
     "dev": "BROWSER=none craco start",
