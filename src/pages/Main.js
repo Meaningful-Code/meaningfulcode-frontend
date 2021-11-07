@@ -141,7 +141,7 @@ export class ProjectPage extends Component {
 
     return (
       <>
-        <HeaderText />
+        <HeaderText category={category} />
         <CategoryMenu
           categories={categories}
           category={category}
