@@ -7,9 +7,9 @@ export default class ProjectsContainer extends Component {
     super(props);
     this.state = { isotope: null };
 
-    const { category } = this.props;
+    const { category, language } = this.props;
     this.filterByCategory(category);
-    this.filterByLanguage(null);
+    this.filterByLanguage(language);
     this.filterBySearch(null);
   }
 
@@ -90,8 +90,9 @@ export default class ProjectsContainer extends Component {
       if (language) {
         return itemElement
           .querySelector('.languages')
-          .innerText.split(', ')
-          .includes(language);
+          .innerText.toLowerCase()
+          .split(', ')
+          .includes(language.toLowerCase());
       }
       return true;
     };
@@ -161,9 +162,11 @@ export default class ProjectsContainer extends Component {
 
 ProjectsContainer.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
-  category: PropTypes.string
+  category: PropTypes.string,
+  language: PropTypes.string
 };
 
 ProjectsContainer.defaultProps = {
-  category: null
+  category: null,
+  language: null
 };

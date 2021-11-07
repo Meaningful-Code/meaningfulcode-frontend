@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Dropdown, Input } from 'semantic-ui-react';
+import { Button, Container, Input } from 'semantic-ui-react';
+
+import LanguageDropdown from '../../components/LanguageDropdown';
 
 function SortButton(props) {
   const { onClick, label } = props;
@@ -15,41 +17,6 @@ function SortButton(props) {
 SortButton.propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
-};
-
-function LanguageFilterButton(props) {
-  function mapLanguageOptions(languages) {
-    if (!languages) {
-      return [];
-    }
-
-    const opts = [];
-    languages.forEach((language) => {
-      opts.push({
-        key: language,
-        text: language,
-        value: language
-      });
-    });
-    return opts;
-  }
-
-  const { languages, onChange } = props;
-  return (
-    <Dropdown
-      placeholder="language"
-      clearable
-      search
-      selection
-      options={mapLanguageOptions(languages)}
-      onChange={onChange}
-    />
-  );
-}
-
-LanguageFilterButton.propTypes = {
-  languages: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired
 };
 
 function SearchFilterButton(props) {
@@ -100,7 +67,11 @@ export default class ProjectsSortingMenu extends Component {
 
   filterByLanguage(dropdown, changeEvent) {
     if (this.isotopeRef.current) {
-      this.isotopeRef.current.filterByLanguage(changeEvent.value);
+      const { onLanguageChanged } = this.props;
+      const language = changeEvent.value;
+
+      onLanguageChanged(language);
+      this.isotopeRef.current.filterByLanguage(language);
     }
   }
 
@@ -111,14 +82,18 @@ export default class ProjectsSortingMenu extends Component {
   }
 
   render() {
-    const { languages } = this.props;
+    const { languages, language } = this.props;
     return (
       <Container className="sorting" textAlign="center">
         <SortButton label="shuffle!" onClick={this.shuffle} />
         <SortButton label="most starred" onClick={this.sortByStars} />
         <SortButton label="last updated" onClick={this.sortByLastCommit} />
         <SortButton label="bookmarked" onClick={this.sortByBookmarked} />
-        <LanguageFilterButton languages={languages} onChange={this.filterByLanguage} />
+        <LanguageDropdown
+          languages={languages}
+          language={language}
+          onChange={this.filterByLanguage}
+        />
         <SearchFilterButton onChange={this.filterBySearch} />
       </Container>
     );
@@ -130,5 +105,11 @@ ProjectsSortingMenu.propTypes = {
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Component) })
   ]).isRequired,
-  languages: PropTypes.arrayOf(PropTypes.string).isRequired
+  languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  language: PropTypes.string,
+  onLanguageChanged: PropTypes.func.isRequired
+};
+
+ProjectsSortingMenu.defaultProps = {
+  language: null
 };

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import qs from 'qs';
 
 import HeaderText from './main/HeaderText';
 import ProjectsContainer from './main/ProjectsContainer';
@@ -42,30 +43,42 @@ function PlaceholderProjectsContainer() {
   );
 }
 
-function stateFromUrl(pathname) {
-  // Schema: meaningfulcode.org/<category>
+function stateFromUrl(pathname, queryString) {
+  // Schema: meaningfulcode.org/<category>?language=<lang>
   const pathGroups = pathname.split('/', 2);
   const category = pathGroups.length >= 2 ? pathGroups[1] : null;
 
+  const { language } = qs.parse(queryString, {
+    ignoreQueryPrefix: true
+  });
+
   return {
-    category
+    category,
+    language
   };
+}
+
+function urlFromState(category, language) {
+  const queryString = language ? `?language=${encodeURIComponent(language)}` : '';
+  return `/${category}${queryString}`;
 }
 
 export class ProjectPage extends Component {
   constructor(props) {
     super(props);
     const { location } = this.props;
-    const { category } = stateFromUrl(location.pathname);
+    const { category, language } = stateFromUrl(location.pathname, location.search);
 
     this.state = {
       loading: true,
       projects: [],
       languages: [],
-      category
+      category,
+      language
     };
 
     this.isotopeRef = React.createRef();
+    this.onLanguageChanged = this.onLanguageChanged.bind(this);
   }
 
   async componentDidMount() {
@@ -75,12 +88,19 @@ export class ProjectPage extends Component {
   componentDidUpdate(prevProps) {
     const { location } = this.props;
     if (location.pathname !== prevProps.location.pathname) {
-      const { category } = stateFromUrl(location.pathname);
+      const { category } = stateFromUrl(location.pathname, location.search);
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         category
       });
     }
+  }
+
+  onLanguageChanged(language) {
+    const { history } = this.props;
+    const { category } = this.state;
+    this.setState({ language });
+    history.push(urlFromState(category, language));
   }
 
   setProjects(updatedProjects) {
@@ -117,19 +137,28 @@ export class ProjectPage extends Component {
   }
 
   headerAndMenus() {
-    const { category, languages } = this.state;
+    const { category, languages, language } = this.state;
 
     return (
       <>
         <HeaderText />
-        <CategoryMenu categories={categories} category={category} urlTemplate="/:" />
-        <ProjectsSortingMenu isotopeRef={this.isotopeRef} languages={languages} />
+        <CategoryMenu
+          categories={categories}
+          category={category}
+          urlTemplate={urlFromState(':', language)}
+        />
+        <ProjectsSortingMenu
+          isotopeRef={this.isotopeRef}
+          languages={languages}
+          language={language}
+          onLanguageChanged={this.onLanguageChanged}
+        />
       </>
     );
   }
 
   render() {
-    const { category, loading, projects } = this.state;
+    const { category, language, loading, projects } = this.state;
 
     if (loading) {
       return (
@@ -143,7 +172,7 @@ export class ProjectPage extends Component {
     return (
       <>
         {this.headerAndMenus()}
-        <ProjectsContainer ref={this.isotopeRef} category={category}>
+        <ProjectsContainer ref={this.isotopeRef} category={category} language={language}>
           {projects.map((project) => (
             <ProjectCard key={project.url} project={project} />
           ))}
@@ -155,8 +184,9 @@ export class ProjectPage extends Component {
 
 ProjectPage.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.object.isRequired
 };
 
-const ProjectPageWithRouter = withRouter(ProjectPage);
-export default ProjectPageWithRouter;
+export default withRouter(ProjectPage);
