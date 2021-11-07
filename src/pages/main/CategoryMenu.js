@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import CategoryIcon from './CategoryIcon';
+import CategoryIcon from '../../components/CategoryIcon';
 
 const categoryAll = 'all';
 export default function CategoryMenu(props) {

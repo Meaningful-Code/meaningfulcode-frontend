@@ -11,7 +11,7 @@ import {
   Placeholder
 } from 'semantic-ui-react';
 
-import { CategoryListIcon } from './CategoryIcon';
+import { CategoryListIcon } from '../../components/CategoryIcon';
 
 function formatLastUpdateAge(lastCommitAgeInDays) {
   if (Number.isNaN(lastCommitAgeInDays)) {
