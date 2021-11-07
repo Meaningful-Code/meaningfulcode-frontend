@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import qs from 'qs';
 
 import HeaderText from './main/HeaderText';
 import ProjectsContainer from './main/ProjectsContainer';
@@ -43,13 +42,13 @@ function PlaceholderProjectsContainer() {
   );
 }
 
-function stateFromQueryStrings(queryString) {
-  const { cat } = qs.parse(queryString, {
-    ignoreQueryPrefix: true
-  });
+function stateFromUrl(pathname) {
+  // Schema: meaningfulcode.org/<category>
+  const pathGroups = pathname.split('/', 2);
+  const category = pathGroups.length >= 2 ? pathGroups[1] : null;
 
   return {
-    category: cat || null
+    category
   };
 }
 
@@ -57,7 +56,7 @@ export class ProjectPage extends Component {
   constructor(props) {
     super(props);
     const { location } = this.props;
-    const { category } = stateFromQueryStrings(location.search);
+    const { category } = stateFromUrl(location.pathname);
 
     this.state = {
       loading: true,
@@ -75,8 +74,8 @@ export class ProjectPage extends Component {
 
   componentDidUpdate(prevProps) {
     const { location } = this.props;
-    if (location.search !== prevProps.location.search) {
-      const { category } = stateFromQueryStrings(location.search);
+    if (location.pathname !== prevProps.location.pathname) {
+      const { category } = stateFromUrl(location.pathname);
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         category
@@ -123,11 +122,7 @@ export class ProjectPage extends Component {
     return (
       <>
         <HeaderText />
-        <CategoryMenu
-          categories={categories}
-          category={category}
-          urlTemplate="/?cat=:"
-        />
+        <CategoryMenu categories={categories} category={category} urlTemplate="/:" />
         <ProjectsSortingMenu isotopeRef={this.isotopeRef} languages={languages} />
       </>
     );
