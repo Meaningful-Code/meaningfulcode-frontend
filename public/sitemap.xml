@@ -11,5 +11,29 @@
    <url>
       <loc>https://meaningfulcode.org/get-started</loc>
       <changefreq>weekly</changefreq>
-   </url>      
+   </url>
+   <url>
+      <loc>https://meaningfulcode.org/health</loc>
+      <changefreq>weekly</changefreq>
+   </url>
+   <url>
+      <loc>https://meaningfulcode.org/education</loc>
+      <changefreq>weekly</changefreq>
+   </url>
+   <url>
+      <loc>https://meaningfulcode.org/environment</loc>
+      <changefreq>weekly</changefreq>
+   </url>
+   <url>
+      <loc>https://meaningfulcode.org/society</loc>
+      <changefreq>weekly</changefreq>
+   </url>
+   <url>
+      <loc>https://meaningfulcode.org/humanitarian</loc>
+      <changefreq>weekly</changefreq>
+   </url>
+   <url>
+      <loc>https://meaningfulcode.org/accessibility</loc>
+      <changefreq>weekly</changefreq>
+   </url>
 </urlset>
