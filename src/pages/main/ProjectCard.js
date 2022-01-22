@@ -13,7 +13,7 @@ import {
 
 import { CategoryListIcon } from '../../components/CategoryIcon';
 
-function formatLastUpdateAge(lastCommitAgeInDays) {
+export function formatLastUpdateAge(lastCommitAgeInDays) {
   if (Number.isNaN(lastCommitAgeInDays)) {
     return 'never';
   }
