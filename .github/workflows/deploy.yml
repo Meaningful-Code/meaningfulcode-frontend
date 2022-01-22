@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ develop ]
+    branches: [develop]
   workflow_dispatch:
 
 jobs:
@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: "Clone API submodule"
+      - name: 'Clone API submodule'
         env:
-            REPO_KEY: ${{ secrets.API_REPOSITORY_KEY }}
+          REPO_KEY: ${{ secrets.API_REPOSITORY_KEY }}
         run: |
           echo "$REPO_KEY" > repo.key && chmod 400 repo.key
           export GIT_SSH_COMMAND="ssh -i repo.key"
           git submodule update --init
           rm repo.key
 
-      - name: "Setup node"
+      - name: 'Setup node'
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
 
-      - name: "Deploy to Vercel"
+      - name: 'Deploy to Vercel'
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
