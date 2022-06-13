@@ -198,7 +198,7 @@ ProjectCard.propTypes = {
     owner: PropTypes.string.isRequired,
     stars: PropTypes.number.isRequired,
     url: PropTypes.string.isRequired,
-    websiteUrl: PropTypes.string.isRequired
+    websiteUrl: PropTypes.string
   }).isRequired
 };
 
