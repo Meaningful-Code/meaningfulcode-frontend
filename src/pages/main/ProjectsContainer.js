@@ -161,6 +161,7 @@ export default class ProjectsContainer extends Component {
 }
 
 ProjectsContainer.propTypes = {
+  // eslint-disable-next-line
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
   category: PropTypes.string,
   language: PropTypes.string

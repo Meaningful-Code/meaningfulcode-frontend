@@ -1,26 +1,30 @@
 {
-	"parser": "babel-eslint",
-	"rules": {
-		"no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
-		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-		"react/jsx-max-props-per-line": [0, { "maximum": 3, "when": "multiline" }],
-		"react/forbid-prop-types": [1],
-		"no-constant-condition": ["error", { "checkLoops": false }],
-		"max-len": [0, { "code": 90 }]
-	},
-	"extends": [
-		"airbnb",
-		"prettier",
-		"prettier/react"		
-	],
-	"plugins": [
-		"react", 
-		"jsx-a11y",
-		"import"
-	],
-	"env": {
-		"browser": true,
-		"node": true,
-		"jest": true
-	}
+  "parser": "babel-eslint",
+  "rules": {
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts"] }],
+    "react/jsx-max-props-per-line": [0, { "maximum": 3, "when": "multiline" }],
+    "react/forbid-prop-types": [1],
+    "no-constant-condition": ["error", { "checkLoops": false }],
+    "max-len": [0, { "code": 90 }],
+    "no-undef": 1,
+    "no-unused-vars": 1
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    }
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "jsx-a11y", "import"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  }
 }

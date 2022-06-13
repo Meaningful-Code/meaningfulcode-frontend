@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import { Button, Header, Icon, Image, List } from 'semantic-ui-react';
 
