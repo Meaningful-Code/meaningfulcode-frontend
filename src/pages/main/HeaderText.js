@@ -42,20 +42,23 @@ HeaderTextContainer.propTypes = {
 };
 
 function GenericHeaderText() {
-  const content = (large) => {
+  const content = ({ large }) => {
     return large ? (
       <>
-        <b>Pick a cause to support</b>, and <b>find Open Source projects</b> willing to
-        make our world better. <br />
+        <Emoji label="planet" symbol="🌍" /> <b>Pick a cause to support</b>, and{' '}
+        <b>find Open Source projects</b> willing to make our world a better place .{' '}
+        <br />
         From the environment to health, accessibility, and humanitarian, we believe that{' '}
-        <b>code can make a difference</b> when contributed to the right projects.
+        <b>code can make a difference</b> when contributed to the right projects{' '}
+        <Emoji label="computer" symbol="💻" />.
       </>
     ) : (
       <>
-        <b>Pick a cause to support</b>, and <b>find Open Source projects</b> willing to
-        make our world better. From the environment to health and humanitarian, we
-        believe that <b>code can make a difference</b> when contributed to the right
-        projects.
+        <Emoji label="planet" symbol="🌍" /> <b>Pick a cause to support</b>, and{' '}
+        <b>find Open Source projects</b> willing to make our world a better place . From
+        the environment to health and humanitarian, we believe that{' '}
+        <b>code can make a difference</b> when contributed to the right projects{' '}
+        <Emoji label="computer" symbol="💻" />.
       </>
     );
   };
@@ -84,7 +87,7 @@ function AccessibilityHeaderText() {
   const content = ({ large }) => {
     return (
       <>
-        <b>Make</b> our society <b>more accessible</b>{' '}
+        Make our society <b>more accessible</b>{' '}
         <Emoji label="accessibility" symbol="♿" /> by contributing to these open-source
         projects.
         {large ? <br /> : ' '}
@@ -116,6 +119,56 @@ function HealthHeaderText() {
   return <HeaderTextContainer Content={content} />;
 }
 
+function EducationHeaderText() {
+  const content = ({ large }) => {
+    return (
+      <>
+        <Emoji label="book" symbol="📖" /> Make <b>education</b> and{' '}
+        <b>personal growth</b> more inclusive by contributing to these projects.
+        {large ? <br /> : ' '}
+        Let&apos;s make learning <Emoji label="graduation cap" symbol="🎓" />{' '}
+        <b>more accessible</b> and fun for everyone!
+      </>
+    );
+  };
+
+  return <HeaderTextContainer Content={content} />;
+}
+
+function HumanitarianHeaderText() {
+  const content = ({ large }) => {
+    return (
+      <>
+        <Emoji label="planet" symbol="🌍" /> These open-source projects make a difference
+        for <b>vulnerable populations</b> around the globe and those affected by natural
+        disasters, conflicts, or limited access to essential resources.{' '}
+        {large ? <br /> : ' '}
+        Your contribution can help <b>provide what they need</b>{' '}
+        <Emoji label="handshake" symbol="🤝🏼" />, whether food, shelter, or medical
+        attention.
+      </>
+    );
+  };
+
+  return <HeaderTextContainer Content={content} />;
+}
+
+function SocietyHeaderText() {
+  const content = ({ large }) => {
+    return (
+      <>
+        <Emoji label="building" symbol="🏛️" /> Do you want to make our <b>society</b>{' '}
+        more <b>inclusive</b> and <b>fair</b>? Or maybe provide <b>tools for citizens</b>{' '}
+        to learn, organize, or communicate
+        <Emoji label="megaphone" symbol="📣" />. {large ? <br /> : ' '}This is what all
+        these projects aim to provide.
+      </>
+    );
+  };
+
+  return <HeaderTextContainer Content={content} />;
+}
+
 export default function HeaderText(props) {
   const { category } = props;
 
@@ -126,6 +179,12 @@ export default function HeaderText(props) {
       return HealthHeaderText();
     case 'environment':
       return EnvironmentHeaderText();
+    case 'education':
+      return EducationHeaderText();
+    case 'humanitarian':
+      return HumanitarianHeaderText();
+    case 'society':
+      return SocietyHeaderText();
     default:
       return GenericHeaderText();
   }
