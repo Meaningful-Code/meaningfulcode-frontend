@@ -9,7 +9,7 @@ export default function PageHeader() {
         <Grid.Column tablet={16} computer={8}>
           <Link to="/">
             <Header as="h1" color="blue">
-              <Image src="/meaningfulcode-logo-64x64.png" />
+              <Image id="logo" src="/meaningfulcode-logo.png" />
               <Header.Content id="title">
                 Meaningful Code
                 <Header.Subheader>

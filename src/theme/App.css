@@ -10,6 +10,10 @@ header > div {
   margin-top: 1em;
 }
 
+img#logo {
+  width: 3em;
+}
+
 #links .ui.button {
   background: none;
   border: 1px solid gray;
