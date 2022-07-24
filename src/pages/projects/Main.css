@@ -116,8 +116,7 @@
   margin-bottom: 20px;
 }
 
-.project-item .categories {
+.project-item .category-label span {
   text-transform: capitalize;
   font-weight: bold;
-  vertical-align: middle;
 }
