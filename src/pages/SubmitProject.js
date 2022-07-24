@@ -1,4 +1,4 @@
-import React, { useCallback, useState, createRef } from 'react';
+import React, { useCallback, useEffect, useState, createRef } from 'react';
 
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -15,6 +15,10 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { submitProject } from '../projects/projects';
 
 export default function SubmitProject() {
+  useEffect(() => {
+    document.title = 'Submit an impactful project';
+  });
+
   return (
     <>
       <Typography variant="h1" component="h1">
