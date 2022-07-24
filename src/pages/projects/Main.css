@@ -1,0 +1,123 @@
+:root {
+  --accent-color: #3eda91;
+  --accent-dim-color: #81d4ae;
+}
+
+/*-----------------------------------
+  Categories and sortings
+*/
+
+.categories {
+  margin-top: 5em;
+  margin-bottom: 3em;
+}
+
+@media only screen and (max-width: 767px) {
+  .categories {
+    margin-top: 3.5em;
+    margin-bottom: 2em;
+  }
+}
+
+#root .categories > a {
+  margin: 0 0 0.5em 0.5em;
+  padding: 0.5em 0.65em;
+  border-radius: 36px;
+}
+
+@media only screen and (max-width: 767px) {
+  #root .categories a {
+    font-size: 1em;
+    margin: 0 0 0.3em 0.3em;
+    padding: 0.3em 0.5em;
+  }
+}
+
+.sorting {
+  margin: 3em;
+}
+
+
+/*-----------------------------------
+  Project grid
+*/
+
+.item-grid {
+  margin: 0 auto;
+}
+
+/*-----------------------------------
+  Project cards
+*/
+
+.project-item.featured::before {
+  border: 6px solid #009c95;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  content: '';
+  opacity: 0.25;
+}
+
+.project-item.featured.environment::before {
+  border-color: #21ba45;
+}
+.project-item.featured.humanitarian::before {
+  border-color: #f2711c;
+}
+.project-item.featured.accessibility::before {
+  border-color: #2185d0;
+}
+.project-item.featured.society::before {
+  border-color: #6435c9;
+}
+.project-item.featured.health::before {
+  border-color: #00b5ad;
+}
+.project-item.featured.education::before {
+  border-color: #db2828;
+}
+
+.project-item.starred::before {
+  content: '\f005';
+  font-family: 'Icons';
+  font-size: 10em;
+  color: #ffd000;
+  opacity: 0.25;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 100px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.project-item.new::before {
+  content: '\f1d8';
+  font-family: 'Icons';
+  font-size: 10em;
+  color: #25ca72;
+  opacity: 0.15;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 150px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.project-item {
+  position: relative;
+  width: 330px;
+  margin-bottom: 20px;
+}
+
+.project-item .categories {
+  text-transform: capitalize;
+  font-weight: bold;
+  vertical-align: middle;
+}

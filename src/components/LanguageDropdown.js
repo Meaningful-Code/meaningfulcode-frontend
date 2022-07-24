@@ -1,37 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown } from 'semantic-ui-react';
+import Autocomplete from '@mui/material/Autocomplete';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 
 export default function LanguageFilterButton(props) {
-  function mapLanguageOptions(languages) {
-    if (!languages) {
-      return [];
-    }
-
-    const opts = [];
-    languages.forEach((language) => {
-      opts.push({
-        key: language,
-        text: language,
-        value: language.toLowerCase()
-      });
-    });
-    return opts;
-  }
-
   const { languages, language, onChange } = props;
-  const lowerCaseLanguage = language ? language.toLowerCase() : null;
 
   return (
-    <Dropdown
-      placeholder="language"
-      clearable
-      search
-      selection
-      defaultValue={lowerCaseLanguage}
-      options={mapLanguageOptions(languages)}
-      onChange={onChange}
-    />
+    <Grid item>
+      <Autocomplete
+        autoSelect
+        options={languages}
+        renderInput={(params) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <TextField {...params} label="Language" />
+        )}
+        onChange={onChange}
+        sx={{ width: 200 }}
+        size="small"
+        value={language}
+      />
+    </Grid>
   );
 }
 

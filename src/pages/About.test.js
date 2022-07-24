@@ -1,13 +1,11 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import About from './About';
 
-Enzyme.configure({ adapter: new Adapter() });
-
-describe('Page: About', () => {
-  it('renders without crashing', () => {
-    shallow(<About />);
+describe('Page: GetStarted', () => {
+  it('renders', async () => {
+    render(<About />);
   });
 });

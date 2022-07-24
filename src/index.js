@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import ReactGA from 'react-ga';
 
 import App from './App';
@@ -7,4 +7,5 @@ import App from './App';
 ReactGA.initialize('UA-177770802-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
