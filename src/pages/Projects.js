@@ -16,6 +16,7 @@ import './projects/Main.css';
 const sleep = (milliseconds) =>
   // eslint-disable-next-line no-promise-executor-return
   new Promise((resolve) => setTimeout(resolve, milliseconds));
+const DefaultPageTitle = 'Find Open-source projects with a social impact';
 
 function shuffle(array) {
   let i = array.length - 1;
@@ -84,6 +85,12 @@ export class ProjectPage extends Component {
     const { location } = this.props;
     if (location.pathname !== prevProps.location.pathname) {
       const { category } = stateFromUrl(location.pathname, location.search);
+      document.title =
+        category && category !== 'all'
+          ? `${
+              category.charAt(0).toUpperCase() + category.slice(1)
+            } open-source projects`
+          : DefaultPageTitle;
 
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({

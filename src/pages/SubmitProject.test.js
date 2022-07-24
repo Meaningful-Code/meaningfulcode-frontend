@@ -2,16 +2,16 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import GetStarted from './GetStarted';
+import SubmitProject from './SubmitProject';
 
-describe('Page: GetStarted', () => {
+describe('Page: SubmitProject', () => {
   it('renders', async () => {
-    render(<GetStarted />);
+    render(<SubmitProject />);
   });
 
   it('sets title', async () => {
-    render(<GetStarted />);
+    render(<SubmitProject />);
 
-    expect(document.title).toContain('Getting started');
+    expect(document.title).toContain('Submit');
   });
 });

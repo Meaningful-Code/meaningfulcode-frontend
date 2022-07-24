@@ -8,4 +8,10 @@ describe('Page: GetStarted', () => {
   it('renders', async () => {
     render(<About />);
   });
+
+  it('sets title', async () => {
+    render(<About />);
+
+    expect(document.title).toContain('About');
+  });
 });

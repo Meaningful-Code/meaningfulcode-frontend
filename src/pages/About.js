@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
@@ -15,6 +15,10 @@ import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 import Emoji from '../components/Emoji';
 
 export default function About() {
+  useEffect(() => {
+    document.title = 'About Meaningfulcode.org';
+  });
+
   return (
     <Container id="about">
       <Typography variant="h1">Why this website?</Typography>
