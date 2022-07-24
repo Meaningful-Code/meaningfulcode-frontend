@@ -61,30 +61,27 @@ export function formatLastUpdateAge(lastCommitAgeInDays) {
   return lastUpdateText;
 }
 
+const SmallListAvatar = styled(Avatar)((props) => ({
+  width: 35,
+  height: 35,
+  backgroundColor: props.color || 'transparent',
+  color: props.color ? 'white' : 'black'
+}));
+
 function FeaturedListItem() {
   return (
-    <ListItem>
-      <ListItemAvatar>
-        <Avatar>
-          <StarIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText primary="featured" />
+    <ListItem disableGutters disablePadding>
+      <ProjectCardListIcon avatar={<StarIcon />} />
+      <ListItemText primary="Featured" />
     </ListItem>
   );
 }
 
 function ProjectCardListIcon(props) {
   const { avatar, color } = props;
-  const SmallListAvatar = styled(Avatar)({
-    width: 35,
-    height: 35,
-    backgroundColor: color || 'transparent',
-    color: color ? 'white' : 'black'
-  });
   return (
     <ListItemAvatar>
-      <SmallListAvatar>{avatar}</SmallListAvatar>
+      <SmallListAvatar color={color}>{avatar}</SmallListAvatar>
     </ListItemAvatar>
   );
 }
