@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "rules": {
     "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts"] }],
@@ -18,9 +18,12 @@
     }
   },
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
   },
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "extends": ["airbnb", "prettier"],
   "plugins": ["react", "jsx-a11y", "import"],
   "env": {
     "browser": true,

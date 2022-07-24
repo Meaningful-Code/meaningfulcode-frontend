@@ -1,63 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, List } from 'semantic-ui-react';
+import Avatar from '@mui/material/Avatar';
 
-function getCategoryColor(type) {
+import AccessibleOutlinedIcon from '@mui/icons-material/AccessibleOutlined';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import ForestOutlinedIcon from '@mui/icons-material/ForestOutlined';
+import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
+import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
+import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
+
+export function getCategoryColor(type) {
   switch (type) {
     case 'all':
-      return 'black';
+      return '#49494a';
     case 'environment':
-      return 'green';
+      return '#4dc86a';
     case 'humanitarian':
-      return 'orange';
+      return '#f58d49';
     case 'accessibility':
-      return 'blue';
+      return '#4d9dd9';
     case 'society':
-      return 'violet';
+      return '#835dd4';
     case 'health':
-      return 'teal';
+      return '#33c4bd';
     case 'education':
-      return 'red';
-    case 'justice':
-      return 'yellow';
+      return '#e25353';
     default:
-      return 'black';
+      return '#49494a';
   }
 }
 
-function getCategoryIconName(type) {
+export function getCategoryIcon(type) {
   switch (type) {
     case 'all':
-      return 'question';
+      return <AllInclusiveOutlinedIcon />;
     case 'environment':
-      return 'leaf';
+      return <ForestOutlinedIcon />;
     case 'humanitarian':
-      return 'food';
+      return <SupportOutlinedIcon />;
     case 'accessibility':
-      return 'handicap';
+      return <AccessibleOutlinedIcon />;
     case 'society':
-      return 'transgender alternate';
+      return <AccountBalanceOutlinedIcon />;
     case 'health':
-      return 'dna';
+      return <LocalHospitalOutlinedIcon />;
     case 'education':
-      return 'book';
-    case 'justice':
-      return 'balance scale';
+      return <SchoolOutlinedIcon />;
     default:
-      return 'question';
+      return <QuestionMarkOutlinedIcon />;
   }
 }
 
 function CategoryIcon(props) {
   const { type } = props;
-
   return (
-    <Icon
-      circular
-      inverted
-      color={getCategoryColor(type)}
-      name={getCategoryIconName(type)}
-    />
+    <Avatar sx={{ bgcolor: getCategoryColor(type) }}>{getCategoryIcon(type)}</Avatar>
   );
 }
 
@@ -65,22 +64,4 @@ CategoryIcon.propTypes = {
   type: PropTypes.string.isRequired
 };
 
-function CategoryListIcon(props) {
-  const { type } = props;
-
-  return (
-    <List.Icon
-      circular
-      inverted
-      color={getCategoryColor(type)}
-      name={getCategoryIconName(type)}
-    />
-  );
-}
-
-CategoryListIcon.propTypes = {
-  type: PropTypes.string.isRequired
-};
-
 export default CategoryIcon;
-export { CategoryListIcon };

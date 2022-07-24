@@ -6,48 +6,17 @@ header {
   margin-bottom: 2em;
 }
 
+h1.header {
+  margin: 0;
+}
+
 header > div {
   margin-top: 1em;
 }
 
 img#logo {
   width: 3em;
-}
-
-#links .ui.button {
-  background: none;
-  border: 1px solid gray;
-  margin-left: 0.5em;
-}
-
-#links #addProject {
-  background-color: #35b87b;
-  border: 1px solid transparent;
-}
-
-@media only screen and (max-width: 575px) {
-  #links .ui.button {
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  #links .ui.button {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-}
-
-@media only screen and (max-width: 350px) {
-  #links .ui.button {
-    padding-left: 0.25em;
-    padding-right: 0.25em;
-  }
-}
-
-#title {
-  color: #35b87b;
+  height: 3em;
 }
 
 @media only screen and (min-width: 320px) {
@@ -60,10 +29,6 @@ img#logo {
   #title > .sub.header {
     font-size: 1.4rem;
   }
-}
-
-#header-grid {
-  margin-bottom: 1em;
 }
 
 main {
@@ -80,27 +45,16 @@ footer {
   text-align: center;
 }
 
-h1 {
-  font-size: 45px;
+#socialButton {
+  margin-top: 1em;
 }
 
-h2 {
-  margin-top: 1.5em;
+/* About */
+#about h2 {
+  margin-top: 1em;
 }
 
-main,
-p {
-  font-size: 18px;
-}
-
-a {
-  border-bottom: 1px solid white;
-  color: #0076ff;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-a:hover {
-  border-bottom: 1px solid #0076ff;
+#about .MuiButton-root {
+  margin-top: 0.5em;
+  margin-right: 0.5em;
 }

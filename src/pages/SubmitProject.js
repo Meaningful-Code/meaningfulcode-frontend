@@ -1,5 +1,15 @@
 import React, { useCallback, useState, createRef } from 'react';
-import { Header, Form, Button, Icon, Message } from 'semantic-ui-react';
+
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+
+import CheckIcon from '@mui/icons-material/Check';
+
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import { submitProject } from '../projects/projects';
@@ -7,7 +17,9 @@ import { submitProject } from '../projects/projects';
 export default function SubmitProject() {
   return (
     <>
-      <Header as="h1">SubmitProject</Header>
+      <Typography variant="h1" component="h1">
+        SubmitProject
+      </Typography>
       <p>
         Contributing can be daunting at first, but this is the first step of a rewarding
         journey, using your experience to benefit others while learning and meeting new
@@ -74,53 +86,50 @@ function SubmitProjectForm() {
     });
   });
 
+  const loading = formState === FormSubmitted;
   return (
     <>
-      <Message attached header="Submit a project" />
-      <Form
-        success={formState === FormSuccess}
-        error={formState === FormError}
-        className="attached fluid segment"
-      >
-        <Form.Input label="Name" placeholder="Project name" onChange={nameChanged} />
-        <Form.Input
-          label="Website"
-          placeholder="Project website"
-          onChange={websiteChanged}
-        />
-        <Form.TextArea
+      <ReCAPTCHA
+        ref={recaptchaRef}
+        size="invisible"
+        sitekey="6LeuSEYeAAAAAJrZY05dnjlIkU-3EAe4JqDdd3wz"
+        onChange={recaptchaHandler}
+      />
+      <Stack spacing={2}>
+        <TextField label="Project name" onChange={nameChanged} />
+        <TextField label="Website" onChange={websiteChanged} />
+        <TextField
           label="Description"
-          placeholder="Project description"
+          multiline
+          rows={5}
+          onChange={descriptionChanged}
           defaultValue={`Repository:
 Category: Accessibility/Education/Environment/Health/Humanitarian/Society
-Description:
-          `}
-          onChange={descriptionChanged}
+Description:`}
         />
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          size="invisible"
-          sitekey="6LeuSEYeAAAAAJrZY05dnjlIkU-3EAe4JqDdd3wz"
-          onChange={recaptchaHandler}
-        />
-        <Message success>
-          <Message.Header>Project submitted</Message.Header>
-          <p>
+        <Container disableGutters>
+          <Button
+            disabled={loading}
+            variant="contained"
+            color="secondary"
+            onClick={submitCallback}
+            startIcon={
+              loading ? <CircularProgress size={20} color="neutral" /> : <CheckIcon />
+            }
+          >
+            {loading ? 'Submitting' : 'Submit'}
+          </Button>
+        </Container>
+        {formState === FormError ? <Alert severity="error">{errorMessage}</Alert> : ''}
+        {formState === FormSuccess ? (
+          <Alert severity="success">
             Project submitted successfully! You can review the ticket on{' '}
             <a href={ticketUrl}>GitHub</a>. Thank you for your contribution 🎉
-          </p>
-        </Message>
-        <Message error header="Error" content={errorMessage} />
-        <Button
-          loading={formState === FormSubmitted}
-          color="green"
-          type="submit"
-          onClick={submitCallback}
-        >
-          <Icon name="checkmark" />
-          Submit
-        </Button>
-      </Form>
+          </Alert>
+        ) : (
+          ''
+        )}
+      </Stack>
     </>
   );
 }

@@ -1,13 +1,23 @@
-/* eslint-disable react/jsx-no-bind */
 import React from 'react';
-import { Button, Header, Icon, Image, List } from 'semantic-ui-react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import Container from '@mui/material/Container';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import EmailIcon from '@mui/icons-material/Email';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
 import Emoji from '../components/Emoji';
 
 export default function About() {
   return (
-    <>
-      <Header as="h1">Why this website?</Header>
+    <Container id="about">
+      <Typography variant="h1">Why this website?</Typography>
       <p>
         There are many ways to have an impact on our society, and open source is one of
         those. But finding those impactful projects among all is this challenging, and
@@ -20,49 +30,62 @@ export default function About() {
         contribute to, we hope to accelerate those initiative and their positive impact
         on our society.
       </p>
-      <br />
-      <Header as="h2">Contact</Header>
-      <Button color="teal" as="a" href="https://discord.gg/KPAm7wd7fJ">
-        <Icon name="discord" />
+      <Typography variant="h2">Contact</Typography>
+      <Button
+        variant="contained"
+        href="https://discord.gg/KPAm7wd7fJ"
+        disableElevation
+        color="secondary"
+        startIcon={<MarkChatUnreadIcon />}
+      >
         Discord
       </Button>
       <Button
-        color="teal"
-        as="a"
+        variant="contained"
         href="https://github.com/Meaningful-Code/meaningfulcode-frontend"
+        disableElevation
+        color="secondary"
+        startIcon={<GitHubIcon />}
       >
-        <Icon name="github" />
         GitHub
       </Button>
-      <Button color="teal" as="a" href="mailto:contact@meaningfulcode.org">
-        <Icon name="discord" />
+      <Button
+        variant="contained"
+        href="mailto:contact@meaningfulcode.org"
+        disableElevation
+        color="secondary"
+        startIcon={<EmailIcon />}
+      >
         Email
       </Button>
-      <Header as="h2">Source code</Header>
+      <Typography variant="h2">Source code</Typography>
       <p>
         The source code of this website is hosted on{' '}
-        <a href="https://github.com/Meaningful-Code/meaningfulcode-frontend">GitHub</a>,
-        contributors are welcome!
+        <Link href="https://github.com/Meaningful-Code/meaningfulcode-frontend">
+          GitHub
+        </Link>
+        , contributors are welcome!
       </p>
-      <Header as="h2">Author(s)</Header>
-      <List relaxed="very">
-        <List.Item>
-          <Image avatar src="/img/adrien.svg" />
-          <List.Content>
-            <List.Header>
-              <a href="https://www.linkedin.com/in/adrienleravat/">Adrien Leravat</a>
-            </List.Header>
-            <List.Description>
-              Working on embedded software by day, passionate about learning and teaching
-              technology.
-            </List.Description>
-          </List.Content>
-        </List.Item>
+      <Typography varian="h2">Author(s)</Typography>
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar alt="Adrien Leravat" src="/img/adrien.svg" />
+          </ListItemAvatar>
+          <ListItemText
+            primary={
+              <Link href="https://www.linkedin.com/in/adrienleravat/">
+                Adrien Leravat
+              </Link>
+            }
+            secondary="Working on embedded software by day, passionate about learning and teaching
+            technology."
+          />
+        </ListItem>
       </List>
-      <br />
-      <Header as="h2">
+      <Typography variant="h2">
         Thank you! <Emoji label="sparks" symbol="🎉" />
-      </Header>
+      </Typography>
       <p>
         We are standing on the shoulders of giants, countless contributions, and this
         website is no exception. While it would be impossible to list everyone, we wanted
@@ -75,15 +98,16 @@ export default function About() {
         </li>
         <li>
           Fatos Morina, for his article &quot;
-          <a href="https://towardsdatascience.com/make-a-social-impact-by-contributing-to-these-open-source-projects-1d6d34e2b8b1">
+          <Link href="https://towardsdatascience.com/make-a-social-impact-by-contributing-to-these-open-source-projects-1d6d34e2b8b1">
             Make a social impact by contributing to these open source projects
-          </a>
+          </Link>
           &quot;, which kickstarted this project
         </li>
         <li>
-          <a href="https://github.com/">GitHub</a> and its ecosystem (for hosting all
-          these projects for free), <a href="https://www.codetriage.com/">Code triage</a>
-          , React, Semantic UI, Isotope and the people behind those.
+          <Link href="https://github.com/">GitHub</Link> and its ecosystem (for hosting
+          all these projects for free),{' '}
+          <Link href="https://www.codetriage.com/">Code triage</Link>, React, MUI,
+          Isotope and the people behind those.
         </li>
       </ul>
       And more generally, thank you to:
@@ -96,6 +120,6 @@ export default function About() {
         <li>... and everyone who is giving their time to make a social impact</li>
       </ul>
       <p>We are all forever grateful.</p>
-    </>
+    </Container>
   );
 }
