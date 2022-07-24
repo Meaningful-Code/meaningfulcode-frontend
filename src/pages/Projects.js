@@ -33,7 +33,7 @@ function shuffle(array) {
 
 function PlaceholderProjectsContainer() {
   return (
-    <Grid container sx={{ margin: '0 60px' }}>
+    <Grid container spacing={2}>
       <ProjectPlaceholder />
       <ProjectPlaceholder />
       <ProjectPlaceholder />
