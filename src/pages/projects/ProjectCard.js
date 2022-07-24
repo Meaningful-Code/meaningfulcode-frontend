@@ -199,35 +199,29 @@ function ProjectCard(props) {
             </IconButton>
           }
         />
-        <CardContent>
-          <Grid container sx={{ marginBottom: '1em' }}>
-            <Grid item xs={8}>
-              <List dense>
-                <ListItem disableGutters disablePadding>
-                  <ProjectCardListIcon avatar={<CategoryIcon type={categories[0]} />} />
-                  <ListItemText className="categories" primary={categories} />
-                </ListItem>
-                {isFeatured ? FeaturedListItem() : ''}
-                <ListItem disableGutters disablePadding>
-                  <ProjectCardListIcon avatar={<CodeIcon />} />
-                  <ListItemText
-                    className="languages"
-                    primary={languages ? languages.slice(0, 3).join(', ') : 'N/A'}
-                  />
-                </ListItem>
-                <ListItem disableGutters disablePadding>
-                  <ProjectCardListIcon avatar={<CommitIcon />} />
-                  <ListItemText
-                    className="last-update"
-                    primary={formatLastUpdateAge(lastCommitAgeInDays)}
-                  />
-                </ListItem>
-              </List>
-            </Grid>
-            <Grid item xs={4}>
-              <Chip icon={<StarIcon />} label={stars} />
-            </Grid>
-          </Grid>
+        <CardContent sx={{ paddingTop: 0 }}>
+          <List dense>
+            <ListItem disableGutters disablePadding>
+              <ProjectCardListIcon avatar={<CategoryIcon type={categories[0]} />} />
+              <ListItemText className="category-label" primary={categories} />
+              <Chip variant="outlined" icon={<StarIcon />} label={stars} />
+            </ListItem>
+            {isFeatured ? FeaturedListItem() : ''}
+            <ListItem disableGutters disablePadding>
+              <ProjectCardListIcon avatar={<CodeIcon />} />
+              <ListItemText
+                className="languages"
+                primary={languages ? languages.slice(0, 3).join(', ') : 'N/A'}
+              />
+            </ListItem>
+            <ListItem disableGutters disablePadding>
+              <ProjectCardListIcon avatar={<CommitIcon />} />
+              <ListItemText
+                className="last-update"
+                primary={formatLastUpdateAge(lastCommitAgeInDays)}
+              />
+            </ListItem>
+          </List>
           <p className="project-desc">
             {description.length > maxDescription
               ? `${description.substring(0, maxDescription)}...`
