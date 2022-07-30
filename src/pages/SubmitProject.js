@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState, createRef } from 'react';
 
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 import CheckIcon from '@mui/icons-material/Check';
 
@@ -19,16 +20,18 @@ export default function SubmitProject() {
     document.title = 'Submit an impactful project';
   });
 
+  const NewProjectIssueLink =
+    'https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+';
   return (
     <>
-      <Typography variant="h1" component="h1">
-        SubmitProject
-      </Typography>
+      <Typography variant="h1">Submit a project</Typography>
       <p>
-        Contributing can be daunting at first, but this is the first step of a rewarding
-        journey, using your experience to benefit others while learning and meeting new
-        passionate people.
+        If you have an impactful project that you want to share with the community,
+        please submit it here! You can also manually create an{' '}
+        <Link href={NewProjectIssueLink}>new issue on GitHub</Link> to submit your
+        project.
       </p>
+      <br />
       <SubmitProjectForm />
     </>
   );
@@ -93,6 +96,7 @@ function SubmitProjectForm() {
   const loading = formState === FormSubmitted;
   return (
     <>
+      <Typography variant="h2">Impactful project form</Typography>
       <ReCAPTCHA
         ref={recaptchaRef}
         size="invisible"
