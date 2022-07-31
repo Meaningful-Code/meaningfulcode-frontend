@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component, createContext, useContext } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 
@@ -13,12 +12,13 @@ import getProjects, { categories } from '../projects/projects';
 
 import './projects/Main.css';
 
-const sleep = (milliseconds) =>
+const sleep = function (milliseconds: number) {
   // eslint-disable-next-line no-promise-executor-return
   new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
 const DefaultPageTitle = 'Find Open-source projects with a social impact';
 
-function shuffle(array) {
+function shuffle(array: any[]) {
   let i = array.length - 1;
   for (; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -44,7 +44,7 @@ function PlaceholderProjectsContainer() {
   );
 }
 
-function stateFromUrl(pathname, queryString) {
+function stateFromUrl(pathname: string, queryString: string) {
   // Schema: meaningfulcode.org/<category>?language=<lang>
   const pathGroups = pathname.split('/', 2);
   const category = pathGroups.length >= 2 ? pathGroups[1] : null;
@@ -54,13 +54,58 @@ function stateFromUrl(pathname, queryString) {
   return { category, language };
 }
 
-function urlFromState(category, language) {
+function urlFromState(category: string | null, language?: string | null): string {
   const queryString = language ? `?language=${encodeURIComponent(language)}` : '';
-  return `/${category}${queryString}`;
+  return `/${category || ''}${queryString}`;
 }
 
-export class ProjectPage extends Component {
-  constructor(props) {
+interface ProjectPageContextInterface {
+  isotopeRef: React.RefObject<ProjectsContainer>;
+  category: string | null;
+  language: string | null;
+  languages: string[];
+}
+
+const PageContext = createContext<ProjectPageContextInterface | null>(null);
+
+type MenuProps = {
+  onLanguageChanged?: (language: string) => void;
+};
+
+function HeaderAndMenus(props: MenuProps) {
+  const { onLanguageChanged } = props;
+  const pageContext = useContext(PageContext);
+
+  return (
+    <>
+      <HeaderText category={pageContext?.category} />
+      <CategoryMenu
+        categories={categories}
+        category={pageContext?.category}
+        urlTemplate={urlFromState(':', pageContext?.language)}
+      />
+      <ProjectsSortingMenu
+        isotopeRef={pageContext ? pageContext.isotopeRef : null}
+        languages={pageContext?.languages}
+        language={pageContext?.language}
+        onLanguageChanged={onLanguageChanged}
+      />
+    </>
+  );
+}
+
+type ProjectPageState = {
+  loading: boolean;
+  projects: any[];
+  languages: string[];
+  category: string | null;
+  language: string | null;
+};
+
+export class ProjectPage extends Component<RouteComponentProps, ProjectPageState> {
+  isotopeRef: React.RefObject<ProjectsContainer>;
+
+  constructor(props: RouteComponentProps) {
     super(props);
     const { location } = this.props;
     const { category, language } = stateFromUrl(location.pathname, location.search);
@@ -73,7 +118,7 @@ export class ProjectPage extends Component {
       language
     };
 
-    this.isotopeRef = React.createRef();
+    this.isotopeRef = React.createRef<ProjectsContainer>();
     this.onLanguageChanged = this.onLanguageChanged.bind(this);
   }
 
@@ -81,7 +126,7 @@ export class ProjectPage extends Component {
     this.tryGetProjects();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: RouteComponentProps) {
     const { location } = this.props;
     if (location.pathname !== prevProps.location.pathname) {
       const { category } = stateFromUrl(location.pathname, location.search);
@@ -99,15 +144,15 @@ export class ProjectPage extends Component {
     }
   }
 
-  onLanguageChanged(language) {
+  onLanguageChanged(language: string) {
     const { history } = this.props;
     const { category } = this.state;
     this.setState({ language });
     history.push(urlFromState(category, language));
   }
 
-  setProjects(updatedProjects) {
-    const languagesSet = new Set();
+  setProjects(updatedProjects: any[]) {
+    const languagesSet = new Set<string>();
     updatedProjects.forEach((project) => {
       if (project.languages) {
         for (let i = 0; i < project.languages.length && i < 3; i++) {
@@ -139,57 +184,36 @@ export class ProjectPage extends Component {
     }
   }
 
-  headerAndMenus() {
-    const { category, languages, language } = this.state;
-
-    return (
-      <>
-        <HeaderText category={category} />
-        <CategoryMenu
-          categories={categories}
-          category={category}
-          urlTemplate={urlFromState(':', language)}
-        />
-        <ProjectsSortingMenu
-          isotopeRef={this.isotopeRef}
-          languages={languages}
-          language={language}
-          onLanguageChanged={this.onLanguageChanged}
-        />
-      </>
-    );
-  }
-
   render() {
-    const { category, language, loading, projects } = this.state;
+    const { category, language, languages, loading, projects } = this.state;
 
     if (loading) {
       return (
-        <>
-          {this.headerAndMenus()}
+        <PageContext.Provider value={null}>
+          <HeaderAndMenus />
           <PlaceholderProjectsContainer />
-        </>
+        </PageContext.Provider>
       );
     }
 
+    const context: ProjectPageContextInterface = {
+      isotopeRef: React.createRef<ProjectsContainer>(),
+      category,
+      language,
+      languages
+    };
+
     return (
-      <>
-        {this.headerAndMenus()}
+      <PageContext.Provider value={context}>
+        <HeaderAndMenus />
         <ProjectsContainer ref={this.isotopeRef} category={category} language={language}>
           {projects.map((project) => (
             <ProjectCard key={project.url} project={project} />
           ))}
         </ProjectsContainer>
-      </>
+      </PageContext.Provider>
     );
   }
 }
-
-ProjectPage.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  location: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  history: PropTypes.object.isRequired
-};
 
 export default withRouter(ProjectPage);
