@@ -70,7 +70,7 @@ export default function About() {
         </Link>
         , contributors are welcome!
       </p>
-      <Typography varian="h2">Author(s)</Typography>
+      <Typography variant="h2">Author(s)</Typography>
       <List>
         <ListItem>
           <ListItemAvatar>
