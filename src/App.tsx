@@ -28,7 +28,7 @@ const theme = createTheme({
 });
 
 export default function App() {
-  const routerRef = React.createRef();
+  const routerRef = React.createRef<Router>();
   return (
     <Router ref={routerRef}>
       <CssBaseline>
