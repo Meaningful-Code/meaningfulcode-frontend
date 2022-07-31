@@ -13,7 +13,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import { submitProject } from '../projects/projects';
+import { submitProject, ProjectSubmission } from '../projects/projects';
 
 export default function SubmitProject() {
   useEffect(() => {
@@ -37,63 +37,83 @@ export default function SubmitProject() {
   );
 }
 
-const FormNotSubmitted = Symbol('FormNotSubmitted');
-const FormSubmitted = Symbol('FormSubmitted');
-const FormError = Symbol('FormError');
-const FormSuccess = Symbol('FormSuccess');
+const enum FormState {
+  NotSubmitted,
+  Submitted,
+  Error,
+  Success
+}
 
 function SubmitProjectForm() {
-  const [project, setProject] = useState({ description: '' });
-  const [formState, setFormState] = useState(FormNotSubmitted);
+  const [project, setProject] = useState<ProjectSubmission>({
+    name: '',
+    website: '',
+    description: ''
+  });
+  const [formState, setFormState] = useState(FormState.NotSubmitted);
   const [errorMessage, setErrorMessage] = useState('');
   const [ticketUrl, setTicketUrl] = useState('');
-  const recaptchaRef = createRef();
+  const recaptchaRef = createRef<ReCAPTCHA>();
 
-  const submitCallback = useCallback(() => {
-    recaptchaRef.current.reset();
-    setTicketUrl('');
-    setErrorMessage('');
-    setFormState(FormSubmitted);
-    recaptchaRef.current.execute();
-  });
-
-  const recaptchaHandler = useCallback((captchaValue) => {
-    if (!captchaValue) {
-      setErrorMessage('Captcha error');
-      setFormState(FormError);
+  const submitCallback = useCallback((): void => {
+    if (!recaptchaRef.current) {
       return;
     }
 
-    submitProject(project, captchaValue)
-      .then((url) => {
-        setTicketUrl(url);
-        setFormState(FormSuccess);
-      })
-      .catch((err) => {
-        setErrorMessage(`${err}`);
-        setFormState(FormError);
-      });
-  });
-  const nameChanged = useCallback((e) => {
-    setProject({
-      ...project,
-      ...{ name: e.target.value }
-    });
-  });
-  const websiteChanged = useCallback((e) => {
-    setProject({
-      ...project,
-      ...{ website: e.target.value }
-    });
-  });
-  const descriptionChanged = useCallback((e) => {
-    setProject({
-      ...project,
-      ...{ description: e.target.value }
-    });
-  });
+    recaptchaRef.current.reset();
+    setTicketUrl('');
+    setErrorMessage('');
+    setFormState(FormState.Submitted);
+    recaptchaRef.current.execute();
+  }, [recaptchaRef]);
 
-  const loading = formState === FormSubmitted;
+  const recaptchaHandler = useCallback(
+    (token: string | null): void => {
+      if (!token) {
+        setErrorMessage('Captcha error');
+        setFormState(FormState.Error);
+        return;
+      }
+
+      submitProject(project, token)
+        .then((url) => {
+          setTicketUrl(url);
+          setFormState(FormState.Success);
+        })
+        .catch((err) => {
+          setErrorMessage(`${err}`);
+          setFormState(FormState.Error);
+        });
+    },
+    [project]
+  );
+
+  const nameChanged = useCallback(
+    (e: any) => {
+      const updatedProject = project;
+      updatedProject.name = e.target.value;
+      setProject(updatedProject);
+    },
+    [project]
+  );
+  const websiteChanged = useCallback(
+    (e: any) => {
+      const updatedProject = project;
+      updatedProject.website = e.target.value;
+      setProject(updatedProject);
+    },
+    [project]
+  );
+  const descriptionChanged = useCallback(
+    (e: any) => {
+      const updatedProject = project;
+      updatedProject.description = e.target.value;
+      setProject(updatedProject);
+    },
+    [project]
+  );
+
+  const loading = formState === FormState.Submitted;
   return (
     <>
       <Typography variant="h2">Impactful project form</Typography>
@@ -119,17 +139,21 @@ Description:`}
           <Button
             disabled={loading}
             variant="contained"
-            color="secondary"
             onClick={submitCallback}
             startIcon={
+              // @ts-ignore: ignore unrecognized 'neutral' color from custom theme
               loading ? <CircularProgress size={20} color="neutral" /> : <CheckIcon />
             }
           >
             {loading ? 'Submitting' : 'Submit'}
           </Button>
         </Container>
-        {formState === FormError ? <Alert severity="error">{errorMessage}</Alert> : ''}
-        {formState === FormSuccess ? (
+        {formState === FormState.Error ? (
+          <Alert severity="error">{errorMessage}</Alert>
+        ) : (
+          ''
+        )}
+        {formState === FormState.Success ? (
           <Alert severity="success">
             Project submitted successfully! You can review the ticket on{' '}
             <a href={ticketUrl}>GitHub</a>. Thank you for your contribution 🎉
