@@ -1,13 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Container from '@mui/material/Container';
 
 import CategoryButton from '../../components/CategoryButton';
 
 const categoryAll = 'all';
-export default function CategoryMenu(props) {
-  const { categories, category, urlTemplate } = props;
+type CategoryMenuProps = {
+  categories: string[];
+  category?: string;
+  urlTemplate: string;
+};
+
+export default function CategoryMenu(props: CategoryMenuProps) {
+  const { categories, category = categoryAll, urlTemplate } = props;
   const allCategories = [categoryAll].concat(categories);
   return (
     <Container className="categories" sx={{ textAlign: 'center' }}>
@@ -22,13 +27,3 @@ export default function CategoryMenu(props) {
     </Container>
   );
 }
-
-CategoryMenu.propTypes = {
-  category: PropTypes.string,
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  urlTemplate: PropTypes.string.isRequired
-};
-
-CategoryMenu.defaultProps = {
-  category: categoryAll
-};

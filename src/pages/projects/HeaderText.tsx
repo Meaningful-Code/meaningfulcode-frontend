@@ -1,12 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 import Emoji from '../../components/Emoji';
 
-function HeaderTextContainer(props) {
+type HeaderTextContainerProps = {
+  Content: ({ large }: { large: boolean }) => JSX.Element;
+};
+
+function HeaderTextContainer(props: HeaderTextContainerProps) {
   const { Content } = props;
   const theme = useTheme();
   const isLarge = useMediaQuery(theme.breakpoints.up('lg'));
@@ -23,17 +26,13 @@ function HeaderTextContainer(props) {
 
   return (
     <Container>
-      <Content />
+      <Content large={false} />
     </Container>
   );
 }
 
-HeaderTextContainer.propTypes = {
-  Content: PropTypes.elementType.isRequired
-};
-
 function GenericHeaderText() {
-  const content = ({ large }) =>
+  const content = ({ large }: { large: boolean }) =>
     large ? (
       <>
         <Emoji label="planet" symbol="🌍" /> <b>Pick a cause to support</b>, and{' '}
@@ -57,7 +56,7 @@ function GenericHeaderText() {
 }
 
 function EnvironmentHeaderText() {
-  const content = ({ large }) => (
+  const content = ({ large }: { large: boolean }) => (
     <>
       <Emoji label="tree" symbol="🌲" /> <b>Eco-friendly</b> and <b>environmental</b>{' '}
       open-source projects, to protect our planet and the life on it{' '}
@@ -72,7 +71,7 @@ function EnvironmentHeaderText() {
 }
 
 function AccessibilityHeaderText() {
-  const content = ({ large }) => (
+  const content = ({ large }: { large: boolean }) => (
     <>
       Make our society <b>more accessible</b> <Emoji label="accessibility" symbol="♿" />{' '}
       by contributing to these open-source projects.
@@ -87,7 +86,7 @@ function AccessibilityHeaderText() {
 }
 
 function HealthHeaderText() {
-  const content = ({ large }) => (
+  const content = ({ large }: { large: boolean }) => (
     <>
       <Emoji label="health" symbol="⚕️" /> Support research and open-source initiatives
       to <b>improve</b> our
@@ -103,7 +102,7 @@ function HealthHeaderText() {
 }
 
 function EducationHeaderText() {
-  const content = ({ large }) => (
+  const content = ({ large }: { large: boolean }) => (
     <>
       <Emoji label="book" symbol="📖" /> Make <b>education</b> and <b>personal growth</b>{' '}
       more inclusive by contributing to these projects.
@@ -117,7 +116,7 @@ function EducationHeaderText() {
 }
 
 function HumanitarianHeaderText() {
-  const content = ({ large }) => (
+  const content = ({ large }: { large: boolean }) => (
     <>
       <Emoji label="planet" symbol="🌍" /> These open-source projects make a difference
       for <b>vulnerable populations</b> around the globe and those affected by natural
@@ -133,7 +132,7 @@ function HumanitarianHeaderText() {
 }
 
 function SocietyHeaderText() {
-  const content = ({ large }) => (
+  const content = ({ large }: { large: boolean }) => (
     <>
       <Emoji label="building" symbol="🏛️" /> Do you want to make our <b>society</b> more{' '}
       <b>inclusive</b> and <b>fair</b>? Or maybe provide <b>tools for citizens</b> to
@@ -146,7 +145,11 @@ function SocietyHeaderText() {
   return <HeaderTextContainer Content={content} />;
 }
 
-export default function HeaderText(props) {
+type HeaderTextProps = {
+  category: string | null;
+};
+
+export default function HeaderText(props: HeaderTextProps) {
   const { category } = props;
 
   switch (category) {
@@ -166,11 +169,3 @@ export default function HeaderText(props) {
       return GenericHeaderText();
   }
 }
-
-HeaderText.propTypes = {
-  category: PropTypes.string
-};
-
-HeaderText.defaultProps = {
-  category: null
-};

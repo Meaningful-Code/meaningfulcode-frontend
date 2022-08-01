@@ -27,12 +27,22 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!@mui)"
     ]
   },
-  "babel": {},
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -42,19 +52,13 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.3.0",
+    "@types/isotope-layout": "^3.0.9",
     "@types/jest": "^28.1.6",
     "@types/node": "^18.6.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-google-recaptcha": "^2.1.5",
     "@types/react-router-dom": "^5.3.3",
-    "eslint": "^8.20.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-react": "^7.30.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
     "react-scripts": "5.0.1"
   }

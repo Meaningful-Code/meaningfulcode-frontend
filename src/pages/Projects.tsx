@@ -1,4 +1,4 @@
-import React, { Component, createContext, useContext } from 'react';
+import React, { Component, useContext } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
@@ -8,7 +8,9 @@ import ProjectsContainer from './projects/ProjectsContainer';
 import ProjectCard, { ProjectPlaceholder } from './projects/ProjectCard';
 import CategoryMenu from './projects/CategoryMenu';
 import ProjectsSortingMenu from './projects/ProjectsSortingMenu';
-import getProjects, { categories } from '../projects/projects';
+import { Project, categories } from '../models/Project';
+import { getProjects } from '../api/ProjectApi';
+import { ProjectPageContextInterface, ProjectPageContext } from './projects/Context';
 
 import './projects/Main.css';
 
@@ -54,56 +56,42 @@ function stateFromUrl(pathname: string, queryString: string) {
   return { category, language };
 }
 
-function urlFromState(category: string | null, language?: string | null): string {
+function urlFromState(category: string | null, language: string | null): string {
   const queryString = language ? `?language=${encodeURIComponent(language)}` : '';
   return `/${category || ''}${queryString}`;
 }
 
-interface ProjectPageContextInterface {
-  isotopeRef: React.RefObject<ProjectsContainer>;
-  category: string | null;
-  language: string | null;
-  languages: string[];
-}
-
-const PageContext = createContext<ProjectPageContextInterface | null>(null);
-
 type MenuProps = {
-  onLanguageChanged?: (language: string) => void;
+  onLanguageChanged: (language: string) => void;
 };
 
 function HeaderAndMenus(props: MenuProps) {
   const { onLanguageChanged } = props;
-  const pageContext = useContext(PageContext);
+  const pageContext = useContext(ProjectPageContext);
 
   return (
     <>
-      <HeaderText category={pageContext?.category} />
+      <HeaderText category={pageContext.category} />
       <CategoryMenu
         categories={categories}
-        category={pageContext?.category}
-        urlTemplate={urlFromState(':', pageContext?.language)}
+        category={pageContext.category || undefined}
+        urlTemplate={urlFromState(':', pageContext.language)}
       />
-      <ProjectsSortingMenu
-        isotopeRef={pageContext ? pageContext.isotopeRef : null}
-        languages={pageContext?.languages}
-        language={pageContext?.language}
-        onLanguageChanged={onLanguageChanged}
-      />
+      <ProjectsSortingMenu onLanguageChanged={onLanguageChanged} />
     </>
   );
 }
 
 type ProjectPageState = {
   loading: boolean;
-  projects: any[];
+  projects: Project[];
   languages: string[];
   category: string | null;
   language: string | null;
 };
 
 export class ProjectPage extends Component<RouteComponentProps, ProjectPageState> {
-  isotopeRef: React.RefObject<ProjectsContainer>;
+  projectsViewRef: React.RefObject<ProjectsContainer>;
 
   constructor(props: RouteComponentProps) {
     super(props);
@@ -115,10 +103,10 @@ export class ProjectPage extends Component<RouteComponentProps, ProjectPageState
       projects: [],
       languages: [],
       category,
-      language
+      language,
     };
 
-    this.isotopeRef = React.createRef<ProjectsContainer>();
+    this.projectsViewRef = React.createRef<ProjectsContainer>();
     this.onLanguageChanged = this.onLanguageChanged.bind(this);
   }
 
@@ -139,7 +127,7 @@ export class ProjectPage extends Component<RouteComponentProps, ProjectPageState
 
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
-        category
+        category,
       });
     }
   }
@@ -164,7 +152,7 @@ export class ProjectPage extends Component<RouteComponentProps, ProjectPageState
     this.setState({
       loading: false,
       projects: shuffle(updatedProjects),
-      languages: Array.from(languagesSet).sort()
+      languages: Array.from(languagesSet).sort(),
     });
   }
 
@@ -189,29 +177,33 @@ export class ProjectPage extends Component<RouteComponentProps, ProjectPageState
 
     if (loading) {
       return (
-        <PageContext.Provider value={null}>
-          <HeaderAndMenus />
+        <>
+          <HeaderAndMenus onLanguageChanged={this.onLanguageChanged} />
           <PlaceholderProjectsContainer />
-        </PageContext.Provider>
+        </>
       );
     }
 
     const context: ProjectPageContextInterface = {
-      isotopeRef: React.createRef<ProjectsContainer>(),
+      projectsViewRef: this.projectsViewRef,
       category,
       language,
-      languages
+      languages,
     };
 
     return (
-      <PageContext.Provider value={context}>
-        <HeaderAndMenus />
-        <ProjectsContainer ref={this.isotopeRef} category={category} language={language}>
-          {projects.map((project) => (
+      <ProjectPageContext.Provider value={context}>
+        <HeaderAndMenus onLanguageChanged={this.onLanguageChanged} />
+        <ProjectsContainer
+          ref={this.projectsViewRef}
+          category={category}
+          language={language}
+        >
+          {projects.map((project: Project) => (
             <ProjectCard key={project.url} project={project} />
           ))}
         </ProjectsContainer>
-      </PageContext.Provider>
+      </ProjectPageContext.Provider>
     );
   }
 }

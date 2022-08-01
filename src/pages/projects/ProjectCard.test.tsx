@@ -2,7 +2,7 @@ import { formatLastUpdateAge } from './ProjectCard';
 
 describe('Component: ProjectCard', () => {
   test.each([
-    [NaN, 'never'],
+    [null, 'never'],
     [0, 'today'],
     [1, '1 day ago'],
     [6, '6 days ago'],
