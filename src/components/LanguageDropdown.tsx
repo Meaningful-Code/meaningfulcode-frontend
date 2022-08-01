@@ -1,10 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
-export default function LanguageFilterButton(props) {
+type LanguageFilterButtonProps = {
+  languages: string[];
+  language: string | null;
+  onChange: (event: React.SyntheticEvent<Element, Event>) => void;
+};
+
+export default function LanguageDropdown(props: LanguageFilterButtonProps) {
   const { languages, language, onChange } = props;
 
   return (
@@ -19,18 +24,8 @@ export default function LanguageFilterButton(props) {
         onChange={onChange}
         sx={{ width: 200 }}
         size="small"
-        value={language}
+        value={language || null}
       />
     </Grid>
   );
 }
-
-LanguageFilterButton.propTypes = {
-  languages: PropTypes.arrayOf(PropTypes.string).isRequired,
-  language: PropTypes.string,
-  onChange: PropTypes.func.isRequired
-};
-
-LanguageFilterButton.defaultProps = {
-  language: null
-};

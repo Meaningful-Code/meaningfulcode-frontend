@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 
 import AccessibleOutlinedIcon from '@mui/icons-material/AccessibleOutlined';
@@ -11,7 +10,7 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 
-export function getCategoryColor(type) {
+export function getCategoryColor(type: string) {
   switch (type) {
     case 'all':
       return '#49494a';
@@ -32,7 +31,7 @@ export function getCategoryColor(type) {
   }
 }
 
-export function getCategoryIcon(type) {
+export function getCategoryIcon(type: string) {
   switch (type) {
     case 'all':
       return <AllInclusiveOutlinedIcon />;
@@ -53,15 +52,15 @@ export function getCategoryIcon(type) {
   }
 }
 
-function CategoryIcon(props) {
+type CategoryIconProps = {
+  type: string;
+};
+
+function CategoryIcon(props: CategoryIconProps) {
   const { type } = props;
   return (
     <Avatar sx={{ bgcolor: getCategoryColor(type) }}>{getCategoryIcon(type)}</Avatar>
   );
 }
-
-CategoryIcon.propTypes = {
-  type: PropTypes.string.isRequired
-};
 
 export default CategoryIcon;
