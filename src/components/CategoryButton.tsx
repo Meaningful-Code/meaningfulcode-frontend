@@ -1,19 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import CategoryIcon from './CategoryIcon';
 
-export default function CategoryButton(props) {
+type CategoryButtonProps = {
+  category: string;
+  active: boolean;
+  targetUrl: string;
+};
+
+export default function CategoryButton(props: CategoryButtonProps) {
   const { category, active, targetUrl } = props;
 
   return (
     <Button
-      className={active ? 'active' : null}
-      variant={active ? 'contained' : null}
+      className={active ? 'active' : undefined}
+      variant={active ? 'contained' : undefined}
       color="primary"
       disableElevation
       component={Link}
@@ -24,15 +29,10 @@ export default function CategoryButton(props) {
       }}
       startIcon={<CategoryIcon type={category} />}
     >
-      <Typography variant="button" component={active ? 'h1' : ''}>
+      {/* @ts-ignore: component prop not properly recognized*/}
+      <Typography variant="button" component={active ? 'h1' : undefined}>
         {category}
       </Typography>
     </Button>
   );
 }
-
-CategoryButton.propTypes = {
-  category: PropTypes.string.isRequired,
-  active: PropTypes.bool.isRequired,
-  targetUrl: PropTypes.string.isRequired
-};

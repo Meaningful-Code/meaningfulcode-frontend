@@ -41,6 +41,7 @@ export default function PageHeader() {
             </Button>
             <Button
               variant="outlined"
+              /* @ts-ignore: color type not properly recognized */
               color="neutral"
               component={RouterLink}
               to="/get-started"
@@ -49,6 +50,7 @@ export default function PageHeader() {
             </Button>
             <Button
               variant="outlined"
+              /* @ts-ignore: color type not properly recognized */
               color="neutral"
               component={RouterLink}
               to="/about"

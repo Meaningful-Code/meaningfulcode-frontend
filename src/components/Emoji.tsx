@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+type EmojiProps = {
+  label?: string;
+  symbol: string;
+};
 
 // Thank you Sean
 // https://medium.com/@seanmcp/%EF%B8%8F-how-to-use-emojis-in-react-d23bbf608bf7
-function Emoji(props) {
+function Emoji(props: EmojiProps) {
   const { label, symbol } = props;
 
   return (
@@ -17,10 +21,5 @@ function Emoji(props) {
     </span>
   );
 }
-
-Emoji.propTypes = {
-  label: PropTypes.string.isRequired,
-  symbol: PropTypes.string.isRequired
-};
 
 export default Emoji;
