@@ -28,44 +28,44 @@ import TurnedInIcon from '@mui/icons-material/TurnedIn';
 import TurnedInIconNot from '@mui/icons-material/TurnedInNot';
 
 import CategoryIcon from '../../components/CategoryIcon';
+import { Project } from '../../models/Project';
 
-export function formatLastUpdateAge(lastCommitAgeInDays) {
-  if (Number.isNaN(lastCommitAgeInDays)) {
+export function formatLastUpdateAge(lastCommitAgeInDays: number | null) {
+  if (lastCommitAgeInDays == null) {
     return 'never';
   }
 
   const monthDuration = 30;
   const yearDuration = 365;
-  let lastUpdateText = '';
   if (lastCommitAgeInDays < 1) {
-    lastUpdateText = 'today';
-  } else {
-    if (lastCommitAgeInDays < monthDuration) {
-      lastUpdateText = `${lastCommitAgeInDays} ${
-        lastCommitAgeInDays === 1 ? 'day' : 'days'
-      }`;
-    } else if (lastCommitAgeInDays < yearDuration) {
-      const lastCommitAgeInMonths = Math.floor(lastCommitAgeInDays / monthDuration);
-      lastUpdateText = `${lastCommitAgeInMonths} ${
-        lastCommitAgeInMonths === 1 ? 'month' : 'months'
-      }`;
-    } else {
-      const lastCommitAgeInYears = Math.floor(lastCommitAgeInDays / yearDuration);
-      lastUpdateText = `${lastCommitAgeInYears} ${
-        lastCommitAgeInYears === 1 ? 'year' : 'years'
-      }`;
-    }
-    lastUpdateText += ' ago';
+    return 'today';
   }
 
-  return lastUpdateText;
+  let lastUpdateText = '';
+  if (lastCommitAgeInDays < monthDuration) {
+    lastUpdateText = `${lastCommitAgeInDays} ${
+      lastCommitAgeInDays === 1 ? 'day' : 'days'
+    }`;
+  } else if (lastCommitAgeInDays < yearDuration) {
+    const lastCommitAgeInMonths = Math.floor(lastCommitAgeInDays / monthDuration);
+    lastUpdateText = `${lastCommitAgeInMonths} ${
+      lastCommitAgeInMonths === 1 ? 'month' : 'months'
+    }`;
+  } else {
+    const lastCommitAgeInYears = Math.floor(lastCommitAgeInDays / yearDuration);
+    lastUpdateText = `${lastCommitAgeInYears} ${
+      lastCommitAgeInYears === 1 ? 'year' : 'years'
+    }`;
+  }
+
+  return lastUpdateText + ' ago';
 }
 
 const SmallListAvatar = styled(Avatar)((props) => ({
   width: 35,
   height: 35,
   backgroundColor: props.color || 'transparent',
-  color: props.color ? 'white' : 'black'
+  color: props.color ? 'white' : 'black',
 }));
 
 function FeaturedListItem() {
@@ -77,7 +77,11 @@ function FeaturedListItem() {
   );
 }
 
-function ProjectCardListIcon(props) {
+type ProjectCardListIconProps = {
+  avatar: React.ReactElement;
+  color?: string;
+};
+function ProjectCardListIcon(props: ProjectCardListIconProps) {
   const { avatar, color } = props;
   return (
     <ListItemAvatar>
@@ -86,16 +90,11 @@ function ProjectCardListIcon(props) {
   );
 }
 
-ProjectCardListIcon.propTypes = {
-  avatar: PropTypes.instanceOf(Object).isRequired,
-  color: PropTypes.string
+type ProjectCardProps = {
+  project: Project;
 };
 
-ProjectCardListIcon.defaultProps = {
-  color: null
-};
-
-function ProjectCard(props) {
+function ProjectCard(props: ProjectCardProps) {
   const {
     project: {
       categories,
@@ -106,8 +105,8 @@ function ProjectCard(props) {
       owner,
       stars,
       url,
-      websiteUrl
-    }
+      websiteUrl,
+    },
   } = props;
 
   const bookmarkKey = `${url}.bookmarked`;
@@ -116,7 +115,7 @@ function ProjectCard(props) {
 
   useEffect(() => {
     if (bookmarked) {
-      localStorage.setItem(bookmarkKey, 1);
+      localStorage.setItem(bookmarkKey, '1');
     } else {
       localStorage.removeItem(bookmarkKey);
     }
@@ -125,8 +124,8 @@ function ProjectCard(props) {
   const maxDescription = 300;
 
   const secInADay = 3600 * 24;
-  const now = new Date() / 1000;
-  let lastCommitAgeInDays = null;
+  const now = new Date().getSeconds();
+  let lastCommitAgeInDays: number | null = null;
   if (lastCommitTimestamp > 0) {
     lastCommitAgeInDays = Math.floor((now - lastCommitTimestamp) / secInADay);
   }
@@ -246,8 +245,8 @@ ProjectCard.propTypes = {
     owner: PropTypes.string.isRequired,
     stars: PropTypes.number.isRequired,
     url: PropTypes.string.isRequired,
-    websiteUrl: PropTypes.string
-  }).isRequired
+    websiteUrl: PropTypes.string,
+  }).isRequired,
 };
 
 function ProjectPlaceholder() {
