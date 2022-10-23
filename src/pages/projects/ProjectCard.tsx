@@ -122,6 +122,10 @@ function ProjectCard(props: ProjectCardProps) {
   });
 
   const maxDescription = 300;
+  let descriptionText = description || '';
+  if (descriptionText.length > maxDescription) {
+    descriptionText = descriptionText.substring(0, maxDescription);
+  }
 
   const secInADay = 3600 * 24;
   const now = new Date().getSeconds();
@@ -178,7 +182,7 @@ function ProjectCard(props: ProjectCardProps) {
       data-stars={stars}
       data-name={name.toLowerCase()}
       data-owner={owner.toLowerCase()}
-      data-desc={description.toLowerCase()}
+      data-desc={description?.toLowerCase()}
     >
       <Card raised>
         <CardHeader
@@ -218,11 +222,7 @@ function ProjectCard(props: ProjectCardProps) {
               />
             </ListItem>
           </List>
-          <p className="project-desc">
-            {description.length > maxDescription
-              ? `${description.substring(0, maxDescription)}...`
-              : description}
-          </p>
+          <p className="project-desc">{descriptionText}</p>
         </CardContent>
         <CardActions>
           <ButtonGroup variant="outlined" fullWidth>
