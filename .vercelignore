@@ -1,8 +1,12 @@
 /*
 *.key
-!package.json
-!craco.config.js
 !api
 api/package.json
+
 !public
 !src
+
+!mui.d.ts
+!package.json
+!tsconfig.json
+!yarn.lock
