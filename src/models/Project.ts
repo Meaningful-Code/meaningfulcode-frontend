@@ -4,7 +4,7 @@ export const categories = [
   'environment',
   'society',
   'humanitarian',
-  'accessibility'
+  'accessibility',
 ];
 
 export type Project = {
@@ -13,7 +13,7 @@ export type Project = {
   categories: string[];
   languages: string[];
   stars: number;
-  description: string;
+  description?: string;
   url: string;
   websiteUrl: string;
   lastCommitTimestamp: number;
