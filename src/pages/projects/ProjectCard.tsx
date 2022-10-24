@@ -238,7 +238,7 @@ function ProjectCard(props: ProjectCardProps) {
 ProjectCard.propTypes = {
   project: PropTypes.shape({
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     languages: PropTypes.arrayOf(PropTypes.string),
     lastCommitTimestamp: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
