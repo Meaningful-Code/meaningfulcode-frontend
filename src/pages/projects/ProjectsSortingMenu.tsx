@@ -126,7 +126,7 @@ export default class ProjectsSortingMenu extends Component<ProjectsSortingMenuPr
   render() {
     return (
       <Grid container justifyContent="center" spacing={0.5} className="sorting">
-        <SortButton label="shusffle!" onClick={this.shuffle} />
+        <SortButton label="shuffle!" onClick={this.shuffle} />
         <SortButton label="most starred" onClick={this.sortByStars} />
 
         <SortButton label="last updated" onClick={this.sortByLastCommit} />
