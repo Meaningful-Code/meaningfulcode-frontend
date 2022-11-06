@@ -1,0 +1,20 @@
+name: label-action-test
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  add-comment:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+    - name: Deploy Stage
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://meaningfulcode.org/api/projects/add'
+        method: 'POST'
+        customHeaders: '{"Content-Type": "application/json"}'
+        data: '{"issueNum": "${{ github.event.issue.number }}", "issueBody": "${{ github.event.issue.body }}"}'
