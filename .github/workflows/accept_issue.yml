@@ -1,20 +1,14 @@
 name: label-action-test
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} approved an issue
 on:
   issues:
     types:
       - labeled
 jobs:
-  add-comment:
-    if: github.event.label.name == 'approved'
+  submit-project:
+  if: github.event.label.name == 'approved'
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
-    - name: Deploy Stage
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: 'https://meaningfulcode.org/api/projects/add'
-        method: 'POST'
-        customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"issueNum": "${{ github.event.issue.number }}", "issueBody": "${{ github.event.issue.body }}"}'
+    - name: REST API with curl
+      run: |
+        curl -X POST -H "Content-Type: application/json" -d '{  "action":"add", "token":"${{ secrets.MC_SERVER_TOKEN }}"", "issueNum": "${{ github.event.issue.number }}", "issueBody": "${{ github.event.issue.body }}"}' https://meaningfulcode.org/api/projects
