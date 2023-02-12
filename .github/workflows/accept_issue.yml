@@ -1,0 +1,14 @@
+name: label-action-test
+run-name: ${{ github.actor }} approved an issue
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  submit-project:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+    - name: REST API with curl
+      run: |
+        curl -X POST -H "Content-Type: application/json" -d '{"action":"add", "token":"${{ secrets.MC_SERVER_TOKEN }}"", "issueNum": "${{ github.event.issue.number }}", "issueBody": "${{ github.event.issue.body }}"}' https://meaningfulcode.org/api/projects
