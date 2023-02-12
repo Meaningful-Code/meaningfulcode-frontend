@@ -32,7 +32,7 @@ This frontend is based on [React](https://reactjs.org/), [Semantic UI](https://r
 
 The following steps guide you to setup your environment
 
-1. Install [Node 16](https://nodejs.org/en/download/package-manager/)
+1. Install [Node 18](https://nodejs.org/en/download/package-manager/)
 1. Install [yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 1. Clone this repository, and run `yarn install`
 
