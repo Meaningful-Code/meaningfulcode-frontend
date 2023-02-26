@@ -48,9 +48,12 @@ function SubmitProjectForm() {
   const [project, setProject] = useState<ProjectSubmission>({
     name: '',
     website: '',
+    repository: '',
+    category: '',
     description: ''
   });
   const [formState, setFormState] = useState(FormState.NotSubmitted);
+  const [repositoryError, setRepositoryError] = useState("");
   const [errorMessage, setErrorMessage] = useState('');
   const [ticketUrl, setTicketUrl] = useState('');
   const recaptchaRef = createRef<ReCAPTCHA>();
@@ -104,6 +107,28 @@ function SubmitProjectForm() {
     },
     [project]
   );
+  const repositoryChanged = useCallback(
+    (e: any) => {
+      const updatedProject = project;
+      const val = e.target.value;
+      updatedProject.repository = val;
+      setProject(updatedProject);
+      if (!val.startsWith("https://github.com/")){
+        setRepositoryError("Must be valid Github Repository");
+      } else {
+        setRepositoryError("");
+      }
+    },
+    [project]
+  );
+  const categoryChanged = useCallback(
+    (e: any) => {
+      const updatedProject = project;
+      updatedProject.category = e.target.value;
+      setProject(updatedProject);
+    },
+    [project]
+  );
   const descriptionChanged = useCallback(
     (e: any) => {
       const updatedProject = project;
@@ -114,6 +139,7 @@ function SubmitProjectForm() {
   );
 
   const loading = formState === FormState.Submitted;
+  const buttonDisabled = loading || repositoryError !== "";
   return (
     <>
       <Typography variant="h2">Impactful project form</Typography>
@@ -126,18 +152,19 @@ function SubmitProjectForm() {
       <Stack spacing={2}>
         <TextField label="Project name" onChange={nameChanged} />
         <TextField label="Website" onChange={websiteChanged} />
+        <TextField error={repositoryError!==""} label="Repository" onChange={repositoryChanged} helperText={repositoryError}/>
+        <TextField label="Category" onChange={categoryChanged}
+          defaultValue={`Accessibility/Education/Environment/Health/Humanitarian/Society`}
+        />
         <TextField
           label="Description"
           multiline
           rows={5}
           onChange={descriptionChanged}
-          defaultValue={`Repository:
-Category: Accessibility/Education/Environment/Health/Humanitarian/Society
-Description:`}
         />
         <Container disableGutters>
           <Button
-            disabled={loading}
+            disabled={buttonDisabled}
             variant="contained"
             onClick={submitCallback}
             startIcon={

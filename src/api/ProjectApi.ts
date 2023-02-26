@@ -32,6 +32,8 @@ export async function getProjects(): Promise<Project[]> {
 export type ProjectSubmission = {
   name: string;
   website: string;
+  repository: string;
+  category: string;
   description: string;
 };
 
