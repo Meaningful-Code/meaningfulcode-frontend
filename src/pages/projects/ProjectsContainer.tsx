@@ -122,7 +122,7 @@ export default class ProjectsContainer extends Component<
         return (
           itemElement.getAttribute('data-name')!.includes(search) ||
           itemElement.getAttribute('data-owner')!.includes(search) ||
-          itemElement.getAttribute('data-desc')!.includes(search)
+          itemElement.getAttribute('data-desc')!.includes(search) || false
         );
       }
       return true;
