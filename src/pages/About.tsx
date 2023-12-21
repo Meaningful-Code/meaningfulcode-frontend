@@ -70,23 +70,6 @@ export default function About() {
         </Link>
         , contributors are welcome!
       </p>
-      <Typography variant="h2">Author(s)</Typography>
-      <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar alt="Adrien Leravat" src="/img/adrien.svg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary={
-              <Link href="https://www.linkedin.com/in/adrienleravat/">
-                Adrien Leravat
-              </Link>
-            }
-            secondary="Working on embedded software by day, passionate about learning and teaching
-            technology."
-          />
-        </ListItem>
-      </List>
       <Typography variant="h2">
         Thank you! <Emoji label="sparks" symbol="🎉" />
       </Typography>
@@ -124,6 +107,23 @@ export default function About() {
         <li>... and everyone who is giving their time to make a social impact</li>
       </ul>
       <p>We are all forever grateful.</p>
+      <Typography variant="h2">People</Typography>
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar alt="Adrien Leravat" src="/img/adrien.svg" />
+          </ListItemAvatar>
+          <ListItemText
+            primary={
+              <Link href="https://www.linkedin.com/in/adrienleravat/">
+                Adrien Leravat
+              </Link>
+            }
+            secondary="Working on embedded software by day, passionate about learning and teaching
+            technology. Feel free to get in touch!"
+          />
+        </ListItem>
+      </List>
     </Container>
   );
 }
