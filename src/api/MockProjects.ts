@@ -9,7 +9,7 @@ export default function getMockProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-a',
       websiteUrl: 'https://websitea.com',
-      lastCommitTimestamp: 1607894587
+      lastCommitTimestamp: 1687894587
     },
     {
       name: 'Project B',
@@ -20,7 +20,7 @@ export default function getMockProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-b',
       websiteUrl: 'https://websiteb.com',
-      lastCommitTimestamp: 1607824587
+      lastCommitTimestamp: 1703135247
     },
     {
       name: 'Project C',
@@ -31,7 +31,7 @@ export default function getMockProjects() {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-c',
       websiteUrl: 'https://websitec.com',
-      lastCommitTimestamp: 1607124587
+      lastCommitTimestamp: 1687124587
     },
     {
       name: 'Project D',
@@ -43,7 +43,7 @@ export default function getMockProjects() {
         'Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-d',
       websiteUrl: 'https://websited.com',
-      lastCommitTimestamp: 1607824117
+      lastCommitTimestamp: 1701135247
     },
     {
       name: 'Project E',

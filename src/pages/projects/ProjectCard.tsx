@@ -128,10 +128,10 @@ function ProjectCard(props: ProjectCardProps) {
   }
 
   const secInADay = 3600 * 24;
-  const now = new Date().getSeconds();
   let lastCommitAgeInDays: number | null = null;
   if (lastCommitTimestamp > 0) {
-    lastCommitAgeInDays = Math.floor((now - lastCommitTimestamp) / secInADay);
+    const nowSeconds = Date.now() / 1000;
+    lastCommitAgeInDays = Math.floor((nowSeconds - lastCommitTimestamp) / secInADay);
   }
 
   let websiteButton;
