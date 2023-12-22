@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Container from '@mui/material/Container';
-import ThemeProvider from '@mui/material/styles/ThemeProvider';
-import { createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/ScopedCssBaseline';
 
 import Header from './components/Header';
