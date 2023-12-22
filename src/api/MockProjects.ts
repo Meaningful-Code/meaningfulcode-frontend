@@ -1,4 +1,4 @@
-export default function getMockProjects() {
+export default function getMockProjects(): Project[] {
   return [
     {
       name: 'Project A',
@@ -51,7 +51,7 @@ export default function getMockProjects() {
       categories: ['environment'],
       languages: ['C++', 'Bash'],
       stars: 560,
-      description: 'Description text that will likely span on multiple lines.',
+      description: null,
       url: 'https://github.com/project-e',
       websiteUrl: 'https://websited.com',
       lastCommitTimestamp: 1507824117
