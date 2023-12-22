@@ -1,4 +1,3 @@
-import React from 'react';
 import { Theme, createTheme } from '@mui/material/styles';
 
 export default function createDefaultTheme(): Theme {

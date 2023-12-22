@@ -5,16 +5,16 @@ import '@testing-library/jest-dom';
 import Footer from './Footer';
 
 describe('Footer Component', () => {
-  beforeEach(() => {
-    render(<Footer />);
-  });
-
   it('should render the footer with social links', () => {
+    render(<Footer />);
+
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
     expect(screen.getByText(/Support these projects: Share!/i)).toBeInTheDocument();
   });
 
   it('should render social media buttons with correct links and attributes', () => {
+    render(<Footer />);
+
     // Twitter Button
     const twitterButton = screen.getByRole('link', { name: /twitter/i });
     expect(twitterButton).toBeInTheDocument();
@@ -35,6 +35,8 @@ describe('Footer Component', () => {
   });
 
   it('should render social media icons within buttons', () => {
+    render(<Footer />);
+
     // Twitter Icon
     const twitterIcon = screen.getByTestId('TwitterIcon');
     expect(twitterIcon).toBeInTheDocument();

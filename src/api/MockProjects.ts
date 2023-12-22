@@ -1,3 +1,5 @@
+import {Project} from '../models/Project'
+
 export default function getMockProjects(): Project[] {
   return [
     {
@@ -51,7 +53,6 @@ export default function getMockProjects(): Project[] {
       categories: ['environment'],
       languages: ['C++', 'Bash'],
       stars: 560,
-      description: null,
       url: 'https://github.com/project-e',
       websiteUrl: 'https://websited.com',
       lastCommitTimestamp: 1507824117
