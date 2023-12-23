@@ -41,8 +41,7 @@ main {
 }
 
 footer {
-  margin-top: 2em;
-  padding-bottom: 2em;
+  margin: 2em 0;
   min-height: 3em;
 }
 

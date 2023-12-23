@@ -11,7 +11,7 @@ import RedditIcon from '@mui/icons-material/Reddit';
 export default function Footer() {
   return (
     <footer>
-      <Container id="social">
+      <Container id="social" sx={{ padding: 0 }}>
         <Typography variant="h3">Support these projects: Share!</Typography>
         <ButtonGroup id="socialButton" disableElevation variant="outlined">
           <Button
