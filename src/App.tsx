@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Container from '@mui/material/Container';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/ScopedCssBaseline';
 
 import Header from './components/Header';
@@ -11,27 +11,15 @@ import Projects from './pages/Projects';
 import GetStarted from './pages/GetStarted';
 import About from './pages/About';
 
+import createDefaultTheme from './theme/createDefaultTheme';
 import './theme/App.css';
-
-const theme = createTheme({
-  palette: {
-    primary: { main: '#35b87b', contrastText: '#fff' },
-    secondary: { main: '#4461ad', contrastText: '#fff' },
-    neutral: { main: '#808080', contrastText: '#000' },
-  },
-  typography: {
-    h1: { fontSize: '2em' },
-    h2: { fontSize: '1.7em' },
-    h3: { fontSize: '1.5em' },
-  },
-});
 
 export default function App() {
   const routerRef = React.createRef<Router>();
   return (
     <Router ref={routerRef}>
       <CssBaseline>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={createDefaultTheme()}>
           <Container>
             <Header />
             <main>
