@@ -7,7 +7,10 @@ import Typography from '@mui/material/Typography';
 
 import { Link as RouterLink } from 'react-router-dom';
 
+import useMinimalGaTracker from '../components/useMinimalGaTracker';
+
 export default function PageHeader() {
+  useMinimalGaTracker();
   return (
     <header>
       <Grid container spacing={2}>
