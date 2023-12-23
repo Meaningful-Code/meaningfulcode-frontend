@@ -184,7 +184,7 @@ function ProjectCard(props: ProjectCardProps) {
       data-owner={owner.toLowerCase()}
       data-desc={description?.toLowerCase()}
     >
-      <Card raised>
+      <Card variant="outlined">
         <CardHeader
           component="h3"
           title={name}
@@ -225,7 +225,7 @@ function ProjectCard(props: ProjectCardProps) {
           <p className="project-desc">{descriptionText}</p>
         </CardContent>
         <CardActions>
-          <ButtonGroup variant="outlined" fullWidth>
+          <ButtonGroup variant="text" fullWidth>
             {websiteButton}
             {githubButton}
           </ButtonGroup>

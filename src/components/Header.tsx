@@ -43,7 +43,6 @@ export default function PageHeader() {
               Add a project!
             </Button>
             <Button
-              variant="outlined"
               /* @ts-ignore: color type not properly recognized */
               color="neutral"
               component={RouterLink}
@@ -52,7 +51,6 @@ export default function PageHeader() {
               Get started
             </Button>
             <Button
-              variant="outlined"
               /* @ts-ignore: color type not properly recognized */
               color="neutral"
               component={RouterLink}
