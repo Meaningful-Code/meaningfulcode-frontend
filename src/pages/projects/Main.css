@@ -7,7 +7,7 @@
   --black: #000000;
 
   /* Categories */
-  --cat-all-color: var(--gray);
+  --cat-all-color: var(--blue);
   --cat-health-color: var(--orange);
   --cat-education-color: var(--green);
   --cat-environment-color: var(--green);
