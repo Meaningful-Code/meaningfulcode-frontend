@@ -3,9 +3,9 @@ import { Theme, createTheme } from '@mui/material/styles';
 export default function createDefaultTheme(): Theme {
     return createTheme({
     palette: {
-      primary: { main: '#35b87b', contrastText: '#fff' },
-      secondary: { main: '#4461ad', contrastText: '#fff' },
-      neutral: { main: '#808080', contrastText: '#000' },
+      primary: { main: '#3c9d76', contrastText: '#fff' },
+      secondary: { main: '#1f647d', contrastText: '#fff' },
+      neutral: { main: '#9b9c98', contrastText: '#000' },
     },
     typography: {
       h1: { fontSize: '2em' },

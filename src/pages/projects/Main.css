@@ -1,6 +1,19 @@
 :root {
-  --accent-color: #3eda91;
-  --accent-dim-color: #81d4ae;
+  --green: #3c9d76;
+  --blue: #1f647d;
+  --gray: #9b9c98;
+  --orange: #cc8562;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Categories */
+  --cat-all-color: var(--gray);
+  --cat-health-color: var(--orange);
+  --cat-education-color: var(--green);
+  --cat-environment-color: var(--green);
+  --cat-society-color: var(--blue);
+  --cat-humanitarian-color: var(--orange);
+  --cat-accessibility-color: var(--blue);
 }
 
 /*-----------------------------------
@@ -44,6 +57,31 @@
 
 .item-grid {
   margin: 0 auto;
+}
+
+/*-----------------------------------
+  Categories
+*/
+.cat-all {
+  background-color: var(--cat-all-color);
+}
+.cat-health {
+  background-color: var(--cat-health-color);
+}
+.cat-education {
+  background-color: var(--cat-education-color);
+}
+.cat-environment {
+  background-color: var(--cat-environment-color);
+}
+.cat-society {
+  background-color: var(--cat-society-color);
+}
+.cat-humanitarian {
+  background-color: var(--cat-humanitarian-color);
+}
+.cat-accessibility {
+  background-color: var(--cat-accessibility-color);
 }
 
 /*-----------------------------------
@@ -119,4 +157,8 @@
 .project-item .category-label span {
   text-transform: capitalize;
   font-weight: bold;
+}
+
+.project-item .project-desc {
+  margin: 0px;
 }
