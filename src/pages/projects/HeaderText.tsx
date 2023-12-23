@@ -16,7 +16,7 @@ function HeaderTextContainer(props: HeaderTextContainerProps) {
 
   if (isLarge) {
     return (
-      <Container>
+      <Container className="category-description">
         <p style={{ textAlign: 'center', margin: '0 4em', fontSize: '20px' }}>
           <Content large />
         </p>
@@ -25,7 +25,7 @@ function HeaderTextContainer(props: HeaderTextContainerProps) {
   }
 
   return (
-    <Container>
+    <Container className="category-description">
       <Content large={false} />
     </Container>
   );

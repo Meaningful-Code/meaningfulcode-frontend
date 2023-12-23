@@ -21,7 +21,11 @@
 */
 
 .categories {
-  margin-top: 5em;
+  margin-top: 3em;
+  margin-bottom: 1.5em;
+}
+
+.category-description {
   margin-bottom: 3em;
 }
 

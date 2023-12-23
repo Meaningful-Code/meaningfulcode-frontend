@@ -71,12 +71,12 @@ function HeaderAndMenus(props: MenuProps) {
 
   return (
     <>
-      <HeaderText category={pageContext.category} />
       <CategoryMenu
         categories={categories}
         category={pageContext.category || undefined}
         urlTemplate={urlFromState(':', pageContext.language)}
       />
+      <HeaderText category={pageContext.category} />
       <ProjectsSortingMenu onLanguageChanged={onLanguageChanged} />
     </>
   );
