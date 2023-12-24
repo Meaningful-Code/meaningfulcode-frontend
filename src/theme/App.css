@@ -27,6 +27,10 @@ img#logo {
   height: 3em;
 }
 
+main {
+  margin-top: 3em;
+}
+
 @media only screen and (max-width: 600px) {
   #root {
     padding: 1em 0.5em;
@@ -40,10 +44,10 @@ img#logo {
     width: 1.5em;
     height: 1.5em;
   }
-}
 
-main {
-  margin-top: 3em;
+  main {
+    margin-top: 2em;
+  }
 }
 
 footer {

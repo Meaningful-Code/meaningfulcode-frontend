@@ -21,19 +21,11 @@
 */
 
 .categories {
-  margin-top: 3em;
   margin-bottom: 1.5em;
 }
 
 .category-description {
   margin-bottom: 3em;
-}
-
-@media only screen and (max-width: 767px) {
-  .categories {
-    margin-top: 3.5em;
-    margin-bottom: 2em;
-  }
 }
 
 #root .categories > a {
@@ -42,11 +34,15 @@
   border-radius: 36px;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
+  .categories {
+    margin-bottom: 1em;
+  }
+
   #root .categories a {
-    font-size: 1em;
     margin: 0 0 0.3em 0.3em;
     padding: 0.3em 0.5em;
+    font-size: 1em;
   }
 }
 
