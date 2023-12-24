@@ -6,27 +6,30 @@ This repository holds the frontend code of [meaningfulcode.org](https://meaningf
 
 The goal of this website is to promote **meaningful** and opensource **projects** that accept new contributors, willing to make a difference. Projects are regrouped in different categories: Health, Education, Environment, Society, and Humanitarian.
 
-## Contributing / Help wanted!
+## Contributing & Supporting
 
 Contributors are very welcome, to help us you can:
 
-- [Suggest meaningul projects](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+): Finding those is tough, this is the best way to help
-- Be part of the team
-  - UX and Graphical design
-  - Frontend/Backend dev
-  - Reach out on GitHub or [Discord](https://discord.gg/KPAm7wd7fJ)
+- ➕ [Suggest impactful projects](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+): Finding those is tough, this is the best way to help
+- 💻 Contribute to the project: UI, Frontend, Backend. Feel free to ask on [Discord](https://discord.gg/KPAm7wd7fJ)
+- ❤️ [Sponsor the development](https://github.com/sponsors/pixep)
 
 But you can also...
 
-- [Report an issue](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+)
-- [Suggest a new feature](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=Feature%3A+)
-- Contribute to the code base directly
-  - Something doesn't work? Create a pull request with your changes!
-  - Have a look at opened tickets, feel free to ask if you have any doubts regarding the changes you want to push
+- 🐛 [Report an issue](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+)
+- 💡 [Suggest a new feature](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=Feature%3A+)
+- 💬 Or just let us know what you think on the [Discord](https://discord.gg/KPAm7wd7fJ)!
 
 ## Build
 
-This frontend is based on [React](https://reactjs.org/), [Semantic UI](https://react.semantic-ui.com/), and [Isotope](https://isotope.metafizzy.co/).
+### Stack
+
+The project uses:
+- Frontend: Typescript with [React](https://reactjs.org/) and [Material UI]([https://react.semantic-ui.com/](https://mui.com/material-ui/)).
+- Backend (available separately): Node & Express (Typescript), AWS Lambda & DynamoDB.
+- Hosting: the full solution currently runs on Vercel.
+
+The rest of the instructions on this page focus on the frontend.
 
 ### Setup
 
