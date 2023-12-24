@@ -4,7 +4,7 @@ body {
 }
 
 #root {
-  margin-top: 2em;
+  padding: 2em 1em;
 }
 
 header {
@@ -19,20 +19,26 @@ header > div {
   margin-top: 1em;
 }
 
+#title {
+  font-size: 1.6rem;
+}
 img#logo {
   width: 3em;
   height: 3em;
 }
 
-@media only screen and (min-width: 320px) {
-  #title {
-    font-size: 1.6rem;
+@media only screen and (max-width: 600px) {
+  #root {
+    padding: 1em 0.5em;
   }
-}
 
-@media only screen and (min-width: 400px) {
-  #title > .sub.header {
-    font-size: 1.4rem;
+  #title {
+    padding: 4px 0 0 4px;
+  }
+
+  img#logo {
+    width: 1.5em;
+    height: 1.5em;
   }
 }
 

@@ -1,66 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-
+import IconButton from '@mui/material/IconButton';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import { Theme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link as RouterLink } from 'react-router-dom';
 
 import useMinimalGaTracker from '../components/useMinimalGaTracker';
+import MobileMenu from './MobileMenu';
+import Logo from './Logo';
+
+function HeaderLinks() {
+  return (
+    <>
+      <Button
+        id="addProject"
+        variant="contained"
+        disableElevation
+        component={RouterLink}
+        to="submit-project"
+      >
+        Add a project!
+      </Button>
+      <Button
+        /* @ts-ignore: color type not properly recognized */
+        color="neutral"
+        component={RouterLink}
+        to="/get-started"
+      >
+        Get started
+      </Button>
+      <Button
+        /* @ts-ignore: color type not properly recognized */
+        color="neutral"
+        component={RouterLink}
+        to="/about"
+      >
+        About
+      </Button>
+    </>
+  );
+}
 
 export default function PageHeader() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
   useMinimalGaTracker();
+
   return (
     <header>
       <Grid container spacing={2}>
-        <Grid item sm={12} md={6}>
-          <Link to="/" component={RouterLink} underline="none">
-            <Stack component="h1" className="header" direction="row">
-              <img id="logo" src="/meaningfulcode-logo.png" alt="logo" loading="lazy" />
-              <Stack>
-                <Typography id="title" color="primary">
-                  Meaningful Code
-                </Typography>
-                {/* Workaround custom palette color typo issue */}
-                <Typography color="#808080">
-                  Find Open Source projects, <br />
-                  contribute, make a difference.
-                </Typography>
-              </Stack>
+        <Grid item xs={10} sm={6}>
+          <Logo />
+        </Grid>
+        {isMobile ? (
+          <Grid item xs={2}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Grid>
+        ) : (
+          <Grid item id="links" sm={6}>
+            <Stack component="nav" direction="row" justifyContent="flex-end" spacing={1}>
+              <HeaderLinks />
             </Stack>
-          </Link>
-        </Grid>
-        <Grid item id="links" sm={12} md={6}>
-          <Stack component="nav" direction="row" justifyContent="flex-end" spacing={1}>
-            <Button
-              id="addProject"
-              variant="contained"
-              disableElevation
-              component={RouterLink}
-              to="submit-project"
-            >
-              Add a project!
-            </Button>
-            <Button
-              /* @ts-ignore: color type not properly recognized */
-              color="neutral"
-              component={RouterLink}
-              to="/get-started"
-            >
-              Get started
-            </Button>
-            <Button
-              /* @ts-ignore: color type not properly recognized */
-              color="neutral"
-              component={RouterLink}
-              to="/about"
-            >
-              About
-            </Button>
-          </Stack>
-        </Grid>
+          </Grid>
+        )}
       </Grid>
+      <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
+        <Box
+          role="presentation"
+          onClick={handleDrawerToggle}
+          onKeyDown={handleDrawerToggle}
+        >
+          <MobileMenu />
+        </Box>
+      </Drawer>
     </header>
   );
 }
