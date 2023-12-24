@@ -1,10 +1,10 @@
 export const categories = [
-  'health',
-  'education',
   'environment',
+  'health',
   'society',
+  'education',
   'humanitarian',
-  'accessibility',
+  'accessibility'
 ];
 
 export type Project = {
