@@ -1,4 +1,5 @@
 import React from 'react';
+import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -23,6 +24,7 @@ export default function MobileMenu(): JSX.Element {
           <ListItemText primary="Submit project" sx={{color: 'var(--black)'}}/>
         </ListItemButton>
       </ListItem>
+      <Divider />
       <ListItem component={RouterLink} to="/">
         <ListItemButton>
           <ListItemIcon>
