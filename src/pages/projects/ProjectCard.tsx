@@ -26,6 +26,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import StarIcon from '@mui/icons-material/Star';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
 import TurnedInIconNot from '@mui/icons-material/TurnedInNot';
+import { useTheme } from '@mui/material/styles';
 
 import CategoryIcon from '../../components/CategoryIcon';
 import { Project } from '../../models/Project';
@@ -61,11 +62,11 @@ export function formatLastUpdateAge(lastCommitAgeInDays: number | null) {
   return lastUpdateText + ' ago';
 }
 
-const SmallListAvatar = styled(Avatar)((props) => ({
+const ProjectCartListAvatar = styled(Avatar)((props) => ({
   width: 35,
   height: 35,
-  backgroundColor: props.color || 'transparent',
-  color: props.color ? 'white' : 'black',
+  backgroundColor: 'transparent',
+  color: props.color,
 }));
 
 function FeaturedListItem() {
@@ -83,9 +84,16 @@ type ProjectCardListIconProps = {
 };
 function ProjectCardListIcon(props: ProjectCardListIconProps) {
   const { avatar, color } = props;
+  const theme = useTheme();
+  const defaultColor =
+    theme.palette.mode === 'light'
+      ? theme.palette.common.black
+      : theme.palette.common.white;
   return (
     <ListItemAvatar>
-      <SmallListAvatar color={color}>{avatar}</SmallListAvatar>
+      <ProjectCartListAvatar color={color ?? defaultColor}>
+        {avatar}
+      </ProjectCartListAvatar>
     </ListItemAvatar>
   );
 }
@@ -206,7 +214,7 @@ function ProjectCard(props: ProjectCardProps) {
               <ListItemText className="category-label" primary={categories} />
               <Chip variant="outlined" icon={<StarIcon />} label={stars} />
             </ListItem>
-            {isFeatured ? FeaturedListItem() : ''}
+            {isFeatured && FeaturedListItem()}
             <ListItem disableGutters disablePadding>
               <ProjectCardListIcon avatar={<CodeIcon />} />
               <ListItemText
