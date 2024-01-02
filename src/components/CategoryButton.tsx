@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 
-import CategoryIcon, { getCategoryCssColor } from './CategoryIcon';
+import CategoryIcon, { getCategoryMuiColor } from './CategoryIcon';
 
 type CategoryButtonProps = {
   category: string;
@@ -14,21 +15,31 @@ type CategoryButtonProps = {
 
 export default function CategoryButton(props: CategoryButtonProps) {
   const { category, active, targetUrl } = props;
+  const theme = useTheme();
+
+  const getTextColor = () => {
+    if (theme.palette.mode === 'light') {
+      return active ? theme.palette.common.white : theme.palette.common.black;
+    } else {
+      return theme.palette.common.white;
+    }
+  };
 
   return (
     <Button
       className={active ? 'active' : undefined}
-      variant={active ? 'contained' : undefined}
+      variant={active ? 'contained' : 'outlined'}
       disableElevation
       component={Link}
+      /* @ts-ignore: color type not properly recognized */
+      color={getCategoryMuiColor(category)}
       to={targetUrl}
       sx={{
-        color: active ? 'var(--white)' : 'var(--black)',
-        bgcolor: active ? getCategoryCssColor(category) : 'primary',
+        color: getTextColor(),
         marginRight: 5,
         paddingLeft: 10,
       }}
-      startIcon={<CategoryIcon type={category} inverted={active} />}
+      startIcon={<CategoryIcon type={category} inverted={!active} />}
     >
       {/* @ts-ignore: component prop not properly recognized*/}
       <Typography variant="button" component={active ? 'h1' : undefined}>

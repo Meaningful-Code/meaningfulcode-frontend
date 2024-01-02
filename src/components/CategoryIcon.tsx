@@ -10,8 +10,8 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 
-export function getCategoryCssColor(type: string) {
-  switch (type) {
+export function getCategoryMuiColor(cat: string) {
+  switch (cat) {
     case 'all':
     case 'environment':
     case 'humanitarian':
@@ -19,7 +19,22 @@ export function getCategoryCssColor(type: string) {
     case 'society':
     case 'health':
     case 'education':
-      return 'var(--cat-' + type + '-color)';
+      return 'cat_' + cat;
+    default:
+      return 'cat_all';
+  }
+}
+
+export function getCategoryCssColor(cat: string) {
+  switch (cat) {
+    case 'all':
+    case 'environment':
+    case 'humanitarian':
+    case 'accessibility':
+    case 'society':
+    case 'health':
+    case 'education':
+      return 'var(--cat-' + cat + '-color)';
     default:
       return 'var(--cat-all-color)';
   }
@@ -57,9 +72,10 @@ function CategoryIcon(props: CategoryIconProps) {
   const white = 'var(--white)';
   return (
     <Avatar
+      color="primary"
       sx={{
         color: inverted ? catColor : white,
-        bgcolor: inverted ? white : catColor,
+        bgcolor: inverted ? 'transparent' : catColor,
       }}
     >
       {getCategoryIcon(type)}
