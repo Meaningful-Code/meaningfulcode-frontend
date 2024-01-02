@@ -17,6 +17,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Skeleton from '@mui/material/Skeleton';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { styled } from '@mui/material/styles';
 
 import CodeIcon from '@mui/icons-material/Code';
@@ -145,13 +146,7 @@ function ProjectCard(props: ProjectCardProps) {
   let websiteButton;
   if (websiteUrl) {
     websiteButton = (
-      <Button
-        className="project-button"
-        component={Link}
-        href={websiteUrl}
-        color="secondary"
-        startIcon={<PublicIcon />}
-      >
+      <Button component={Link} href={websiteUrl} startIcon={<PublicIcon />}>
         Website
       </Button>
     );
@@ -161,10 +156,9 @@ function ProjectCard(props: ProjectCardProps) {
   if (url) {
     githubButton = (
       <Button
-        className="project-button"
         component={Link}
         href={url}
-        color="secondary"
+        startIcon={<GitHubIcon />}
         endIcon={<KeyboardArrowRightIcon />}
       >
         GitHub&nbsp;
@@ -233,7 +227,7 @@ function ProjectCard(props: ProjectCardProps) {
           <p className="project-desc">{descriptionText}</p>
         </CardContent>
         <CardActions>
-          <ButtonGroup variant="text" fullWidth>
+          <ButtonGroup variant="text" color="secondary" fullWidth>
             {websiteButton}
             {githubButton}
           </ButtonGroup>
