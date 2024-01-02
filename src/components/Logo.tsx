@@ -18,7 +18,7 @@ export default function Logo() {
             Meaningful Code
           </Typography>
           {isNotMobile && (
-            <Typography id="subtitle" color="#808080">
+            <Typography id="subtitle" color="var(--gray)">
               Find Open Source projects, <br />
               contribute, make a difference.
             </Typography>
