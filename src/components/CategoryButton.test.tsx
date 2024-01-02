@@ -1,7 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { ThemeProvider } from '@mui/material/styles';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
+
+import createDefaultTheme from '../theme/createDefaultTheme';
 
 import CategoryButton from './CategoryButton';
 
@@ -9,9 +12,11 @@ describe('Component: CategoryButton', () => {
   it('links target URL', async () => {
     const targetURL = '/mycategory';
     render(
-      <MemoryRouter>
-        <CategoryButton category="all" active={false} targetUrl={targetURL} />
-      </MemoryRouter>
+      <ThemeProvider theme={createDefaultTheme()}>
+        <MemoryRouter>
+          <CategoryButton category="all" active={false} targetUrl={targetURL} />
+        </MemoryRouter>
+      </ThemeProvider>
     );
 
     expect(screen.getByRole('link')).toHaveAttribute('href', targetURL);
@@ -20,9 +25,11 @@ describe('Component: CategoryButton', () => {
   it('is h1 if active', async () => {
     const name = 'mycategory';
     render(
-      <MemoryRouter>
-        <CategoryButton category={name} active targetUrl="/abc" />
-      </MemoryRouter>
+      <ThemeProvider theme={createDefaultTheme()}>
+        <MemoryRouter>
+          <CategoryButton category={name} active targetUrl="/abc" />
+        </MemoryRouter>
+      </ThemeProvider>
     );
 
     expect(screen.getByRole('heading')).toBeDefined();
@@ -32,9 +39,11 @@ describe('Component: CategoryButton', () => {
 
   it('is not h1 if inactive', async () => {
     render(
-      <MemoryRouter>
-        <CategoryButton category="all" active={false} targetUrl="/abc" />
-      </MemoryRouter>
+      <ThemeProvider theme={createDefaultTheme()}>
+        <MemoryRouter>
+          <CategoryButton category="all" active={false} targetUrl="/abc" />
+        </MemoryRouter>
+      </ThemeProvider>
     );
 
     expect(screen.queryByRole('heading')).toBeNull();
