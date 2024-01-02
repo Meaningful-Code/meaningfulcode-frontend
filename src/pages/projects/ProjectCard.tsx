@@ -1,35 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardHeader from '@mui/material/CardHeader';
 import Chip from '@mui/material/Chip';
-import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import Link from '@mui/material/Link';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import Skeleton from '@mui/material/Skeleton';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import { styled } from '@mui/material/styles';
 
 import CodeIcon from '@mui/icons-material/Code';
 import CommitIcon from '@mui/icons-material/Commit';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import PublicIcon from '@mui/icons-material/Public';
 import StarIcon from '@mui/icons-material/Star';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
 import TurnedInIconNot from '@mui/icons-material/TurnedInNot';
-import { useTheme } from '@mui/material/styles';
 
 import CategoryIcon from '../../components/CategoryIcon';
+import GitHubButton from '../../components/GitHubButton';
+import { ProjectCardListIcon } from '../../components/ProjectCardListIcon';
 import { Project } from '../../models/Project';
 
 export function formatLastUpdateAge(lastCommitAgeInDays: number | null) {
@@ -63,39 +57,12 @@ export function formatLastUpdateAge(lastCommitAgeInDays: number | null) {
   return lastUpdateText + ' ago';
 }
 
-const ProjectCartListAvatar = styled(Avatar)((props) => ({
-  width: 35,
-  height: 35,
-  backgroundColor: 'transparent',
-  color: props.color,
-}));
-
 function FeaturedListItem() {
   return (
     <ListItem disableGutters disablePadding>
       <ProjectCardListIcon avatar={<StarIcon />} />
       <ListItemText primary="Featured" />
     </ListItem>
-  );
-}
-
-type ProjectCardListIconProps = {
-  avatar: React.ReactElement;
-  color?: string;
-};
-function ProjectCardListIcon(props: ProjectCardListIconProps) {
-  const { avatar, color } = props;
-  const theme = useTheme();
-  const defaultColor =
-    theme.palette.mode === 'light'
-      ? theme.palette.common.black
-      : theme.palette.common.white;
-  return (
-    <ListItemAvatar>
-      <ProjectCartListAvatar color={color ?? defaultColor}>
-        {avatar}
-      </ProjectCartListAvatar>
-    </ListItemAvatar>
   );
 }
 
@@ -141,29 +108,6 @@ function ProjectCard(props: ProjectCardProps) {
   if (lastCommitTimestamp > 0) {
     const nowSeconds = Date.now() / 1000;
     lastCommitAgeInDays = Math.floor((nowSeconds - lastCommitTimestamp) / secInADay);
-  }
-
-  let websiteButton;
-  if (websiteUrl) {
-    websiteButton = (
-      <Button component={Link} href={websiteUrl} startIcon={<PublicIcon />}>
-        Website
-      </Button>
-    );
-  }
-
-  let githubButton;
-  if (url) {
-    githubButton = (
-      <Button
-        component={Link}
-        href={url}
-        startIcon={<GitHubIcon />}
-        endIcon={<KeyboardArrowRightIcon />}
-      >
-        GitHub&nbsp;
-      </Button>
-    );
   }
 
   const isFeatured =
@@ -228,8 +172,12 @@ function ProjectCard(props: ProjectCardProps) {
         </CardContent>
         <CardActions>
           <ButtonGroup variant="text" color="secondary" fullWidth>
-            {websiteButton}
-            {githubButton}
+            {websiteUrl && (
+              <Button component={Link} href={websiteUrl} startIcon={<PublicIcon />}>
+                Website
+              </Button>
+            )}
+            {url && <GitHubButton url={url} />}
           </ButtonGroup>
         </CardActions>
       </Card>
@@ -251,25 +199,4 @@ ProjectCard.propTypes = {
   }).isRequired,
 };
 
-function ProjectPlaceholder() {
-  return (
-    <Grid item xs={4} className="project-item">
-      <Card raised sx={{ padding: '1em' }}>
-        <Skeleton />
-        <Skeleton sx={{ marginBottom: '2em' }} />
-        <Skeleton width="75%" />
-        <Skeleton width="60%" />
-        <Skeleton width="70%" sx={{ marginBottom: '1em' }} />
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-        <Skeleton width="60%" sx={{ marginBottom: '2em' }} />
-      </Card>
-    </Grid>
-  );
-}
-
 export default ProjectCard;
-export { ProjectPlaceholder };

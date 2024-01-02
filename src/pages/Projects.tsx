@@ -5,7 +5,8 @@ import Grid from '@mui/material/Grid';
 
 import HeaderText from './projects/HeaderText';
 import ProjectsContainer from './projects/ProjectsContainer';
-import ProjectCard, { ProjectPlaceholder } from './projects/ProjectCard';
+import ProjectCard from './projects/ProjectCard';
+import ProjectPlaceholder from '../components/ProjectPlaceholder';
 import CategoryMenu from './projects/CategoryMenu';
 import ProjectsSortingMenu from './projects/ProjectsSortingMenu';
 import { Project, categories } from '../models/Project';
