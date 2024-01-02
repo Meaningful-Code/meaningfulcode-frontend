@@ -1,11 +1,46 @@
 import { Theme, createTheme } from '@mui/material/styles';
 
-export default function createDefaultTheme(): Theme {
+export default function createDefaultTheme(lightMode = true): Theme {
   return createTheme({
     palette: {
-      primary: { main: '#3c9d76', contrastText: '#fff' },
-      secondary: { main: '#1f647d', contrastText: '#fff' },
-      neutral: { main: '#0b7c78', contrastText: '#000' },
+      mode: lightMode ? 'light' : 'dark',
+      primary: {
+        main: lightMode ? '#3c9d76' : '#54a484',
+        contrastText: lightMode ? '#fff' : '#000',
+      },
+      secondary: { main: lightMode ? '#1f647d' : '#62a7d0', contrastText: '#fff' },
+      neutral: {
+        main: lightMode ? '#0b7c78' : '#d0d0d0',
+        contrastText: lightMode ? '#000' : '#000',
+      },
+      cat_all: {
+        main: lightMode ? '#1f647d' : '#287693',
+        contrastText: lightMode ? '#000' : '#000',
+      },
+      cat_environment: {
+        main: lightMode ? '#3c9d76' : '#3c9d76',
+        contrastText: lightMode ? '#000' : '#fff',
+      },
+      cat_humanitarian: {
+        main: lightMode ? '#cc8562' : '#cc8562',
+        contrastText: lightMode ? '#000' : '#fff',
+      },
+      cat_accessibility: {
+        main: lightMode ? '#1f647d' : '#287693',
+        contrastText: lightMode ? '#000' : '#fff',
+      },
+      cat_society: {
+        main: lightMode ? '#1f647d' : '#287693',
+        contrastText: lightMode ? '#000' : '#fff',
+      },
+      cat_health: {
+        main: lightMode ? '#cc8562' : '#cc8562',
+        contrastText: lightMode ? '#000' : '#fff',
+      },
+      cat_education: {
+        main: lightMode ? '#3c9d76' : '#3c9d76',
+        contrastText: lightMode ? '#000' : '#fff',
+      },
     },
     typography: {
       h1: { fontSize: '2em' },
