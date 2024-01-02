@@ -36,7 +36,7 @@ export default function About() {
       </p>
       <Typography variant="h2">Contact</Typography>
       <Button
-        variant="contained"
+        variant="outlined"
         href="https://discord.gg/KPAm7wd7fJ"
         disableElevation
         color="secondary"
@@ -45,7 +45,7 @@ export default function About() {
         Discord
       </Button>
       <Button
-        variant="contained"
+        variant="outlined"
         href="https://github.com/Meaningful-Code/meaningfulcode-frontend"
         disableElevation
         color="secondary"
@@ -54,7 +54,7 @@ export default function About() {
         GitHub
       </Button>
       <Button
-        variant="contained"
+        variant="outlined"
         href="mailto:contact@meaningfulcode.org"
         disableElevation
         color="secondary"

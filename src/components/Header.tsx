@@ -20,7 +20,7 @@ function HeaderLinks() {
     <>
       <Button
         id="addProject"
-        variant="contained"
+        variant="outlined"
         disableElevation
         component={RouterLink}
         to="submit-project"
