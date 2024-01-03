@@ -25,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "npx eslint --max-warnings 0 ."
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +59,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/react-google-recaptcha": "^2.1.5",
     "@types/react-router-dom": "^5.3.3",
+    "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "prettier": "^2.7.1",
     "react-scripts": "5.0.1"

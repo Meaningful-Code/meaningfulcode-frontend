@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn test --watchAll=false
+set -e
+
+yarn -s test --watchAll=false
+
+yarn -s run lint
