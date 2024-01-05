@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/ScopedCssBaseline';
+import Container from '@mui/material/Container';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -54,24 +55,26 @@ export default function App() {
     <Router ref={routerRef}>
       <ThemeProvider theme={theme}>
         <CssBaseline>
-          <Header />
-          <main>
-            <Switch>
-              <Route path="/submit-project">
-                <SubmitProject />
-              </Route>
-              <Route path="/get-started">
-                <GetStarted />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/">
-                <Projects />
-              </Route>
-            </Switch>
-          </main>
-          <Footer />
+          <Container id="root-container">
+            <Header />
+            <main>
+              <Switch>
+                <Route path="/submit-project">
+                  <SubmitProject />
+                </Route>
+                <Route path="/get-started">
+                  <GetStarted />
+                </Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/">
+                  <Projects />
+                </Route>
+              </Switch>
+            </main>
+            <Footer />
+          </Container>
         </CssBaseline>
       </ThemeProvider>
     </Router>

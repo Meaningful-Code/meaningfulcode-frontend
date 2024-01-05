@@ -54,6 +54,8 @@ function ProjectCard(props: ProjectCardProps) {
       websiteUrl,
     },
   } = props;
+  const isFeatured = false;
+  const isNew = false;
 
   const bookmarkKey = `${url}.bookmarked`;
   const prevBookmarked = localStorage.getItem(bookmarkKey) === '1';
@@ -79,13 +81,6 @@ function ProjectCard(props: ProjectCardProps) {
     const nowSeconds = Date.now() / 1000;
     lastCommitAgeInDays = Math.floor((nowSeconds - lastCommitTimestamp) / secInADay);
   }
-
-  const isFeatured =
-    name === 'covid19_scenarios' ||
-    name === 'ifme' ||
-    name === 'terrastories' ||
-    name === 'platform-client';
-  const isNew = false;
 
   return (
     <div

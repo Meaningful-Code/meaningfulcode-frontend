@@ -7,6 +7,10 @@ body {
   padding: 2em 1em;
 }
 
+#root-container {
+  padding: 0;
+}
+
 header {
   margin-bottom: 2em;
 }

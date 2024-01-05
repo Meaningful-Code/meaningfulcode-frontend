@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-import Container from '@mui/material/Container';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -20,7 +19,7 @@ export default function About() {
   });
 
   return (
-    <Container id="about">
+    <div id="about">
       <Typography variant="h1">Why this website?</Typography>
       <p>
         There are many ways to have an impact on our society, and open source is one of
@@ -124,6 +123,6 @@ export default function About() {
           />
         </ListItem>
       </List>
-    </Container>
+    </div>
   );
 }
