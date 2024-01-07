@@ -8,7 +8,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.1",
     "@octokit/rest": "^20.0.2",
-    "@vercel/node": "^2.4.5",
+    "@vercel/node": "^3.0.15",
     "aws-sdk": "^2.1530.0",
     "axios": "^1.6.4",
     "isotope-layout": "^3.0.6",
