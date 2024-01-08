@@ -4,13 +4,16 @@
 
 This repository holds the frontend code of [meaningfulcode.org](https://meaningfulcode.org).
 
-The goal of this website is to promote **meaningful** and opensource **projects** that accept new contributors, willing to make a difference. Projects are regrouped in different categories: Health, Education, Environment, Society, and Humanitarian.
+The full list of projects can be seen at https://github.com/Meaningful-Code/meaningful-projects.
+
+The goal of this website is to promote **meaningful** and **opensource** projects looking for new contributors, willing to make a difference. Projects are regrouped in different categories: Health, Education, Environment, Society, and Humanitarian.
 
 ## Contributing & Supporting
 
 Contributors are very welcome, to help us you can:
 
-- ➕ [Suggest impactful projects](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=meaningful+project&template=meaningful_project.md&title=Meaningful+project%3A+): Finding those is tough, this is the best way to help
+- ➕ Suggest impactful projects: Finding those is tough, this is the best way to help
+    - Create a pull request on [meaningful-projects](https://github.com/Meaningful-Code/meaningful-projects) or use the [online form](https://meaningfulcode.org/submit-project)
 - 💻 Contribute to the project: UI, Frontend, Backend. Feel free to ask on [Discord](https://discord.gg/KPAm7wd7fJ)
 - ❤️ [Sponsor the development](https://github.com/sponsors/pixep)
 
