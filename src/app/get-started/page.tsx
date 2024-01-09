@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Metadata } from 'next';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
-export default function GetStarted() {
-  useEffect(() => {
-    document.title = 'Getting started with open-source';
-  });
+export const metadata: Metadata = {
+  title: 'Getting started with open-source',
+};
 
+export default function GetStarted() {
   return (
     <>
       <Typography variant="h1">Get Started</Typography>

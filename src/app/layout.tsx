@@ -32,6 +32,7 @@ const LINKS = [
   { text: 'Starred', href: '/starred', icon: StarIcon },
   { text: 'Tasks', href: '/tasks', icon: ChecklistIcon },
   { text: 'About', href: '/about', icon: ChecklistIcon },
+  { text: 'Getting started', href: '/get-started', icon: ChecklistIcon },
 ];
 
 const PLACEHOLDER_LINKS = [
