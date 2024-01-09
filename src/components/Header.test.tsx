@@ -1,7 +1,6 @@
 import React from 'react';
 import { render as rtlRender, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import createDefaultTheme from '../theme/createDefaultTheme';
 
@@ -9,9 +8,7 @@ import PageHeader from './Header';
 
 const render = (ui: JSX.Element, options = {}) => rtlRender(
     <ThemeProvider theme={createDefaultTheme()}>
-      <Router>
         {ui}
-      </Router>
     </ThemeProvider>,
     options
   );

@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link as RouterLink } from 'react-router-dom';
+import Link from 'next/link';
 
 import useMinimalGaTracker from '../components/useMinimalGaTracker';
 import MobileMenu from './MobileMenu';
@@ -22,24 +22,24 @@ function HeaderLinks() {
         id="addProject"
         variant="outlined"
         disableElevation
-        component={RouterLink}
-        to="submit-project"
+        component={Link}
+        href="/submit-project"
       >
         Add a project!
       </Button>
       <Button
         /* @ts-ignore: color type not properly recognized */
         color="neutral"
-        component={RouterLink}
-        to="/get-started"
+        component={Link}
+        href="/get-started"
       >
         Get started
       </Button>
       <Button
         /* @ts-ignore: color type not properly recognized */
         color="neutral"
-        component={RouterLink}
-        to="/about"
+        component={Link}
+        href="/about"
       >
         About
       </Button>

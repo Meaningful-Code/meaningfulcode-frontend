@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from '@mui/material/styles';
 import '@testing-library/jest-dom';
-import { MemoryRouter } from 'react-router-dom';
 
 import createDefaultTheme from '../theme/createDefaultTheme';
 
@@ -13,9 +12,7 @@ describe('Component: CategoryButton', () => {
     const targetURL = '/mycategory';
     render(
       <ThemeProvider theme={createDefaultTheme()}>
-        <MemoryRouter>
-          <CategoryButton category="all" active={false} targetUrl={targetURL} />
-        </MemoryRouter>
+        <CategoryButton category="all" active={false} targetUrl={targetURL} />
       </ThemeProvider>
     );
 
@@ -26,9 +23,7 @@ describe('Component: CategoryButton', () => {
     const name = 'mycategory';
     render(
       <ThemeProvider theme={createDefaultTheme()}>
-        <MemoryRouter>
-          <CategoryButton category={name} active targetUrl="/abc" />
-        </MemoryRouter>
+        <CategoryButton category={name} active targetUrl="/abc" />
       </ThemeProvider>
     );
 
@@ -40,9 +35,7 @@ describe('Component: CategoryButton', () => {
   it('is not h1 if inactive', async () => {
     render(
       <ThemeProvider theme={createDefaultTheme()}>
-        <MemoryRouter>
-          <CategoryButton category="all" active={false} targetUrl="/abc" />
-        </MemoryRouter>
+        <CategoryButton category="all" active={false} targetUrl="/abc" />
       </ThemeProvider>
     );
 
