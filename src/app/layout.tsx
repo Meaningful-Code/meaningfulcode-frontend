@@ -1,115 +1,61 @@
 import * as React from 'react';
-import Link from 'next/link';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import HomeIcon from '@mui/icons-material/Home';
-import StarIcon from '@mui/icons-material/Star';
-import ChecklistIcon from '@mui/icons-material/Checklist';
-import SettingsIcon from '@mui/icons-material/Settings';
-import SupportIcon from '@mui/icons-material/Support';
-import LogoutIcon from '@mui/icons-material/Logout';
+import Container from '@mui/material/Container';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
+// import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+import './layout.css';
 
 export const metadata = {
-  title: 'Next.js App Router + Material UI v5',
-  description: 'Next.js App Router + Material UI v5',
+  title: 'Find Open-source projects with a social impact',
+  description:
+    'Pick a cause to support, find Open Source projects to contribute to, and make an impact! Write meaningful code, from environment, to health',
 };
 
-const DRAWER_WIDTH = 240;
-
-const LINKS = [
-  { text: 'Home', href: '/', icon: HomeIcon },
-  { text: 'Starred', href: '/starred', icon: StarIcon },
-  { text: 'Tasks', href: '/tasks', icon: ChecklistIcon },
-  { text: 'About', href: '/about', icon: ChecklistIcon },
-  { text: 'Getting started', href: '/get-started', icon: ChecklistIcon },
-];
-
-const PLACEHOLDER_LINKS = [
-  { text: 'Settings', icon: SettingsIcon },
-  { text: 'Support', icon: SupportIcon },
-  { text: 'Logout', icon: LogoutIcon },
-];
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)');
+  // const theme = useMemo(() => createDefaultTheme(prefersLightMode), [prefersLightMode]);
+  // useEffect(() => {
+  //   const root = document.documentElement;
+  //   root.style.setProperty('--gray', '#888');
+  //   root.style.setProperty('--white', '#fff');
+  //   root.style.setProperty('--black', '#000');
+
+  //   /* @ts-ignore: color type not properly recognized */
+  //   root.style.setProperty('--cat-all-color', theme.palette.cat_all.main);
+  //   /* @ts-ignore: color type not properly recognized */
+  //   root.style.setProperty('--cat-health-color', theme.palette.cat_health.main);
+  //   /* @ts-ignore: color type not properly recognized */
+  //   root.style.setProperty('--cat-education-color', theme.palette.cat_education.main);
+  //   root.style.setProperty(
+  //     '--cat-environment-color',
+  //     /* @ts-ignore: color type not properly recognized */
+  //     theme.palette.cat_environment.main
+  //   );
+  //   /* @ts-ignore: color type not properly recognized */
+  //   root.style.setProperty('--cat-society-color', theme.palette.cat_society.main);
+  //   root.style.setProperty(
+  //     '--cat-humanitarian-color',
+  //     /* @ts-ignore: color type not properly recognized */
+  //     theme.palette.cat_humanitarian.main
+  //   );
+  //   root.style.setProperty(
+  //     '--cat-accessibility-color',
+  //     /* @ts-ignore: color type not properly recognized */
+  //     theme.palette.cat_accessibility.main
+  //   );
+  //   document.body.style.backgroundColor = theme.palette.background.default;
+  // }, [theme.palette]);
+
   return (
     <html lang="en">
       <body>
         <ThemeRegistry>
-          <AppBar position="fixed" sx={{ zIndex: 2000 }}>
-            <Toolbar sx={{ backgroundColor: 'background.paper' }}>
-              <DashboardIcon
-                sx={{ color: '#444', mr: 2, transform: 'translateY(-2px)' }}
-              />
-              <Typography variant="h6" color="text.primary">
-                Next.js App Router
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            sx={{
-              width: DRAWER_WIDTH,
-              flexShrink: 0,
-              '& .MuiDrawer-paper': {
-                width: DRAWER_WIDTH,
-                boxSizing: 'border-box',
-                top: ['48px', '56px', '64px'],
-                height: 'auto',
-                bottom: 0,
-              },
-            }}
-            variant="permanent"
-            anchor="left"
-          >
-            <Divider />
-            <List>
-              {LINKS.map(({ text, href, icon: Icon }) => (
-                <ListItem key={href} disablePadding>
-                  <ListItemButton component={Link} href={href}>
-                    <ListItemIcon>
-                      <Icon />
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-            <Divider sx={{ mt: 'auto' }} />
-            <List>
-              {PLACEHOLDER_LINKS.map(({ text, icon: Icon }) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <Icon />
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Drawer>
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              bgcolor: 'background.default',
-              ml: `${DRAWER_WIDTH}px`,
-              mt: ['48px', '56px', '64px'],
-              p: 3,
-            }}
-          >
+          {/* <Header /> */}
+          <Container component="main" id="root-container">
             {children}
-          </Box>
+          </Container>
+          <Footer />
         </ThemeRegistry>
       </body>
     </html>
