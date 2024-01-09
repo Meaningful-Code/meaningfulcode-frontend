@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Metadata } from 'next';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
@@ -11,13 +12,13 @@ import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
-import Emoji from '../components/Emoji';
+import Emoji from '../../components/Emoji';
+
+export const metadata: Metadata = {
+  title: 'About Meaningfulcode.org',
+};
 
 export default function About() {
-  useEffect(() => {
-    document.title = 'About Meaningfulcode.org';
-  });
-
   return (
     <div id="about">
       <Typography variant="h1">Why this website?</Typography>

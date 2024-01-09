@@ -31,6 +31,7 @@ const LINKS = [
   { text: 'Home', href: '/', icon: HomeIcon },
   { text: 'Starred', href: '/starred', icon: StarIcon },
   { text: 'Tasks', href: '/tasks', icon: ChecklistIcon },
+  { text: 'About', href: '/about', icon: ChecklistIcon },
 ];
 
 const PLACEHOLDER_LINKS = [
@@ -46,7 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeRegistry>
           <AppBar position="fixed" sx={{ zIndex: 2000 }}>
             <Toolbar sx={{ backgroundColor: 'background.paper' }}>
-              <DashboardIcon sx={{ color: '#444', mr: 2, transform: 'translateY(-2px)' }} />
+              <DashboardIcon
+                sx={{ color: '#444', mr: 2, transform: 'translateY(-2px)' }}
+              />
               <Typography variant="h6" color="text.primary">
                 Next.js App Router
               </Typography>
