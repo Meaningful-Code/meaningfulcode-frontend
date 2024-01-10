@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from '@mui/material/styles';
 import '@testing-library/jest-dom';
 
-import createDefaultTheme from '../theme/createDefaultTheme';
+import ThemeRegistry from './ThemeRegistry/ThemeRegistry';
 
 import CategoryButton from './CategoryButton';
 
@@ -11,9 +11,9 @@ describe('Component: CategoryButton', () => {
   it('links target URL', async () => {
     const targetURL = '/mycategory';
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
+      <ThemeRegistry>
         <CategoryButton category="all" active={false} targetUrl={targetURL} />
-      </ThemeProvider>
+      </ThemeRegistry>
     );
 
     expect(screen.getByRole('link')).toHaveAttribute('href', targetURL);
@@ -22,9 +22,9 @@ describe('Component: CategoryButton', () => {
   it('is h1 if active', async () => {
     const name = 'mycategory';
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
+      <ThemeRegistry>
         <CategoryButton category={name} active targetUrl="/abc" />
-      </ThemeProvider>
+      </ThemeRegistry>
     );
 
     expect(screen.getByRole('heading')).toBeDefined();
@@ -34,9 +34,9 @@ describe('Component: CategoryButton', () => {
 
   it('is not h1 if inactive', async () => {
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
+      <ThemeRegistry>
         <CategoryButton category="all" active={false} targetUrl="/abc" />
-      </ThemeProvider>
+      </ThemeRegistry>
     );
 
     expect(screen.queryByRole('heading')).toBeNull();

@@ -1,15 +1,14 @@
 import React from 'react';
 import { render as rtlRender, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ThemeProvider } from '@mui/material/styles';
-import createDefaultTheme from '../theme/createDefaultTheme';
 
 import PageHeader from './Header';
+import ThemeRegistry from './ThemeRegistry/ThemeRegistry';
 
 const render = (ui: JSX.Element, options = {}) => rtlRender(
-    <ThemeProvider theme={createDefaultTheme()}>
+    <ThemeRegistry>
         {ui}
-    </ThemeProvider>,
+    </ThemeRegistry>,
     options
   );
 
