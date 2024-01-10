@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback, useEffect, useState, createRef } from 'react';
 
 import Alert from '@mui/material/Alert';
@@ -13,7 +15,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import { submitProject, ProjectSubmission } from '../api/ProjectApi';
+import { submitProject, ProjectSubmission } from '../../api/ProjectApi';
 
 export default function SubmitProject() {
   useEffect(() => {
@@ -41,7 +43,7 @@ const enum FormState {
   NotSubmitted,
   Submitted,
   Error,
-  Success
+  Success,
 }
 
 function SubmitProjectForm() {
@@ -50,10 +52,10 @@ function SubmitProjectForm() {
     website: '',
     repository: '',
     category: '',
-    description: ''
+    description: '',
   });
   const [formState, setFormState] = useState(FormState.NotSubmitted);
-  const [repositoryError, setRepositoryError] = useState("");
+  const [repositoryError, setRepositoryError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [ticketUrl, setTicketUrl] = useState('');
   const recaptchaRef = createRef<ReCAPTCHA>();
@@ -113,10 +115,10 @@ function SubmitProjectForm() {
       const val = e.target.value;
       updatedProject.repository = val;
       setProject(updatedProject);
-      if (!val.startsWith("https://github.com/")){
-        setRepositoryError("Must be valid Github Repository");
+      if (!val.startsWith('https://github.com/')) {
+        setRepositoryError('Must be valid Github Repository');
       } else {
-        setRepositoryError("");
+        setRepositoryError('');
       }
     },
     [project]
@@ -139,7 +141,7 @@ function SubmitProjectForm() {
   );
 
   const loading = formState === FormState.Submitted;
-  const buttonDisabled = loading || repositoryError !== "";
+  const buttonDisabled = loading || repositoryError !== '';
   return (
     <>
       <Typography variant="h2">Impactful project form</Typography>
@@ -152,8 +154,15 @@ function SubmitProjectForm() {
       <Stack spacing={2}>
         <TextField label="Project name" onChange={nameChanged} />
         <TextField label="Website" onChange={websiteChanged} />
-        <TextField error={repositoryError!==""} label="Repository" onChange={repositoryChanged} helperText={repositoryError}/>
-        <TextField label="Category" onChange={categoryChanged}
+        <TextField
+          error={repositoryError !== ''}
+          label="Repository"
+          onChange={repositoryChanged}
+          helperText={repositoryError}
+        />
+        <TextField
+          label="Category"
+          onChange={categoryChanged}
           defaultValue={`Accessibility/Education/Environment/Health/Humanitarian/Society`}
         />
         <TextField
