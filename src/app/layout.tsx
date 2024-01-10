@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
-// import Header from '../components/Header';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 import './layout.css';
@@ -12,7 +12,7 @@ export const metadata = {
     'Pick a cause to support, find Open Source projects to contribute to, and make an impact! Write meaningful code, from environment, to health',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export function App({ children }: { children: React.ReactNode }) {
   // const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)');
   // const theme = useMemo(() => createDefaultTheme(prefersLightMode), [prefersLightMode]);
   // useEffect(() => {
@@ -48,15 +48,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // }, [theme.palette]);
 
   return (
+    <ThemeRegistry>
+      <Header />
+      <Container component="main" id="root-container">
+        {children}
+      </Container>
+      <Footer />
+    </ThemeRegistry>
+  );
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
     <html lang="en">
       <body>
-        <ThemeRegistry>
-          {/* <Header /> */}
-          <Container component="main" id="root-container">
-            {children}
-          </Container>
-          <Footer />
-        </ThemeRegistry>
+        <App>{children}</App>
       </body>
     </html>
   );

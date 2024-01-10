@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 import Button from '@mui/material/Button';
@@ -11,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 
-import useMinimalGaTracker from '../components/useMinimalGaTracker';
+// import useMinimalGaTracker from '../components/useMinimalGaTracker';
 import MobileMenu from './MobileMenu';
 import Logo from './Logo';
 
@@ -55,7 +57,7 @@ export default function PageHeader() {
     setDrawerOpen(!drawerOpen);
   };
 
-  useMinimalGaTracker();
+  // useMinimalGaTracker();
 
   return (
     <header>

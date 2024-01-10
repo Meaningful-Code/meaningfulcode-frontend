@@ -1,16 +1,15 @@
 import React from 'react';
-
-import Link from '@mui/material/Link';
+import Link from 'next/link';
+import * as MuiLink from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Theme } from '@mui/material/styles';
-import { Link as RouterLink } from 'react-router-dom';
 
 export default function Logo() {
   const isNotMobile = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
   return (
-    <Link to="/" component={RouterLink} underline="none">
+    <MuiLink.default href="/" component={Link} underline="none">
       <Stack component="h1" className="header" direction="row">
         <img id="logo" src="/meaningfulcode-logo.png" alt="logo" loading="lazy" />
         <Stack>
@@ -25,6 +24,6 @@ export default function Logo() {
           )}
         </Stack>
       </Stack>
-    </Link>
+    </MuiLink.default>
   );
 }
