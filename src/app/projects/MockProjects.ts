@@ -1,4 +1,4 @@
-import {Project} from '../models/Project'
+import {Project} from '../../models/Project'
 
 export default function getMockProjects(): Project[] {
   return [

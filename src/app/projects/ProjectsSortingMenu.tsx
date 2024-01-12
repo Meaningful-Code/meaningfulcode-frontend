@@ -4,9 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
-import ProjectsContainer from './ProjectsContainer';
 import LanguageDropdown from '../../components/LanguageDropdown';
-import { ProjectPageContext } from './Context';
 
 type SortButtonProps = {
   label: string;
@@ -57,29 +55,31 @@ SearchFilterButton.propTypes = {
 
 type ProjectsSortingMenuProps = {
   onLanguageChanged: (language: string) => void;
+  language: string | null;
+  languages: string[];
 };
 
 export default class ProjectsSortingMenu extends Component<ProjectsSortingMenuProps> {
-  projectsViewRef: React.RefObject<ProjectsContainer> | null = null;
+  projectsViewRef: React.RefObject<typeof Grid> | null = null;
   languageChanged: (language: string) => void;
-
-  static contextType = ProjectPageContext;
-  context!: React.ContextType<typeof ProjectPageContext>;
+  language: string | null;
+  languages: string[];
 
   constructor(props: ProjectsSortingMenuProps) {
     super(props);
+    this.language = props.language;
+    this.languages = props.languages;
     this.languageChanged = props.onLanguageChanged;
 
     this.sortByStars = this.sortByStars.bind(this);
     this.sortByLastCommit = this.sortByLastCommit.bind(this);
     this.sortByBookmarked = this.sortByBookmarked.bind(this);
-    this.shuffle = this.shuffle.bind(this);
     this.filterByLanguage = this.filterByLanguage.bind(this);
     this.filterBySearch = this.filterBySearch.bind(this);
   }
 
   componentDidMount() {
-    this.projectsViewRef = this.context.projectsViewRef;
+    // this.projectsViewRef = this.context.projectsViewRef;
   }
 
   sortByStars() {
@@ -97,12 +97,6 @@ export default class ProjectsSortingMenu extends Component<ProjectsSortingMenuPr
   sortByBookmarked() {
     if (this.projectsViewRef?.current) {
       this.projectsViewRef.current.sortByBookmarked();
-    }
-  }
-
-  shuffle() {
-    if (this.projectsViewRef?.current) {
-      this.projectsViewRef.current.shuffle();
     }
   }
 
@@ -131,8 +125,8 @@ export default class ProjectsSortingMenu extends Component<ProjectsSortingMenuPr
         <SortButton label="last updated" onClick={this.sortByLastCommit} />
         <SortButton label="bookmarked" onClick={this.sortByBookmarked} />
         <LanguageDropdown
-          languages={this.context.languages || []}
-          language={this.context.language}
+          languages={this.languages || []}
+          language={this.language}
           onChange={this.filterByLanguage}
         />
         <SearchFilterButton onChange={this.filterBySearch} />

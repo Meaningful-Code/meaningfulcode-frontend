@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 import getMockProjects from './MockProjects';
-import { Project } from '../models/Project';
+import { Project } from '../../models/Project';
 
 const prodAPIUrl = 'https://meaningfulcode.org';
-const forcedApi = process.env.REACT_APP_FORCE_API;
+const forcedApi = 'stub'; //process.env.REACT_APP_FORCE_API;
 const projectsEndpoint = `${APIUrl()}/api/projects`;
 const submitProjectEndpoint = `${APIUrl()}/api/submit-project`;
 
@@ -19,14 +19,13 @@ export async function getProjects(): Promise<Project[]> {
     return getMockProjects();
   }
 
-  const res = await fetch(projectsEndpoint);
-  const updatedProjects = await res.text();
+  const res = await fetch(projectsEndpoint, { next: { revalidate: 3600 } });
   if (!res.ok) {
     const error = `An error occured while getting projects from "${projectsEndpoint}": ${res.statusText}`;
     throw new Error(error);
   }
 
-  return JSON.parse(updatedProjects);
+  return res.json();
 }
 
 export type ProjectSubmission = {
