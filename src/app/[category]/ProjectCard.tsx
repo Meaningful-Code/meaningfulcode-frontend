@@ -38,40 +38,27 @@ function FeaturedListItem() {
 
 type ProjectCardProps = {
   project: Project;
+  bookmarked: boolean;
+  onBookmarkClick: (projectUrl: string) => void;
 };
 
-function ProjectCard(props: ProjectCardProps) {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  bookmarked,
+  onBookmarkClick,
+}) => {
   const {
-    project: {
-      categories,
-      description,
-      languages,
-      lastCommitTimestamp,
-      name,
-      owner,
-      stars,
-      url,
-      websiteUrl,
-    },
-  } = props;
+    categories,
+    description,
+    languages,
+    lastCommitTimestamp,
+    name,
+    owner,
+    stars,
+    url,
+    websiteUrl,
+  } = project;
   const isFeatured = false;
-  const bookmarkKey = `${url}.bookmarked`;
-  const [bookmarked, setBookmarked] = useState(false);
-
-  useEffect(() => {
-    setBookmarked(localStorage.getItem(bookmarkKey) === '1');
-  }, []);
-
-  const toggleBookmarked = () => {
-    if (!bookmarked) {
-      localStorage.setItem(bookmarkKey, '1');
-      setBookmarked(true);
-    } else {
-      localStorage.removeItem(bookmarkKey);
-      setBookmarked(false);
-    }
-  };
-
   const maxDescription = 300;
   let descriptionText = description || '';
   if (descriptionText.length > maxDescription) {
@@ -98,7 +85,7 @@ function ProjectCard(props: ProjectCardProps) {
           action={
             <IconButton
               aria-label={`Bookmark project "${name}"`}
-              onClick={() => toggleBookmarked()}
+              onClick={() => onBookmarkClick(url)}
             >
               {bookmarked ? <TurnedInIcon /> : <TurnedInIconNot />}
             </IconButton>
@@ -142,20 +129,6 @@ function ProjectCard(props: ProjectCardProps) {
       </Card>
     </div>
   );
-}
-
-ProjectCard.propTypes = {
-  project: PropTypes.shape({
-    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-    description: PropTypes.string,
-    languages: PropTypes.arrayOf(PropTypes.string),
-    lastCommitTimestamp: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    owner: PropTypes.string.isRequired,
-    stars: PropTypes.number.isRequired,
-    url: PropTypes.string.isRequired,
-    websiteUrl: PropTypes.string,
-  }).isRequired,
 };
 
 export default ProjectCard;

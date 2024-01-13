@@ -59,6 +59,7 @@ export interface SortingAndFilteringHandlers {
   sortByBookmarked: () => void;
   filterByLanguage: (language: string) => void;
   filterBySearch: (searchTerm: string) => void;
+  bookmarkProject: (project: string) => void;
 }
 
 interface ProjectsSortingMenuProps {
