@@ -37,14 +37,20 @@ SortButton.propTypes = {
 
 type SearchFilterButtonProps = {
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  search: string | null;
 };
 
 function SearchFilterButton(props: SearchFilterButtonProps) {
-  const { onChange } = props;
-
+  const { onChange, search } = props;
   return (
     <Grid item>
-      <TextField label="search" variant="outlined" onChange={onChange} size="small" />
+      <TextField
+        label="search"
+        variant="outlined"
+        size="small"
+        onChange={onChange}
+        value={search ? search : ''}
+      />
     </Grid>
   );
 }
@@ -59,18 +65,19 @@ export interface SortingAndFilteringHandlers {
   sortByBookmarked: () => void;
   filterByLanguage: (language: string) => void;
   filterBySearch: (searchTerm: string) => void;
-  bookmarkProject: (project: string) => void;
 }
 
 interface ProjectsSortingMenuProps {
   language: string | null;
   languages: string[];
+  search: string | null;
   handlers: SortingAndFilteringHandlers;
 }
 
 const ProjectsSortingMenu = ({
   language,
   languages,
+  search,
   handlers,
 }: ProjectsSortingMenuProps) => {
   const handleFilterByLanguage = (changeEvent: React.SyntheticEvent<Element, Event>) => {
@@ -93,7 +100,7 @@ const ProjectsSortingMenu = ({
         language={language}
         onChange={handleFilterByLanguage}
       />
-      <SearchFilterButton onChange={handleFilterBySearch} />
+      <SearchFilterButton onChange={handleFilterBySearch} search={search} />
     </Grid>
   );
 };

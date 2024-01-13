@@ -44,7 +44,6 @@ type MenuProps = {
 
 export default function HeaderAndMenus(props: MenuProps) {
   const { handlers, category, language, languages, search, sorting } = props;
-
   return (
     <>
       <CategoryButtons
@@ -56,6 +55,7 @@ export default function HeaderAndMenus(props: MenuProps) {
       <ProjectsSortingMenu
         language={language}
         languages={languages}
+        search={search}
         handlers={handlers}
       />
     </>
