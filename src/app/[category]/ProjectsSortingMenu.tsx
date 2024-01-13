@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -30,11 +29,6 @@ function SortButton(props: SortButtonProps) {
   );
 }
 
-SortButton.propTypes = {
-  label: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
-
 type SearchFilterButtonProps = {
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   search: string | null;
@@ -54,10 +48,6 @@ function SearchFilterButton(props: SearchFilterButtonProps) {
     </Grid>
   );
 }
-
-SearchFilterButton.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
 
 export interface SortingAndFilteringHandlers {
   sortByStars: () => void;

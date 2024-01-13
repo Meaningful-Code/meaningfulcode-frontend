@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
+import Masonry from '@mui/lab/Masonry';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Theme } from '@mui/material/styles';
+
 import { Project } from '@/models/Project';
 import { projectsStateFromUrl, projectsUrlFromState } from './projectUrl';
-
-import Masonry from '@mui/lab/Masonry';
 import ProjectCard from './ProjectCard';
 import HeaderAndMenus from './HeaderAndMenus';
 import { SortingAndFilteringHandlers } from './ProjectsSortingMenu';
@@ -74,6 +76,20 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
   const filteredProjects = filterProjects(projects, category, language, search);
   const sortedProjects = sortProjects(filteredProjects, bookmarkedProjects, sorting);
 
+  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMediumScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.between('sm', 'md')
+  );
+
+  let columns;
+  if (isSmallScreen) {
+    columns = 1;
+  } else if (isMediumScreen) {
+    columns = 2;
+  } else {
+    columns = 3;
+  }
+
   useEffect(() => {
     let bookmarkedProjects: { [key: string]: boolean } = {};
     for (let i = 0; i < sortedProjects.length; i++) {
@@ -125,7 +141,7 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
         search={search}
         sorting={sorting}
       />
-      <Masonry columns={3} spacing={2}>
+      <Masonry columns={columns} spacing={2}>
         {sortedProjects.map((project) => (
           <ProjectCard
             key={project.url}
