@@ -1,12 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
-import { Project } from '../../models/Project';
+import shuffle from '@/utils/shuffle';
+import { Project } from '@/models/Project';
 import { getProjects } from './ProjectApi';
 import ProjectsContainer from './ProjectsContainer';
 
 import './Main.css';
-import shuffle from '@/utils/shuffle';
 
 type Props = {
   params: { category: string };
@@ -51,5 +51,4 @@ export default async function ProjectPage() {
       <ProjectsContainer projects={projects} languages={languages} />
     </>
   );
-  // }
 }

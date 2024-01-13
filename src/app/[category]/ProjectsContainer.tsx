@@ -22,7 +22,7 @@ function stateFromUrl(category: string | null, searchParams: ReadonlyURLSearchPa
 }
 
 function urlFromState(category: string | null, language: string | null): string {
-  const queryString = language ? `language=${encodeURIComponent(language)}` : '';
+  const queryString = language ? `?language=${encodeURIComponent(language)}` : '';
   return `/${category || ''}${queryString}`;
 }
 
@@ -45,9 +45,13 @@ function HeaderAndMenus(props: MenuProps) {
       />
       <HeaderText category={category} />
       <ProjectsSortingMenu
-        onLanguageChanged={onLanguageChanged}
         language={language}
         languages={languages}
+        filterByLanguage={onLanguageChanged}
+        filterBySearch={() => {}} // TODO
+        sortByBookmarked={() => {}} // TODO
+        sortByLastCommit={() => {}} // TODO
+        sortByStars={() => {}} // TODO
       />
     </>
   );
@@ -81,14 +85,14 @@ function filterProjects(
 }
 
 export default function ProjectsContainer(props: ProjectsContainerProps) {
+  const router = useRouter();
   const params = useParams<{ category: string }>();
   const { projects, languages } = props;
   const searchParams = useSearchParams();
   const { category, language } = stateFromUrl(params.category, searchParams);
 
   function setLanguage(language: string) {
-    const url = urlFromState(category, language);
-    useRouter().push(url);
+    router.push(urlFromState(category, language));
   }
 
   const filteredProjects = filterProjects(projects, category, language);

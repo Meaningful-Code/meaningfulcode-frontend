@@ -54,83 +54,47 @@ SearchFilterButton.propTypes = {
 };
 
 type ProjectsSortingMenuProps = {
-  onLanguageChanged: (language: string) => void;
   language: string | null;
   languages: string[];
+  sortByStars: () => void;
+  sortByLastCommit: () => void;
+  sortByBookmarked: () => void;
+  filterByLanguage: (language: string) => void;
+  filterBySearch: (searchTerm: string) => void;
 };
 
-export default class ProjectsSortingMenu extends Component<ProjectsSortingMenuProps> {
-  projectsViewRef: React.RefObject<typeof Grid> | null = null;
-  languageChanged: (language: string) => void;
-  language: string | null;
-  languages: string[];
+const ProjectsSortingMenu = ({
+  language,
+  languages,
+  sortByStars,
+  sortByLastCommit,
+  sortByBookmarked,
+  filterByLanguage,
+  filterBySearch,
+}: ProjectsSortingMenuProps) => {
+  const handleFilterByLanguage = (changeEvent: React.SyntheticEvent<Element, Event>) => {
+    // @ts-ignore
+    const selectedLanguage = changeEvent.target.innerText;
+    filterByLanguage(selectedLanguage);
+  };
 
-  constructor(props: ProjectsSortingMenuProps) {
-    super(props);
-    this.language = props.language;
-    this.languages = props.languages;
-    this.languageChanged = props.onLanguageChanged;
+  const handleFilterBySearch = (changeEvent: React.ChangeEvent<HTMLInputElement>) => {
+    filterBySearch(changeEvent.target.value);
+  };
 
-    this.sortByStars = this.sortByStars.bind(this);
-    this.sortByLastCommit = this.sortByLastCommit.bind(this);
-    this.sortByBookmarked = this.sortByBookmarked.bind(this);
-    this.filterByLanguage = this.filterByLanguage.bind(this);
-    this.filterBySearch = this.filterBySearch.bind(this);
-  }
+  return (
+    <Grid container justifyContent="center" spacing={0.5} className="sorting">
+      <SortButton label="most starred" onClick={sortByStars} />
+      <SortButton label="last updated" onClick={sortByLastCommit} />
+      <SortButton label="bookmarked" onClick={sortByBookmarked} />
+      <LanguageDropdown
+        languages={languages || []}
+        language={language}
+        onChange={handleFilterByLanguage}
+      />
+      <SearchFilterButton onChange={handleFilterBySearch} />
+    </Grid>
+  );
+};
 
-  componentDidMount() {
-    // this.projectsViewRef = this.context.projectsViewRef;
-  }
-
-  sortByStars() {
-    if (this.projectsViewRef?.current) {
-      this.projectsViewRef.current.sortByStars();
-    }
-  }
-
-  sortByLastCommit() {
-    if (this.projectsViewRef?.current) {
-      this.projectsViewRef.current.sortByLastCommit();
-    }
-  }
-
-  sortByBookmarked() {
-    if (this.projectsViewRef?.current) {
-      this.projectsViewRef.current.sortByBookmarked();
-    }
-  }
-
-  filterByLanguage(changeEvent: React.SyntheticEvent<Element, Event>) {
-    if (this.projectsViewRef?.current) {
-      const { onLanguageChanged } = this.props as ProjectsSortingMenuProps;
-      // @ts-ignore
-      const language = changeEvent.target.innerText;
-
-      onLanguageChanged(language);
-      this.projectsViewRef.current.filterByLanguage(language);
-    }
-  }
-
-  filterBySearch(changeEvent: React.ChangeEvent<HTMLInputElement>) {
-    if (this.projectsViewRef?.current) {
-      this.projectsViewRef.current.filterBySearch(changeEvent.target.value);
-    }
-  }
-
-  render() {
-    return (
-      <Grid container justifyContent="center" spacing={0.5} className="sorting">
-        <SortButton label="most starred" onClick={this.sortByStars} />
-
-        <SortButton label="last updated" onClick={this.sortByLastCommit} />
-        <SortButton label="bookmarked" onClick={this.sortByBookmarked} />
-        <LanguageDropdown
-          languages={this.languages || []}
-          language={this.language}
-          onChange={this.filterByLanguage}
-        />
-        <SearchFilterButton onChange={this.filterBySearch} />
-      </Grid>
-    );
-  }
-}
+export default ProjectsSortingMenu;
