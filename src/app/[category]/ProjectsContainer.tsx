@@ -17,9 +17,9 @@ import ProjectsSortingMenu from './ProjectsSortingMenu';
 
 function stateFromUrl(pathname: string, searchParams: ReadonlyURLSearchParams) {
   // Schema: meaningfulcode.org/<category>?language=<lang>
-  // const pathGroups = pathname.split('/', 3);
-  // const category = pathGroups.length >= 3 ? pathGroups[2] : null;
-  const category = searchParams.get('category');
+  const pathGroups = pathname.split('/', 2);
+  const category = pathGroups.length >= 2 ? pathGroups[1] : null;
+  // const category = searchParams.get('category');
   const language = searchParams.get('language');
 
   return { category, language };
@@ -28,17 +28,17 @@ function stateFromUrl(pathname: string, searchParams: ReadonlyURLSearchParams) {
 function urlFromState(category: string | null, language: string | null): string {
   let queryString = '';
 
-  if (category) {
-    queryString += `?category=${category}`;
-  }
+  // if (category) {
+  //   queryString += `?category=${category}`;
+  // }
   if (language) {
     // Add an '&' if queryString already has a '?', otherwise add a '?'
-    queryString += queryString.includes('?') ? `&` : `?`;
+    // queryString += queryString.includes('?') ? `&` : `?`;
     queryString += `language=${encodeURIComponent(language)}`;
   }
 
-  // return `/projects/${category || ''}${queryString}`;
-  return `/projects${queryString}`;
+  return `/${category || ''}${queryString}`;
+  // return `/projects${queryString}`;
 }
 
 type MenuProps = {

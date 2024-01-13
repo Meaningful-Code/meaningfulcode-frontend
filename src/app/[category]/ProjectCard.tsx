@@ -55,8 +55,6 @@ function ProjectCard(props: ProjectCardProps) {
     },
   } = props;
   const isFeatured = false;
-  const isNew = false;
-
   const bookmarkKey = `${url}.bookmarked`;
   const [bookmarked, setBookmarked] = useState(false);
 
@@ -88,18 +86,7 @@ function ProjectCard(props: ProjectCardProps) {
   }
 
   return (
-    <div
-      className={`project-item ${categories} ${isNew ? 'new' : ''} ${
-        isFeatured ? 'featured' : ''
-      }`}
-      data-category={categories}
-      data-last-update={lastCommitAgeInDays}
-      data-bookmarked={bookmarked}
-      data-stars={stars}
-      data-name={name.toLowerCase()}
-      data-owner={owner.toLowerCase()}
-      data-desc={description?.toLowerCase()}
-    >
+    <div className={`project-item ${categories} ${isFeatured ? 'featured' : ''}`}>
       <Card variant="outlined">
         <CardHeader
           component="h3"

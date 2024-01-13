@@ -9,16 +9,19 @@ import './Main.css';
 import shuffle from '@/utils/shuffle';
 
 type Props = {
-  params: { id: string };
+  params: { category: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
 const DefaultPageTitle = 'Find Open-source projects with a social impact';
 
-export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   searchParams;
-  const category = searchParams.category;
-  const hasCategory = category && typeof category === 'string' && category !== 'all';
+  const category = params.category;
+  const hasCategory = category && category !== 'all';
   return {
     title: hasCategory
       ? `${category.charAt(0).toUpperCase() + category.slice(1)} open-source projects`

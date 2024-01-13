@@ -1,7 +1,6 @@
-'use client';
-
 import React from 'react';
+import ProjectPage from '@/app/[category]/page';
 
-export default function Home({ children }: { children: React.ReactNode }) {
-  return <div />;
+export default function Home() {
+  return <ProjectPage />;
 }
