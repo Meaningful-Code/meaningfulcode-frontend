@@ -15,8 +15,6 @@ import Masonry from '@mui/lab/Masonry';
 import ProjectCard from './ProjectCard';
 import ProjectsSortingMenu from './ProjectsSortingMenu';
 
-const DefaultPageTitle = 'Find Open-source projects with a social impact';
-
 function stateFromUrl(pathname: string, searchParams: ReadonlyURLSearchParams) {
   // Schema: meaningfulcode.org/<category>?language=<lang>
   // const pathGroups = pathname.split('/', 3);
@@ -80,10 +78,6 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { category, language } = stateFromUrl(pathname, searchParams);
-  document.title =
-    category && category !== 'all'
-      ? `${category.charAt(0).toUpperCase() + category.slice(1)} open-source projects`
-      : DefaultPageTitle;
 
   function setLanguage(language: string) {
     const url = urlFromState(category, language);
