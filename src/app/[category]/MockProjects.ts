@@ -1,4 +1,4 @@
-import {Project} from '../../models/Project'
+import { Project } from '../../models/Project';
 
 export default function getMockProjects(): Project[] {
   return [
@@ -11,7 +11,7 @@ export default function getMockProjects(): Project[] {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-a',
       websiteUrl: 'https://websitea.com',
-      lastCommitTimestamp: 1687894587
+      lastCommitTimestamp: 1687894587,
     },
     {
       name: 'Project B',
@@ -22,18 +22,18 @@ export default function getMockProjects(): Project[] {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-b',
       websiteUrl: 'https://websiteb.com',
-      lastCommitTimestamp: 1703135247
+      lastCommitTimestamp: 1703135247,
     },
     {
       name: 'Project C',
       owner: 'Octocrow',
-      categories: ['health'],
+      categories: ['health', 'accessibility'],
       languages: ['Python', 'HTML'],
       stars: 1200,
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-c',
       websiteUrl: 'https://websitec.com',
-      lastCommitTimestamp: 1687124587
+      lastCommitTimestamp: 1687124587,
     },
     {
       name: 'Project D',
@@ -45,7 +45,7 @@ export default function getMockProjects(): Project[] {
         'Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines. Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-d',
       websiteUrl: 'https://websited.com',
-      lastCommitTimestamp: 1701135247
+      lastCommitTimestamp: 1701135247,
     },
     {
       name: 'Project E',
@@ -55,7 +55,7 @@ export default function getMockProjects(): Project[] {
       stars: 560,
       url: 'https://github.com/project-e',
       websiteUrl: 'https://websited.com',
-      lastCommitTimestamp: 1507824117
+      lastCommitTimestamp: 1507824117,
     },
     {
       name: 'Project F',
@@ -66,7 +66,7 @@ export default function getMockProjects(): Project[] {
       description: 'Description text that will likely span on multiple lines.',
       url: 'https://github.com/project-f',
       websiteUrl: 'https://websitef.com',
-      lastCommitTimestamp: 1587824117
-    }
+      lastCommitTimestamp: 1587824117,
+    },
   ];
 }

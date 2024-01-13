@@ -86,7 +86,9 @@ function ProjectCard(props: ProjectCardProps) {
   }
 
   return (
-    <div className={`project-item ${categories} ${isFeatured ? 'featured' : ''}`}>
+    <div
+      className={`project-item ${categories.join(' ')} ${isFeatured ? 'featured' : ''}`}
+    >
       <Card variant="outlined">
         <CardHeader
           component="h3"
@@ -106,7 +108,7 @@ function ProjectCard(props: ProjectCardProps) {
           <List dense>
             <ListItem disableGutters disablePadding>
               <ProjectCardListIcon avatar={<CategoryIcon type={categories[0]} />} />
-              <ListItemText className="category-label" primary={categories} />
+              <ListItemText className="category-label" primary={categories.join(', ')} />
               <Chip variant="outlined" icon={<StarIcon />} label={stars} />
             </ListItem>
             {isFeatured && FeaturedListItem()}
