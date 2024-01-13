@@ -58,6 +58,28 @@ type ProjectsContainerProps = {
   languages: string[];
 };
 
+function filterProjects(
+  projects: Project[],
+  category: string | null,
+  language: string | null
+) {
+  const filteredProjects = projects.filter((project) => {
+    if (category && category !== 'all') {
+      return project.categories.includes(category);
+    }
+    return true;
+  });
+  if (language) {
+    return filteredProjects.filter((project) => {
+      if (project.languages) {
+        return project.languages.includes(language);
+      }
+      return false;
+    });
+  }
+  return filteredProjects;
+}
+
 export default function ProjectsContainer(props: ProjectsContainerProps) {
   const params = useParams<{ category: string }>();
   const { projects, languages } = props;
@@ -69,6 +91,8 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
     useRouter().push(url);
   }
 
+  const filteredProjects = filterProjects(projects, category, language);
+
   return (
     <>
       <HeaderAndMenus
@@ -78,7 +102,7 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
         languages={languages}
       />
       <Masonry columns={3} spacing={2}>
-        {projects.map((project) => (
+        {filteredProjects.map((project) => (
           <ProjectCard key={project.url} project={project} />
         ))}
       </Masonry>
