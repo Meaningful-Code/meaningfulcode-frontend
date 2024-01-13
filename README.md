@@ -13,7 +13,7 @@ The goal of this website is to promote **meaningful** and **opensource** project
 Contributors are very welcome, to help us you can:
 
 - ➕ Suggest impactful projects: Finding those is tough, this is the best way to help
-    - Create a pull request on [meaningful-projects](https://github.com/Meaningful-Code/meaningful-projects) or use the [online form](https://meaningfulcode.org/submit-project)
+  - Create a pull request on [meaningful-projects](https://github.com/Meaningful-Code/meaningful-projects) or use the [online form](https://meaningfulcode.org/submit-project)
 - 💻 Contribute to the project: UI, Frontend, Backend. Feel free to ask on [Discord](https://discord.gg/KPAm7wd7fJ)
 - ❤️ [Sponsor the development](https://github.com/sponsors/pixep)
 
@@ -28,7 +28,8 @@ But you can also...
 ### Stack
 
 The project uses:
-- Frontend: Typescript with [React](https://reactjs.org/) and [Material UI]([https://react.semantic-ui.com/](https://mui.com/material-ui/)).
+
+- Frontend: [Next.js](https://nextjs.org/) with App router, [React](https://reactjs.org/), and [Material UI](https://mui.com/material-ui/) with Typescript.
 - Backend (available separately): Node & Express (Typescript), AWS Lambda & DynamoDB.
 - Hosting: the full solution currently runs on Vercel.
 
@@ -38,18 +39,36 @@ The rest of the instructions on this page focus on the frontend.
 
 The following steps guide you to setup your environment
 
-1. Install [Node 18](https://nodejs.org/en/download/package-manager/)
+1. Install [Node 20](https://nodejs.org/en/download/package-manager/)
 1. Install [yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 1. Clone this repository, and run `yarn install`
 
 ### Development build
 
-From the project folder, simply run `REACT_APP_FORCE_API=stub npm start` to start the frontend with fake projects.
+1. Configure the frontend to use local stub data by creating a `.env.local` file containing
+
+   ```
+   REACT_APP_FORCE_API=stub
+   ```
+
+2. Run the development server with `yarn dev`. You should see:
+
+   ```
+   yarn run v1.22.19
+   $ next dev
+   ▲ Next.js 14.0.4
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+   ✓ Ready in 1059ms
+   ```
+
+#### Environment variables
 
 The `REACT_APP_FORCE_API` environment variable can be set to
 
 - `stub`,
-- `local`: API expected at `http://localhost:3001`,
+- `local`, API expected at `http://localhost:3001`,
 - or `prod`.
 
 ### Production build

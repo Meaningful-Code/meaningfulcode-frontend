@@ -4,7 +4,7 @@ import getMockProjects from './MockProjects';
 import { Project } from '../../models/Project';
 
 const prodAPIUrl = 'https://meaningfulcode.org';
-const forcedApi = 'stub'; //process.env.REACT_APP_FORCE_API;
+const forcedApi = process.env.REACT_APP_FORCE_API;
 const projectsEndpoint = `${APIUrl()}/api/projects`;
 const submitProjectEndpoint = `${APIUrl()}/api/submit-project`;
 
