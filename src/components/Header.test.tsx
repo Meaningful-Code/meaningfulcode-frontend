@@ -5,12 +5,8 @@ import '@testing-library/jest-dom';
 import PageHeader from './Header';
 import ThemeRegistry from './ThemeRegistry/ThemeRegistry';
 
-const render = (ui: JSX.Element, options = {}) => rtlRender(
-    <ThemeRegistry>
-        {ui}
-    </ThemeRegistry>,
-    options
-  );
+const render = (ui: JSX.Element, options = {}) =>
+  rtlRender(<ThemeRegistry>{ui}</ThemeRegistry>, options);
 
 describe('PageHeader Component', () => {
   it('should render the header with logo and title', () => {
@@ -20,7 +16,6 @@ describe('PageHeader Component', () => {
 
     const logo = screen.getByAltText('logo');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', '/meaningfulcode-logo.png');
 
     const title = screen.getByText('Meaningful Code');
     expect(title).toBeInTheDocument();

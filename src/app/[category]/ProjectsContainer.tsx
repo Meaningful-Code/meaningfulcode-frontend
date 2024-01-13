@@ -98,6 +98,8 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
         localStorage.getItem(`${project.url}.bookmarked`) === '1';
     }
     setBookmarkedProjects(bookmarkedProjects);
+    // We should only extract bookmarkedProjects once, no dependencies.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function bookmarkProject(projectUrl: string) {

@@ -27,15 +27,15 @@ header > div {
   font-size: 1.6rem;
 }
 img#logo {
-  width: 3em;
-  height: 3em;
+  width: 96px;
+  height: 96px;
 }
 
 main {
   margin-top: 3em;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 599px) {
   #root {
     padding: 1em 0.5em;
   }
@@ -45,8 +45,8 @@ main {
   }
 
   img#logo {
-    width: 1.5em;
-    height: 1.5em;
+    width: 48px;
+    height: 48px;
   }
 
   main {
