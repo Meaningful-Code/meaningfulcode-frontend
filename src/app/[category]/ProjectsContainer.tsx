@@ -14,44 +14,54 @@ import CategoryMenu from './CategoryMenu';
 import Masonry from '@mui/lab/Masonry';
 import ProjectCard from './ProjectCard';
 import ProjectsSortingMenu from './ProjectsSortingMenu';
+import { SortingAndFilteringHandlers } from './ProjectsSortingMenu';
 
 function stateFromUrl(category: string | null, searchParams: ReadonlyURLSearchParams) {
   // Schema: meaningfulcode.org/<category>?language=<lang>
   const language = searchParams.get('language');
-  return { category, language };
+  const search = searchParams.get('search');
+  return { category, language, search };
 }
 
-function urlFromState(category: string | null, language: string | null): string {
-  const queryString = language ? `?language=${encodeURIComponent(language)}` : '';
-  return `/${category || ''}${queryString}`;
+function urlFromState(
+  category: string | null,
+  language: string | null,
+  search: string | null
+): string {
+  const params = new URLSearchParams();
+  if (language) {
+    params.append('language', language);
+  }
+  if (search) {
+    params.append('search', search);
+  }
+  const queryString = params.toString();
+  return `/${category || ''}${queryString ? `?${queryString}` : ''}`;
 }
 
 type MenuProps = {
   category: string | null;
   language: string | null;
   languages: string[];
-  onLanguageChanged: (language: string) => void;
+  search: string | null;
+  handlers: SortingAndFilteringHandlers;
 };
 
 function HeaderAndMenus(props: MenuProps) {
-  const { onLanguageChanged, category, language, languages } = props;
+  const { handlers, category, language, languages, search } = props;
 
   return (
     <>
       <CategoryMenu
         categories={categories}
         category={category || undefined}
-        urlTemplate={urlFromState(':', language)}
+        urlTemplate={urlFromState(':', language, search)}
       />
       <HeaderText category={category} />
       <ProjectsSortingMenu
         language={language}
         languages={languages}
-        filterByLanguage={onLanguageChanged}
-        filterBySearch={() => {}} // TODO
-        sortByBookmarked={() => {}} // TODO
-        sortByLastCommit={() => {}} // TODO
-        sortByStars={() => {}} // TODO
+        handlers={handlers}
       />
     </>
   );
@@ -65,23 +75,26 @@ type ProjectsContainerProps = {
 function filterProjects(
   projects: Project[],
   category: string | null,
-  language: string | null
-) {
-  const filteredProjects = projects.filter((project) => {
-    if (category && category !== 'all') {
-      return project.categories.includes(category);
+  language: string | null,
+  search: string | null
+): Project[] {
+  const searchLowered = search?.toLowerCase();
+  return projects.filter((project) => {
+    if (category && category !== 'all' && !project.categories.includes(category)) {
+      return false;
+    }
+    if (language && !project.languages?.includes(language)) {
+      return false;
+    }
+    if (searchLowered) {
+      return (
+        project.owner.toLowerCase().includes(searchLowered) ||
+        project.name.toLowerCase().includes(searchLowered) ||
+        project.description?.toLowerCase().includes(searchLowered)
+      );
     }
     return true;
   });
-  if (language) {
-    return filteredProjects.filter((project) => {
-      if (project.languages) {
-        return project.languages.includes(language);
-      }
-      return false;
-    });
-  }
-  return filteredProjects;
 }
 
 export default function ProjectsContainer(props: ProjectsContainerProps) {
@@ -89,21 +102,30 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
   const params = useParams<{ category: string }>();
   const { projects, languages } = props;
   const searchParams = useSearchParams();
-  const { category, language } = stateFromUrl(params.category, searchParams);
+  const { category, language, search } = stateFromUrl(params.category, searchParams);
 
-  function setLanguage(language: string) {
-    router.push(urlFromState(category, language));
-  }
+  const filteredProjects = filterProjects(projects, category, language, search);
 
-  const filteredProjects = filterProjects(projects, category, language);
+  const handlers: SortingAndFilteringHandlers = {
+    sortByStars: () => {},
+    sortByLastCommit: () => {},
+    sortByBookmarked: () => {},
+    filterByLanguage: (language) => {
+      router.push(urlFromState(category, language, search));
+    },
+    filterBySearch: (search) => {
+      router.push(urlFromState(category, language, search));
+    },
+  };
 
   return (
     <>
       <HeaderAndMenus
-        onLanguageChanged={setLanguage}
+        handlers={handlers}
         category={category}
         language={language}
         languages={languages}
+        search={search}
       />
       <Masonry columns={3} spacing={2}>
         {filteredProjects.map((project) => (
