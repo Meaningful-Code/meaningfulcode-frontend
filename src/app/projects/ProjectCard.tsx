@@ -58,16 +58,21 @@ function ProjectCard(props: ProjectCardProps) {
   const isNew = false;
 
   const bookmarkKey = `${url}.bookmarked`;
-  const prevBookmarked = localStorage.getItem(bookmarkKey) === '1';
-  const [bookmarked, setBookmarked] = useState(prevBookmarked);
+  const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
-    if (bookmarked) {
+    setBookmarked(localStorage.getItem(bookmarkKey) === '1');
+  }, []);
+
+  const toggleBookmarked = () => {
+    if (!bookmarked) {
       localStorage.setItem(bookmarkKey, '1');
+      setBookmarked(true);
     } else {
       localStorage.removeItem(bookmarkKey);
+      setBookmarked(false);
     }
-  });
+  };
 
   const maxDescription = 300;
   let descriptionText = description || '';
@@ -104,7 +109,7 @@ function ProjectCard(props: ProjectCardProps) {
           action={
             <IconButton
               aria-label={`Bookmark project "${name}"`}
-              onClick={() => setBookmarked(!bookmarked)}
+              onClick={() => toggleBookmarked()}
             >
               {bookmarked ? <TurnedInIcon /> : <TurnedInIconNot />}
             </IconButton>
