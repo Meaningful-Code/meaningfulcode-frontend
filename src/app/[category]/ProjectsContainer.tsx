@@ -1,71 +1,14 @@
 'use client';
 
 import React from 'react';
-import {
-  useRouter,
-  ReadonlyURLSearchParams,
-  useParams,
-  useSearchParams,
-} from 'next/navigation';
-import { Project, categories } from '@/models/Project';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
+import { Project } from '@/models/Project';
+import { projectsStateFromUrl, projectsUrlFromState } from './projectUrl';
 
-import HeaderText from './HeaderText';
-import CategoryMenu from './CategoryMenu';
 import Masonry from '@mui/lab/Masonry';
 import ProjectCard from './ProjectCard';
-import ProjectsSortingMenu from './ProjectsSortingMenu';
+import HeaderAndMenus from './HeaderAndMenus';
 import { SortingAndFilteringHandlers } from './ProjectsSortingMenu';
-
-function stateFromUrl(category: string | null, searchParams: ReadonlyURLSearchParams) {
-  // Schema: meaningfulcode.org/<category>?language=<lang>
-  const language = searchParams.get('language');
-  const search = searchParams.get('search');
-  return { category, language, search };
-}
-
-function urlFromState(
-  category: string | null,
-  language: string | null,
-  search: string | null
-): string {
-  const params = new URLSearchParams();
-  if (language) {
-    params.append('language', language);
-  }
-  if (search) {
-    params.append('search', search);
-  }
-  const queryString = params.toString();
-  return `/${category || ''}${queryString ? `?${queryString}` : ''}`;
-}
-
-type MenuProps = {
-  category: string | null;
-  language: string | null;
-  languages: string[];
-  search: string | null;
-  handlers: SortingAndFilteringHandlers;
-};
-
-function HeaderAndMenus(props: MenuProps) {
-  const { handlers, category, language, languages, search } = props;
-
-  return (
-    <>
-      <CategoryMenu
-        categories={categories}
-        category={category || undefined}
-        urlTemplate={urlFromState(':', language, search)}
-      />
-      <HeaderText category={category} />
-      <ProjectsSortingMenu
-        language={language}
-        languages={languages}
-        handlers={handlers}
-      />
-    </>
-  );
-}
 
 type ProjectsContainerProps = {
   projects: Project[];
@@ -102,19 +45,39 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
   const params = useParams<{ category: string }>();
   const { projects, languages } = props;
   const searchParams = useSearchParams();
-  const { category, language, search } = stateFromUrl(params.category, searchParams);
+  const { category, language, search, sorting } = projectsStateFromUrl(
+    params.category,
+    searchParams
+  );
 
   const filteredProjects = filterProjects(projects, category, language, search);
+  const sortedProjects = filteredProjects.sort((a, b) => {
+    if (sorting === 'stars') {
+      return b.stars - a.stars;
+    } else if (sorting === 'lastCommit') {
+      return b.lastCommitTimestamp - a.lastCommitTimestamp;
+    }
+    // else if (sorting === 'bookmarked') {
+
+    // }
+    return 0;
+  });
 
   const handlers: SortingAndFilteringHandlers = {
-    sortByStars: () => {},
-    sortByLastCommit: () => {},
-    sortByBookmarked: () => {},
+    sortByStars: () => {
+      router.push(projectsUrlFromState(category, language, search, 'stars'));
+    },
+    sortByLastCommit: () => {
+      router.push(projectsUrlFromState(category, language, search, 'lastCommit'));
+    },
+    sortByBookmarked: () => {
+      router.push(projectsUrlFromState(category, language, search, 'bookmarked'));
+    },
     filterByLanguage: (language) => {
-      router.push(urlFromState(category, language, search));
+      router.push(projectsUrlFromState(category, language, search, sorting));
     },
     filterBySearch: (search) => {
-      router.push(urlFromState(category, language, search));
+      router.push(projectsUrlFromState(category, language, search, sorting));
     },
   };
 
@@ -126,9 +89,10 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
         language={language}
         languages={languages}
         search={search}
+        sorting={sorting}
       />
       <Masonry columns={3} spacing={2}>
-        {filteredProjects.map((project) => (
+        {sortedProjects.map((project) => (
           <ProjectCard key={project.url} project={project} />
         ))}
       </Masonry>
