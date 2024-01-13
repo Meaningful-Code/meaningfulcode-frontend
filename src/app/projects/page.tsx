@@ -6,6 +6,7 @@ import { getProjects } from './ProjectApi';
 import ProjectsContainer from './ProjectsContainer';
 
 import './Main.css';
+import shuffle from '@/utils/shuffle';
 
 type Props = {
   params: { id: string };
@@ -25,19 +26,6 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 
-function shuffleProjects(array: Project[]): Project[] {
-  let i = array.length - 1;
-  for (; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    // eslint-disable-next-line no-param-reassign
-    array[i] = array[j];
-    // eslint-disable-next-line no-param-reassign
-    array[j] = temp;
-  }
-  return array;
-}
-
 function getLanguageSet(projects: Project[]): Set<string> {
   const languagesSet = new Set<string>();
   projects.forEach((project) => {
@@ -52,7 +40,7 @@ function getLanguageSet(projects: Project[]): Set<string> {
 
 export default async function ProjectPage() {
   let projects = await getProjects();
-  projects = shuffleProjects(projects);
+  projects = shuffle(projects);
   const languages = Array.from(getLanguageSet(projects));
 
   return (
