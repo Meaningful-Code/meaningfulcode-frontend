@@ -49,11 +49,13 @@ export function App({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeRegistry>
-      <Header />
-      <Container component="main" id="root-container">
-        {children}
-      </Container>
-      <Footer />
+      <div id="root">
+        <Header />
+        <Container component="main" id="root-container">
+          {children}
+        </Container>
+        <Footer />
+      </div>
     </ThemeRegistry>
   );
 }
