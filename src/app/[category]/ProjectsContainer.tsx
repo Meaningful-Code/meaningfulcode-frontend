@@ -4,7 +4,7 @@ import React from 'react';
 import {
   useRouter,
   ReadonlyURLSearchParams,
-  usePathname,
+  useParams,
   useSearchParams,
 } from 'next/navigation';
 import { Project, categories } from '@/models/Project';
@@ -15,30 +15,15 @@ import Masonry from '@mui/lab/Masonry';
 import ProjectCard from './ProjectCard';
 import ProjectsSortingMenu from './ProjectsSortingMenu';
 
-function stateFromUrl(pathname: string, searchParams: ReadonlyURLSearchParams) {
+function stateFromUrl(category: string | null, searchParams: ReadonlyURLSearchParams) {
   // Schema: meaningfulcode.org/<category>?language=<lang>
-  const pathGroups = pathname.split('/', 2);
-  const category = pathGroups.length >= 2 ? pathGroups[1] : null;
-  // const category = searchParams.get('category');
   const language = searchParams.get('language');
-
   return { category, language };
 }
 
 function urlFromState(category: string | null, language: string | null): string {
-  let queryString = '';
-
-  // if (category) {
-  //   queryString += `?category=${category}`;
-  // }
-  if (language) {
-    // Add an '&' if queryString already has a '?', otherwise add a '?'
-    // queryString += queryString.includes('?') ? `&` : `?`;
-    queryString += `language=${encodeURIComponent(language)}`;
-  }
-
+  const queryString = language ? `language=${encodeURIComponent(language)}` : '';
   return `/${category || ''}${queryString}`;
-  // return `/projects${queryString}`;
 }
 
 type MenuProps = {
@@ -74,10 +59,10 @@ type ProjectsContainerProps = {
 };
 
 export default function ProjectsContainer(props: ProjectsContainerProps) {
+  const params = useParams<{ category: string }>();
   const { projects, languages } = props;
-  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { category, language } = stateFromUrl(pathname, searchParams);
+  const { category, language } = stateFromUrl(params.category, searchParams);
 
   function setLanguage(language: string) {
     const url = urlFromState(category, language);
