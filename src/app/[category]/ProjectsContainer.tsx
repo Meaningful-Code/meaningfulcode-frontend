@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
-import Masonry from '@mui/lab/Masonry';
+import Grid from '@mui/material/Grid';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Theme } from '@mui/material/styles';
 
@@ -143,16 +143,17 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
         search={search}
         sorting={sorting}
       />
-      <Masonry columns={columns} spacing={2}>
+      <Grid container columns={columns} spacing={2} justifyContent={'center'}>
         {sortedProjects.map((project) => (
-          <ProjectCard
-            key={project.url}
-            project={project}
-            onBookmarkClick={bookmarkProject}
-            bookmarked={bookmarkedProjects[project.url]}
-          />
+          <Grid item key={project.url}>
+            <ProjectCard
+              project={project}
+              onBookmarkClick={bookmarkProject}
+              bookmarked={bookmarkedProjects[project.url]}
+            />
+          </Grid>
         ))}
-      </Masonry>
+      </Grid>
     </>
   );
 }

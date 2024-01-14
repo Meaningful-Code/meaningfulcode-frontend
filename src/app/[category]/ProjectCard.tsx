@@ -73,61 +73,60 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   }
 
   return (
-    <div
-      className={`project-item ${categories.join(' ')} ${isFeatured ? 'featured' : ''}`}
+    <Card
+      className={`project-item ${categories.join(' ')} ${isFeatured && 'featured'}`}
+      variant="outlined"
     >
-      <Card variant="outlined">
-        <CardHeader
-          component="h3"
-          title={name}
-          subheader={owner}
-          sx={{ marginTop: 0, marginBottom: 0 }}
-          action={
-            <IconButton
-              aria-label={`Bookmark project "${name}"`}
-              onClick={() => onBookmarkClick(url)}
-            >
-              {bookmarked ? <TurnedInIcon /> : <TurnedInIconNot />}
-            </IconButton>
-          }
-        />
-        <CardContent sx={{ paddingTop: 0 }}>
-          <List dense>
-            <ListItem disableGutters disablePadding>
-              <ProjectCardListIcon avatar={<CategoryIcon type={categories[0]} />} />
-              <ListItemText className="category-label" primary={categories.join(', ')} />
-              <Chip variant="outlined" icon={<StarIcon />} label={stars} />
-            </ListItem>
-            {isFeatured && FeaturedListItem()}
-            <ListItem disableGutters disablePadding>
-              <ProjectCardListIcon avatar={<CodeIcon />} />
-              <ListItemText
-                className="languages"
-                primary={languages ? languages.slice(0, 3).join(', ') : 'N/A'}
-              />
-            </ListItem>
-            <ListItem disableGutters disablePadding>
-              <ProjectCardListIcon avatar={<CommitIcon />} />
-              <ListItemText
-                className="last-update"
-                primary={formatLastUpdateAge(lastCommitAgeInDays)}
-              />
-            </ListItem>
-          </List>
-          <p className="project-desc">{descriptionText}</p>
-        </CardContent>
-        <CardActions>
-          <ButtonGroup variant="text" color="secondary" fullWidth>
-            {websiteUrl && (
-              <Button component={Link} href={websiteUrl} startIcon={<PublicIcon />}>
-                Website
-              </Button>
-            )}
-            {url && <GitHubButton url={url} />}
-          </ButtonGroup>
-        </CardActions>
-      </Card>
-    </div>
+      <CardHeader
+        component="h3"
+        title={name}
+        subheader={owner}
+        sx={{ marginTop: 0, marginBottom: 0 }}
+        action={
+          <IconButton
+            aria-label={`Bookmark project "${name}"`}
+            onClick={() => onBookmarkClick(url)}
+          >
+            {bookmarked ? <TurnedInIcon /> : <TurnedInIconNot />}
+          </IconButton>
+        }
+      />
+      <CardContent sx={{ paddingTop: 0 }}>
+        <List dense>
+          <ListItem disableGutters disablePadding>
+            <ProjectCardListIcon avatar={<CategoryIcon type={categories[0]} />} />
+            <ListItemText className="category-label" primary={categories.join(', ')} />
+            <Chip variant="outlined" icon={<StarIcon />} label={stars} />
+          </ListItem>
+          {isFeatured && FeaturedListItem()}
+          <ListItem disableGutters disablePadding>
+            <ProjectCardListIcon avatar={<CodeIcon />} />
+            <ListItemText
+              className="languages"
+              primary={languages ? languages.slice(0, 3).join(', ') : 'N/A'}
+            />
+          </ListItem>
+          <ListItem disableGutters disablePadding>
+            <ProjectCardListIcon avatar={<CommitIcon />} />
+            <ListItemText
+              className="last-update"
+              primary={formatLastUpdateAge(lastCommitAgeInDays)}
+            />
+          </ListItem>
+        </List>
+        <p className="project-desc">{descriptionText}</p>
+      </CardContent>
+      <CardActions>
+        <ButtonGroup variant="text" color="secondary" fullWidth>
+          {websiteUrl && (
+            <Button component={Link} href={websiteUrl} startIcon={<PublicIcon />}>
+              Website
+            </Button>
+          )}
+          {url && <GitHubButton url={url} />}
+        </ButtonGroup>
+      </CardActions>
+    </Card>
   );
 };
 

@@ -6,7 +6,7 @@ import { Project } from '@/models/Project';
 import { getProjects } from './ProjectApi';
 import ProjectsContainer from './ProjectsContainer';
 
-import './Main.css';
+import './style.css';
 
 type Props = {
   params: { category: string };
