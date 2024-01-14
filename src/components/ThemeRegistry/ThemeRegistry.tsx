@@ -9,9 +9,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
   const serverSide = typeof window === 'undefined';
-  const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)');
-  const lightMode = prefersLightMode || serverSide;
+  const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)', {
+    noSsr: true,
+  });
+  const lightMode = serverSide || prefersLightMode;
   const theme = useMemo(() => createCustomTheme(lightMode), [lightMode]);
+
   useEffect(() => {
     const root = document.documentElement;
     root.style.setProperty('--gray', '#888');

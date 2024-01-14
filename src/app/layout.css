@@ -23,9 +23,18 @@ header > div {
   margin-top: 1em;
 }
 
+header a {
+  text-decoration: none;
+}
+
 #title {
   font-size: 1.6rem;
 }
+
+#mobile-menu-button {
+  display: none;
+}
+
 img#logo {
   width: 96px;
   height: 96px;
@@ -44,9 +53,21 @@ main {
     padding: 4px 0 0 4px;
   }
 
+  #subtitle {
+    display: none;
+  }
+
   img#logo {
     width: 48px;
     height: 48px;
+  }
+
+  #desktop-menu {
+    display: none;
+  }
+
+  #mobile-menu-button {
+    display: block;
   }
 
   main {

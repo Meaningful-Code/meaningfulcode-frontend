@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import * as MuiLink from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -10,7 +9,7 @@ import { Theme } from '@mui/material/styles';
 export default function Logo() {
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   return (
-    <MuiLink.default href="/" component={Link} underline="none">
+    <Link href="/">
       <Stack component="h1" className="header" direction="row">
         <Image
           id="logo"
@@ -24,14 +23,12 @@ export default function Logo() {
           <Typography id="title" color="primary">
             Meaningful Code
           </Typography>
-          {!isMobile && (
-            <Typography id="subtitle" color="var(--gray)">
-              Find Open Source projects, <br />
-              contribute, make a difference.
-            </Typography>
-          )}
+          <Typography id="subtitle" color="var(--gray)">
+            Find Open Source projects, <br />
+            contribute, make a difference.
+          </Typography>
         </Stack>
       </Stack>
-    </MuiLink.default>
+    </Link>
   );
 }

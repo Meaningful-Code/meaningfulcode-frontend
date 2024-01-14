@@ -57,32 +57,27 @@ export default function PageHeader() {
     setDrawerOpen(!drawerOpen);
   };
 
-  // useMinimalGaTracker();
-
   return (
     <header>
       <Grid container spacing={2}>
         <Grid item xs={10} sm={6}>
           <Logo />
         </Grid>
-        {isMobile ? (
-          <Grid item xs={2}>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerToggle}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Grid>
-        ) : (
-          <Grid item id="links" sm={6}>
-            <Stack component="nav" direction="row" justifyContent="flex-end" spacing={1}>
-              <HeaderLinks />
-            </Stack>
-          </Grid>
-        )}
+        <Grid item id="mobile-menu-button" xs={2}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Grid>
+        <Grid item id="desktop-menu" sm={6}>
+          <Stack component="nav" direction="row" justifyContent="flex-end" spacing={1}>
+            <HeaderLinks />
+          </Stack>
+        </Grid>
       </Grid>
       <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
         <Box
