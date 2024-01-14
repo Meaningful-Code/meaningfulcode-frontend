@@ -44,6 +44,7 @@ const theme = createTheme({
     },
   },
   typography: {
+    fontFamily: 'var(--font-base)',
     h1: { fontSize: '2em' },
     h2: { fontSize: '1.7em' },
     h3: { fontSize: '1.5em' },
