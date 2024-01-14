@@ -1096,6 +1096,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-google-recaptcha@^2.1.5":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@types/react-google-recaptcha/-/react-google-recaptcha-2.1.8.tgz#a76065be49b22851914b539c32601402fde17bbd"
+  integrity sha512-nYI3ZDoteZ0g4FYusyKWqz7AZqRdu70R3wDkosCcN0peb2WLn57i0Alm4IPiCRIx59yTUVPTiOELZH08gV1wXA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.4.10":
   version "4.4.10"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.10.tgz#6ee71127bdab1f18f11ad8fb3322c6da27c327ac"

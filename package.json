@@ -29,6 +29,7 @@
     "@types/node": "^20.10.7",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
+    "@types/react-google-recaptcha": "^2.1.5",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
     "husky": "^8.0.3",
