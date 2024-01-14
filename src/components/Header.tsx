@@ -51,7 +51,6 @@ function HeaderLinks() {
 
 export default function PageHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -63,7 +62,7 @@ export default function PageHeader() {
         <Grid item xs={10} sm={6}>
           <Logo />
         </Grid>
-        <Grid item id="mobile-menu-button" xs={2}>
+        <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'none' } }}>
           <IconButton
             edge="start"
             color="inherit"
@@ -73,7 +72,7 @@ export default function PageHeader() {
             <MenuIcon />
           </IconButton>
         </Grid>
-        <Grid item id="desktop-menu" sm={6}>
+        <Grid item sm={6} sx={{ display: { xs: 'none', sm: 'block' } }}>
           <Stack component="nav" direction="row" justifyContent="flex-end" spacing={1}>
             <HeaderLinks />
           </Stack>
