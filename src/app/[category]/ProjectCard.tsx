@@ -20,11 +20,11 @@ import StarIcon from '@mui/icons-material/Star';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
 import TurnedInIconNot from '@mui/icons-material/TurnedInNot';
 
-import CategoryIcon from '../../components/CategoryIcon';
-import GitHubButton from '../../components/GitHubButton';
+import CategoryIcon from '@/components/CategoryIcon';
+import GitHubButton from '@/components/GitHubButton';
 import { ProjectCardListIcon } from './ProjectCardListIcon';
-import { Project } from '../../models/Project';
-import { formatLastUpdateAge } from '../../utils/date';
+import { Project } from '@/models/Project';
+import { formatLastUpdateAge } from '@/utils/date';
 
 function FeaturedListItem() {
   return (

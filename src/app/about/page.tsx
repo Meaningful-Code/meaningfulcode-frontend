@@ -12,7 +12,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
-import Emoji from '../../components/Emoji';
+import Emoji from '@/components/Emoji';
 
 export const metadata: Metadata = {
   title: 'About Meaningfulcode.org',

@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
-import LanguageDropdown from '../../components/LanguageDropdown';
+import LanguageDropdown from '@/components/LanguageDropdown';
 
 type SortButtonProps = {
   label: string;

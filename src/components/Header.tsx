@@ -11,7 +11,6 @@ import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 
-// import useMinimalGaTracker from '../components/useMinimalGaTracker';
 import MobileMenu from './MobileMenu';
 import Logo from './Logo';
 

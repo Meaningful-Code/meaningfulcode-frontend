@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import getMockProjects from './MockProjects';
-import { Project } from '../../models/Project';
+import { Project } from '@/models/Project';
 
 const prodAPIUrl = 'https://meaningfulcode.org';
 const forcedApi = process.env.REACT_APP_FORCE_API;
