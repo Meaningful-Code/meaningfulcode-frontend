@@ -1,9 +1,0 @@
-.vercel
-.vscode
-
-.eslintcache
-build
-node_modules
-
-.env
-.env.local
