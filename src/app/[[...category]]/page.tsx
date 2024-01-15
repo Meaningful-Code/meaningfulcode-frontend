@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 import shuffle from '@/utils/shuffle';
 import { Project } from '@/models/Project';
-import { getProjects } from './ProjectApi';
+import { getProjects } from '../ProjectApi';
 import ProjectsContainer from './ProjectsContainer';
 
 import './style.css';
@@ -20,7 +20,7 @@ export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
   searchParams;
-  const category = params.category;
+  const category = params.category ? params.category[0] : null;
   const hasCategory = category && category !== 'all';
   return {
     title: hasCategory

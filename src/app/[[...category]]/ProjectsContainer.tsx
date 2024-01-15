@@ -7,7 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Theme } from '@mui/material/styles';
 
 import { Project } from '@/models/Project';
-import { projectsStateFromUrl, projectsUrlFromState } from './projectUrl';
+import { decodeSearchParams, projectsUrlFromState } from './projectUrl';
 import ProjectCard from './ProjectCard';
 import HeaderAndMenus from './HeaderAndMenus';
 import { SortingAndFilteringHandlers } from './ProjectsSortingMenu';
@@ -65,11 +65,9 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
   const router = useRouter();
   const params = useParams<{ category: string }>();
   const { projects, languages } = props;
+  const category = params.category && params.category[0];
   const searchParams = useSearchParams();
-  const { category, language, search, sorting } = projectsStateFromUrl(
-    params.category,
-    searchParams
-  );
+  const { language, search, sorting } = decodeSearchParams(searchParams);
   const [bookmarkedProjects, setBookmarkedProjects] = useState<{
     [key: string]: boolean;
   }>({});

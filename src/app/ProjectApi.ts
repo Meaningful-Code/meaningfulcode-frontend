@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import getMockProjects from './MockProjects';
+import getMockProjects from './[[...category]]/MockProjects';
 import { Project } from '@/models/Project';
 
 const apiMode = process.env.API_MODE;
@@ -17,8 +17,9 @@ function getApiUrl() {
     return 'https://meaningfulcode.org';
   } else if (vercelUrl) {
     return `https://${vercelUrl}`;
+  } else {
+    return 'https://meaningfulcode.org';
   }
-  throw new Error('Unable to identify target API URL');
 }
 
 export async function getProjects(): Promise<Project[]> {
