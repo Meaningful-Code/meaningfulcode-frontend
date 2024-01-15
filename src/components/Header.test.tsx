@@ -14,8 +14,8 @@ describe('PageHeader Component', () => {
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
 
-    const logo = screen.getByAltText('logo');
-    expect(logo).toBeInTheDocument();
+    const logo = screen.getAllByAltText('logo');
+    expect(logo[0]).toBeInTheDocument();
 
     const title = screen.getByText('Meaningful Code');
     expect(title).toBeInTheDocument();

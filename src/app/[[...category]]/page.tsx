@@ -13,13 +13,8 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const DefaultPageTitle = 'Find Open-source projects with a social impact';
-
-export async function generateMetadata({
-  params,
-  searchParams,
-}: Props): Promise<Metadata> {
-  searchParams;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const DefaultPageTitle = 'Find Open-source projects with a social impact';
   const category = params.category ? params.category[0] : null;
   const hasCategory = category && category !== 'all';
   return {
@@ -45,10 +40,5 @@ export default async function ProjectPage() {
   let projects = await getProjects();
   projects = shuffle(projects);
   const languages = Array.from(getLanguageSet(projects));
-
-  return (
-    <>
-      <ProjectsContainer projects={projects} languages={languages} />
-    </>
-  );
+  return <ProjectsContainer projects={projects} languages={languages} />;
 }
