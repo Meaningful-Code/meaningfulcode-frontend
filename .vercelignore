@@ -1,12 +1,14 @@
 /*
 *.key
+.env.*
 !api
-api/package.json
+src/app/api/package.json
+src/app/api/_test*
 
 !public
 !src
 
-!mui.d.ts
 !package.json
 !tsconfig.json
+!next.config.js
 !yarn.lock

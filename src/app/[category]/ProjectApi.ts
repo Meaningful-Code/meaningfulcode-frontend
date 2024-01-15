@@ -3,19 +3,26 @@ import axios from 'axios';
 import getMockProjects from './MockProjects';
 import { Project } from '@/models/Project';
 
-const prodAPIUrl = 'https://meaningfulcode.org';
-const forcedApi = process.env.REACT_APP_FORCE_API;
-const projectsEndpoint = `${APIUrl()}/api/projects`;
-const submitProjectEndpoint = `${APIUrl()}/api/submit-project`;
+const apiMode = process.env.API_MODE;
+const projectsEndpoint = `${getApiUrl()}/api/projects`;
+const submitProjectEndpoint = `${getApiUrl()}/api/submit-project`;
 
-function APIUrl(): string {
-  if (forcedApi === 'prod') return prodAPIUrl;
-  if (forcedApi === 'local') return 'http://localhost:3001';
-  return '';
+function getApiUrl() {
+  const testMode = process.env.NODE_ENV === 'test';
+  const prodMode = process.env.NODE_ENV === 'production';
+  const vercelUrl = process.env.VERCEL_URL;
+  if (apiMode === 'stub' || testMode) {
+    return 'http://localhost:3001';
+  } else if (prodMode) {
+    return 'https://meaningfulcode.org';
+  } else if (vercelUrl) {
+    return `https://${vercelUrl}`;
+  }
+  throw new Error('Unable to identify target API URL');
 }
 
 export async function getProjects(): Promise<Project[]> {
-  if (forcedApi === 'stub') {
+  if (apiMode === 'stub') {
     return getMockProjects();
   }
 
