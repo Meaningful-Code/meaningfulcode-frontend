@@ -1,0 +1,168 @@
+/*-----------------------------------
+  Categories and sortings
+*/
+
+.categories {
+  margin-bottom: 1.5em;
+}
+
+.category-description {
+  margin-bottom: 3em;
+}
+
+#root .categories > a {
+  margin: 0 0 0.5em 0.5em;
+  padding: 0.5em 0.65em;
+  border-radius: 36px;
+}
+
+.description-large {
+  display: none;
+}
+
+.lg-only-br {
+  display: none;
+}
+
+@media only screen and (max-width: 599px) {
+  .categories {
+    margin-bottom: 1em;
+  }
+
+  #root .categories a {
+    margin: 0 0 0.3em 0.3em;
+    padding: 0.3em 0.5em;
+    font-size: 1em;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .category-description {
+    text-align: center;
+    margin: 0 4em 3em;
+    font-size: 1.25em;
+  }
+  .description-large {
+    display: block;
+  }
+  .description-small {
+    display: none;
+  }
+  .lg-only-br {
+    display: inline;
+  }
+}
+
+.sorting {
+  margin: 3em;
+}
+
+/*-----------------------------------
+  Project grid
+*/
+
+.item-grid {
+  margin: 0 auto;
+}
+
+/*-----------------------------------
+  Categories
+*/
+.cat-all {
+  background-color: var(--cat-all-color);
+}
+.cat-health {
+  background-color: var(--cat-health-color);
+}
+.cat-education {
+  background-color: var(--cat-education-color);
+}
+.cat-environment {
+  background-color: var(--cat-environment-color);
+}
+.cat-society {
+  background-color: var(--cat-society-color);
+}
+.cat-humanitarian {
+  background-color: var(--cat-humanitarian-color);
+}
+.cat-accessibility {
+  background-color: var(--cat-accessibility-color);
+}
+
+/*-----------------------------------
+  Project cards
+*/
+
+.project-item.featured::before {
+  border: 6px solid #009c95;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  content: '';
+  opacity: 0.25;
+}
+
+.project-item.featured.environment::before {
+  border-color: #21ba45;
+}
+.project-item.featured.humanitarian::before {
+  border-color: #f2711c;
+}
+.project-item.featured.accessibility::before {
+  border-color: #2185d0;
+}
+.project-item.featured.society::before {
+  border-color: #6435c9;
+}
+.project-item.featured.health::before {
+  border-color: #00b5ad;
+}
+.project-item.featured.education::before {
+  border-color: #db2828;
+}
+
+.project-item.starred::before {
+  content: '\f005';
+  font-family: 'Icons';
+  font-size: 10em;
+  color: #ffd000;
+  opacity: 0.25;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 100px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.project-item.new::before {
+  content: '\f1d8';
+  font-family: 'Icons';
+  font-size: 10em;
+  color: #25ca72;
+  opacity: 0.15;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 150px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.project-item {
+  width: 350px !important;
+}
+
+.project-item .category-label span {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.project-item .project-desc {
+  margin: 0px;
+}

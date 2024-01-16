@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -33,7 +33,7 @@ export default function CategoryButton(props: CategoryButtonProps) {
       component={Link}
       /* @ts-ignore: color type not properly recognized */
       color={getCategoryMuiColor(category)}
-      to={targetUrl}
+      href={targetUrl}
       sx={{
         color: getTextColor(),
         marginRight: 5,

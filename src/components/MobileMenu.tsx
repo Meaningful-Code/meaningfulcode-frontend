@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -12,15 +13,13 @@ import InfoIcon from '@mui/icons-material/Info';
 import AddIcon from '@mui/icons-material/Add';
 import RocketIcon from '@mui/icons-material/Rocket';
 
-import { Link as RouterLink } from 'react-router-dom';
-
 export default function MobileMenu(): JSX.Element {
   const theme = useTheme();
   const isLightMode = theme.palette.mode === 'light';
   const color = isLightMode ? 'var(--black)' : 'var(--white)';
   return (
     <List className="mobile-menu">
-      <ListItem component={RouterLink} to="/submit-project">
+      <ListItem component={Link} href="/submit-project">
         <ListItemButton>
           <ListItemIcon>
             <AddIcon />
@@ -29,7 +28,7 @@ export default function MobileMenu(): JSX.Element {
         </ListItemButton>
       </ListItem>
       <Divider />
-      <ListItem component={RouterLink} to="/">
+      <ListItem component={Link} href="/">
         <ListItemButton>
           <ListItemIcon>
             <HomeIcon />
@@ -37,7 +36,7 @@ export default function MobileMenu(): JSX.Element {
           <ListItemText primary="Home" sx={{ color: color }} />
         </ListItemButton>
       </ListItem>
-      <ListItem component={RouterLink} to="/get-started">
+      <ListItem component={Link} href="/get-started">
         <ListItemButton>
           <ListItemIcon>
             <RocketIcon />
@@ -45,7 +44,7 @@ export default function MobileMenu(): JSX.Element {
           <ListItemText primary="Getting started" sx={{ color: color }} />
         </ListItemButton>
       </ListItem>
-      <ListItem component={RouterLink} to="/about">
+      <ListItem component={Link} href="/about">
         <ListItemButton>
           <ListItemIcon>
             <InfoIcon />

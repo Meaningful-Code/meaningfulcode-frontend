@@ -1,20 +1,12 @@
 import React from 'react';
 import { render as rtlRender, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material/styles';
-import createDefaultTheme from '../theme/createDefaultTheme';
 
 import PageHeader from './Header';
+import ThemeRegistry from './ThemeRegistry/ThemeRegistry';
 
-const render = (ui: JSX.Element, options = {}) => rtlRender(
-    <ThemeProvider theme={createDefaultTheme()}>
-      <Router>
-        {ui}
-      </Router>
-    </ThemeProvider>,
-    options
-  );
+const render = (ui: JSX.Element, options = {}) =>
+  rtlRender(<ThemeRegistry>{ui}</ThemeRegistry>, options);
 
 describe('PageHeader Component', () => {
   it('should render the header with logo and title', () => {
@@ -22,9 +14,8 @@ describe('PageHeader Component', () => {
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
 
-    const logo = screen.getByAltText('logo');
-    expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', '/meaningfulcode-logo.png');
+    const logo = screen.getAllByAltText('logo');
+    expect(logo[0]).toBeInTheDocument();
 
     const title = screen.getByText('Meaningful Code');
     expect(title).toBeInTheDocument();

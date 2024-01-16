@@ -6,11 +6,15 @@
    </url>
    <url>
       <loc>https://meaningfulcode.org/about</loc>
-      <changefreq>weekly</changefreq>
+      <changefreq>monthly</changefreq>
    </url>
    <url>
       <loc>https://meaningfulcode.org/get-started</loc>
-      <changefreq>weekly</changefreq>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://meaningfulcode.org/submit-project</loc>
+      <changefreq>monthly</changefreq>
    </url>
    <url>
       <loc>https://meaningfulcode.org/health</loc>

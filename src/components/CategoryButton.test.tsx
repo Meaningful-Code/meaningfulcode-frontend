@@ -2,9 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from '@mui/material/styles';
 import '@testing-library/jest-dom';
-import { MemoryRouter } from 'react-router-dom';
 
-import createDefaultTheme from '../theme/createDefaultTheme';
+import ThemeRegistry from './ThemeRegistry/ThemeRegistry';
 
 import CategoryButton from './CategoryButton';
 
@@ -12,11 +11,9 @@ describe('Component: CategoryButton', () => {
   it('links target URL', async () => {
     const targetURL = '/mycategory';
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
-        <MemoryRouter>
-          <CategoryButton category="all" active={false} targetUrl={targetURL} />
-        </MemoryRouter>
-      </ThemeProvider>
+      <ThemeRegistry>
+        <CategoryButton category="all" active={false} targetUrl={targetURL} />
+      </ThemeRegistry>
     );
 
     expect(screen.getByRole('link')).toHaveAttribute('href', targetURL);
@@ -25,11 +22,9 @@ describe('Component: CategoryButton', () => {
   it('is h1 if active', async () => {
     const name = 'mycategory';
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
-        <MemoryRouter>
-          <CategoryButton category={name} active targetUrl="/abc" />
-        </MemoryRouter>
-      </ThemeProvider>
+      <ThemeRegistry>
+        <CategoryButton category={name} active targetUrl="/abc" />
+      </ThemeRegistry>
     );
 
     expect(screen.getByRole('heading')).toBeDefined();
@@ -39,11 +34,9 @@ describe('Component: CategoryButton', () => {
 
   it('is not h1 if inactive', async () => {
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
-        <MemoryRouter>
-          <CategoryButton category="all" active={false} targetUrl="/abc" />
-        </MemoryRouter>
-      </ThemeProvider>
+      <ThemeRegistry>
+        <CategoryButton category="all" active={false} targetUrl="/abc" />
+      </ThemeRegistry>
     );
 
     expect(screen.queryByRole('heading')).toBeNull();

@@ -1,28 +1,40 @@
 import React from 'react';
-
-import Link from '@mui/material/Link';
+import Link from 'next/link';
+import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Theme } from '@mui/material/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 export default function Logo() {
-  const isNotMobile = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
   return (
-    <Link to="/" component={RouterLink} underline="none">
+    <Link href="/">
       <Stack component="h1" className="header" direction="row">
-        <img id="logo" src="/meaningfulcode-logo.png" alt="logo" loading="lazy" />
+        <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+          <Image
+            src="/meaningfulcode-logo.png"
+            alt="logo"
+            loading="lazy"
+            width={48}
+            height={48}
+          />
+        </Box>
+        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Image
+            src="/meaningfulcode-logo.png"
+            alt="logo"
+            loading="lazy"
+            width={96}
+            height={96}
+          />
+        </Box>
         <Stack>
           <Typography id="title" color="primary">
             Meaningful Code
           </Typography>
-          {isNotMobile && (
-            <Typography id="subtitle" color="var(--gray)">
-              Find Open Source projects, <br />
-              contribute, make a difference.
-            </Typography>
-          )}
+          <Typography id="subtitle" color="var(--gray)">
+            Find Open Source projects, <br />
+            contribute, make a difference.
+          </Typography>
         </Stack>
       </Stack>
     </Link>

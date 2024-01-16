@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 import Button from '@mui/material/Button';
@@ -6,12 +8,9 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import { Theme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link as RouterLink } from 'react-router-dom';
+import Link from 'next/link';
 
-import useMinimalGaTracker from '../components/useMinimalGaTracker';
 import MobileMenu from './MobileMenu';
 import Logo from './Logo';
 
@@ -22,24 +21,24 @@ function HeaderLinks() {
         id="addProject"
         variant="outlined"
         disableElevation
-        component={RouterLink}
-        to="submit-project"
+        component={Link}
+        href="/submit-project"
       >
         Add a project!
       </Button>
       <Button
         /* @ts-ignore: color type not properly recognized */
         color="neutral"
-        component={RouterLink}
-        to="/get-started"
+        component={Link}
+        href="/get-started"
       >
         Get started
       </Button>
       <Button
         /* @ts-ignore: color type not properly recognized */
         color="neutral"
-        component={RouterLink}
-        to="/about"
+        component={Link}
+        href="/about"
       >
         About
       </Button>
@@ -49,13 +48,10 @@ function HeaderLinks() {
 
 export default function PageHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
-
-  useMinimalGaTracker();
 
   return (
     <header>
@@ -63,24 +59,21 @@ export default function PageHeader() {
         <Grid item xs={10} sm={6}>
           <Logo />
         </Grid>
-        {isMobile ? (
-          <Grid item xs={2}>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerToggle}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Grid>
-        ) : (
-          <Grid item id="links" sm={6}>
-            <Stack component="nav" direction="row" justifyContent="flex-end" spacing={1}>
-              <HeaderLinks />
-            </Stack>
-          </Grid>
-        )}
+        <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'none' } }}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Grid>
+        <Grid item sm={6} sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Stack component="nav" direction="row" justifyContent="flex-end" spacing={1}>
+            <HeaderLinks />
+          </Stack>
+        </Grid>
       </Grid>
       <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
         <Box

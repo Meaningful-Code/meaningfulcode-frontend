@@ -6,3 +6,5 @@ set -e
 yarn -s test --watchAll=false
 
 yarn -s run lint
+
+yarn -s run build
