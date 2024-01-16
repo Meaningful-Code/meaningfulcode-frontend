@@ -35,3 +35,13 @@ export function projectsUrlFromState(
   const searchParams = encodeSearchParams(language, search, sorting).toString();
   return `/${category || ''}${searchParams && `?${searchParams}`}`;
 }
+
+type Params = {
+  category: string[] | null;
+};
+
+export function categoryFromParams(params: Params): string | null {
+  const category = params.category ? params.category[0] : null;
+  const hasCategory = category && category !== 'all' && category !== 'index';
+  return hasCategory ? category : null;
+}

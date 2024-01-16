@@ -5,20 +5,20 @@ import shuffle from '@/utils/shuffle';
 import { Project } from '@/models/Project';
 import { getProjects } from '../ProjectApi';
 import ProjectsContainer from './ProjectsContainer';
+import { categoryFromParams } from './projectUrl';
 
 import './style.css';
 
 type Props = {
-  params: { category: string };
+  params: { category: string[] };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const DefaultPageTitle = 'Find Open-source projects with a social impact';
-  const category = params.category ? params.category[0] : null;
-  const hasCategory = category && category !== 'all';
+  const category = categoryFromParams(params);
   return {
-    title: hasCategory
+    title: category
       ? `${category.charAt(0).toUpperCase() + category.slice(1)} open-source projects`
       : DefaultPageTitle,
   };

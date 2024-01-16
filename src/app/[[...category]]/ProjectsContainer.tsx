@@ -4,7 +4,11 @@ import React from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 
 import { Project } from '@/models/Project';
-import { decodeSearchParams, projectsUrlFromState } from './projectUrl';
+import {
+  decodeSearchParams,
+  projectsUrlFromState,
+  categoryFromParams,
+} from './projectUrl';
 
 import HeaderAndMenus from './HeaderAndMenus';
 import ProjectsGrid from './ProjectsGrid';
@@ -60,9 +64,9 @@ type ProjectsContainerProps = {
 export default function ProjectsContainer(props: ProjectsContainerProps) {
   const { projects, languages } = props;
   const router = useRouter();
-  const params = useParams<{ category: string }>();
+  const params = useParams<{ category: string[] }>();
   const searchParams = useSearchParams();
-  const category = params.category && params.category[0];
+  const category = categoryFromParams(params);
   const { language, search, sorting } = decodeSearchParams(searchParams);
 
   const filteredProjects =

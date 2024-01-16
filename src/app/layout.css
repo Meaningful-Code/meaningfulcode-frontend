@@ -31,11 +31,6 @@ header a {
   font-size: 1.6rem;
 }
 
-img#logo {
-  width: 96px;
-  height: 96px;
-}
-
 main {
   margin-top: 3em;
 }
@@ -51,11 +46,6 @@ main {
 
   #subtitle {
     display: none;
-  }
-
-  img#logo {
-    width: 48px;
-    height: 48px;
   }
 
   main {
