@@ -38,7 +38,7 @@ function getLanguageSet(projects: Project[]): Set<string> {
 
 export default async function ProjectPage() {
   let projects = await getProjects();
-  projects = shuffle(projects);
+  shuffle(projects);
   const languages = Array.from(getLanguageSet(projects));
   return <ProjectsContainer projects={projects} languages={languages} />;
 }
