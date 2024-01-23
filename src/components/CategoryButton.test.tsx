@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { lightTheme } from '@/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import '@testing-library/jest-dom';
-
-import ThemeRegistry from './ThemeRegistry/ThemeRegistry';
 
 import CategoryButton from './CategoryButton';
 
@@ -11,9 +10,9 @@ describe('Component: CategoryButton', () => {
   it('links target URL', async () => {
     const targetURL = '/mycategory';
     render(
-      <ThemeRegistry>
+      <ThemeProvider theme={lightTheme}>
         <CategoryButton category="all" active={false} targetUrl={targetURL} />
-      </ThemeRegistry>
+      </ThemeProvider>
     );
 
     expect(screen.getByRole('link')).toHaveAttribute('href', targetURL);
@@ -22,9 +21,9 @@ describe('Component: CategoryButton', () => {
   it('is h1 if active', async () => {
     const name = 'mycategory';
     render(
-      <ThemeRegistry>
+      <ThemeProvider theme={lightTheme}>
         <CategoryButton category={name} active targetUrl="/abc" />
-      </ThemeRegistry>
+      </ThemeProvider>
     );
 
     expect(screen.getByRole('heading')).toBeDefined();
@@ -34,9 +33,9 @@ describe('Component: CategoryButton', () => {
 
   it('is not h1 if inactive', async () => {
     render(
-      <ThemeRegistry>
+      <ThemeProvider theme={lightTheme}>
         <CategoryButton category="all" active={false} targetUrl="/abc" />
-      </ThemeRegistry>
+      </ThemeProvider>
     );
 
     expect(screen.queryByRole('heading')).toBeNull();

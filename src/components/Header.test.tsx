@@ -1,12 +1,13 @@
 import React from 'react';
 import { render as rtlRender, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import { lightTheme } from '@/theme';
 
 import PageHeader from './Header';
-import ThemeRegistry from './ThemeRegistry/ThemeRegistry';
 
 const render = (ui: JSX.Element, options = {}) =>
-  rtlRender(<ThemeRegistry>{ui}</ThemeRegistry>, options);
+  rtlRender(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>, options);
 
 describe('PageHeader Component', () => {
   it('should render the header with logo and title', () => {
