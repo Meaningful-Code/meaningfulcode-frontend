@@ -4,7 +4,7 @@ export const categories = [
   'society',
   'education',
   'humanitarian',
-  'accessibility'
+  'accessibility',
 ];
 
 export type Project = {
@@ -16,5 +16,6 @@ export type Project = {
   description?: string;
   url: string;
   websiteUrl: string;
+  // In seconds since the epoch
   lastCommitTimestamp: number;
 };

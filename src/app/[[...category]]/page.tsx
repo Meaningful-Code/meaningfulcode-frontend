@@ -2,8 +2,8 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 import shuffle from '@/utils/shuffle';
-import { Project } from '@/models/Project';
-import { getProjects } from '../ProjectApi';
+import { Project, categories } from '@/models/Project';
+import getProjects from './getProjects';
 import ProjectsContainer from './ProjectsContainer';
 import { categoryFromParams } from './projectUrl';
 

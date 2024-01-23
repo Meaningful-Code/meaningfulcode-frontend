@@ -15,7 +15,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import { submitProject, ProjectSubmission } from '../ProjectApi';
+import submitProject from './submitProject';
 
 export default function SubmitProject() {
   useEffect(() => {
@@ -45,6 +45,14 @@ const enum FormState {
   Error,
   Success,
 }
+
+export type ProjectSubmission = {
+  name: string;
+  website: string;
+  repository: string;
+  category: string;
+  description: string;
+};
 
 function SubmitProjectForm() {
   const [project, setProject] = useState<ProjectSubmission>({
