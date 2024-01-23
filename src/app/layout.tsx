@@ -20,7 +20,7 @@ export const metadata = {
     'Pick a cause to support, find Open Source projects to contribute to, and make an impact! Write meaningful code, from environment, to health',
 };
 
-export function App({ children }: { children: React.ReactNode }) {
+export function PageLayout({ children }: { children: React.ReactNode }) {
   return (
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <ThemeProvider theme={lightTheme}>
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             });`}
         </Script>
         <GaPageEvent />
-        <App>{children}</App>
+        <PageLayout>{children}</PageLayout>
       </body>
     </html>
   );

@@ -14,6 +14,15 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export async function generateStaticParams() {
+  let routes: {}[] = categories.map((category) => {
+    return [{ category: category }];
+  });
+  routes.push([{ category: 'all' }]);
+  routes.push([{}]);
+  return routes;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const DefaultPageTitle = 'Find Open-source projects with a social impact';
   const category = categoryFromParams(params);
