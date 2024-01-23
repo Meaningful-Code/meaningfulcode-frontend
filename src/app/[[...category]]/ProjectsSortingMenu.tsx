@@ -1,9 +1,13 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
 import LanguageDropdown from '@/components/LanguageDropdown';
+import { projectsUrlFromState } from './projectUrl';
 
 type SortButtonProps = {
   label: string;
@@ -58,33 +62,56 @@ export interface SortingAndFilteringHandlers {
 }
 
 interface ProjectsSortingMenuProps {
+  category: string | null;
   language: string | null;
   languages: string[];
   search: string | null;
-  handlers: SortingAndFilteringHandlers;
+  sorting: string | null;
+  handlers?: SortingAndFilteringHandlers;
 }
 
 const ProjectsSortingMenu = ({
+  category,
   language,
   languages,
   search,
+  sorting,
   handlers,
 }: ProjectsSortingMenuProps) => {
+  const router = useRouter();
+  const actionHandlers = handlers || {
+    sortByStars: () => {
+      router.push(projectsUrlFromState(category, language, search, 'stars'));
+    },
+    sortByLastCommit: () => {
+      router.push(projectsUrlFromState(category, language, search, 'lastCommit'));
+    },
+    sortByBookmarked: () => {
+      router.push(projectsUrlFromState(category, language, search, 'bookmarked'));
+    },
+    filterByLanguage: (language) => {
+      router.push(projectsUrlFromState(category, language, search, sorting));
+    },
+    filterBySearch: (search) => {
+      router.push(projectsUrlFromState(category, language, search, sorting));
+    },
+  };
+
   const handleFilterByLanguage = (changeEvent: React.SyntheticEvent<Element, Event>) => {
     // @ts-ignore
     const selectedLanguage = changeEvent.target.innerText;
-    handlers.filterByLanguage(selectedLanguage);
+    actionHandlers.filterByLanguage(selectedLanguage);
   };
 
   const handleFilterBySearch = (changeEvent: React.ChangeEvent<HTMLInputElement>) => {
-    handlers.filterBySearch(changeEvent.target.value);
+    actionHandlers.filterBySearch(changeEvent.target.value);
   };
 
   return (
     <Grid container justifyContent="center" spacing={0.5} className="sorting">
-      <SortButton label="most starred" onClick={handlers.sortByStars} />
-      <SortButton label="last updated" onClick={handlers.sortByLastCommit} />
-      <SortButton label="bookmarked" onClick={handlers.sortByBookmarked} />
+      <SortButton label="most starred" onClick={actionHandlers.sortByStars} />
+      <SortButton label="last updated" onClick={actionHandlers.sortByLastCommit} />
+      <SortButton label="bookmarked" onClick={actionHandlers.sortByBookmarked} />
       <LanguageDropdown
         languages={languages || []}
         language={language}

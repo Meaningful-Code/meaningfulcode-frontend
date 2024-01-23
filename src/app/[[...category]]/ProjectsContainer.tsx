@@ -1,18 +1,13 @@
 'use client';
 
-import React from 'react';
-import { useRouter, useParams, useSearchParams } from 'next/navigation';
+import React, { Suspense } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 
 import { Project } from '@/models/Project';
-import {
-  decodeSearchParams,
-  projectsUrlFromState,
-  categoryFromParams,
-} from './projectUrl';
+import { decodeSearchParams, categoryFromParams } from './projectUrl';
 
 import HeaderAndMenus from './HeaderAndMenus';
 import ProjectsGrid from './ProjectsGrid';
-import { SortingAndFilteringHandlers } from './ProjectsSortingMenu';
 
 function filterProjects(
   projects: Project[],
@@ -63,7 +58,6 @@ type ProjectsContainerProps = {
 
 export default function ProjectsContainer(props: ProjectsContainerProps) {
   const { projects, languages } = props;
-  const router = useRouter();
   const params = useParams<{ category: string[] }>();
   const searchParams = useSearchParams();
   const category = categoryFromParams(params);
@@ -77,28 +71,9 @@ export default function ProjectsContainer(props: ProjectsContainerProps) {
     ? sortProjects(filteredProjects, sorting)
     : filteredProjects;
 
-  const handlers: SortingAndFilteringHandlers = {
-    sortByStars: () => {
-      router.push(projectsUrlFromState(category, language, search, 'stars'));
-    },
-    sortByLastCommit: () => {
-      router.push(projectsUrlFromState(category, language, search, 'lastCommit'));
-    },
-    sortByBookmarked: () => {
-      router.push(projectsUrlFromState(category, language, search, 'bookmarked'));
-    },
-    filterByLanguage: (language) => {
-      router.push(projectsUrlFromState(category, language, search, sorting));
-    },
-    filterBySearch: (search) => {
-      router.push(projectsUrlFromState(category, language, search, sorting));
-    },
-  };
-
   return (
     <>
       <HeaderAndMenus
-        handlers={handlers}
         category={category}
         language={language}
         languages={languages}

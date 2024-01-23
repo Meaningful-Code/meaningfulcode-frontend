@@ -39,11 +39,10 @@ type MenuProps = {
   languages: string[];
   search: string | null;
   sorting: string | null;
-  handlers: SortingAndFilteringHandlers;
 };
 
 export default function HeaderAndMenus(props: MenuProps) {
-  const { handlers, category, language, languages, search, sorting } = props;
+  const { category, language, languages, search, sorting } = props;
   return (
     <>
       <CategoryButtons
@@ -53,10 +52,11 @@ export default function HeaderAndMenus(props: MenuProps) {
       />
       <HeaderText category={category} />
       <ProjectsSortingMenu
+        category={category}
         language={language}
         languages={languages}
         search={search}
-        handlers={handlers}
+        sorting={sorting}
       />
     </>
   );
