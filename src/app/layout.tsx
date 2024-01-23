@@ -3,13 +3,12 @@ import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import { Open_Sans } from 'next/font/google';
 
-import Container from '@mui/material/Container';
-
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
 import { lightTheme } from '@/theme';
-
+import PatchCssStyle from '@/PatchCssStyle';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -26,6 +25,7 @@ export function App({ children }: { children: React.ReactNode }) {
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
+        <PatchCssStyle />
         <div id="root">
           <Header />
           <Container component="main" id="root-container">
