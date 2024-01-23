@@ -5,7 +5,11 @@ import { Open_Sans } from 'next/font/google';
 
 import Container from '@mui/material/Container';
 
-import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { lightTheme } from '@/theme';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -19,15 +23,18 @@ export const metadata = {
 
 export function App({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeRegistry>
-      <div id="root">
-        <Header />
-        <Container component="main" id="root-container">
-          {children}
-        </Container>
-        <Footer />
-      </div>
-    </ThemeRegistry>
+    <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+      <ThemeProvider theme={lightTheme}>
+        <CssBaseline />
+        <div id="root">
+          <Header />
+          <Container component="main" id="root-container">
+            {children}
+          </Container>
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </AppRouterCacheProvider>
   );
 }
 

@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.3",
     "@mui/material": "^5.15.3",
+    "@mui/material-nextjs": "^5.15.3",
     "@octokit/rest": "^20.0.2",
     "@vercel/node": "^3.0.15",
     "aws-sdk": "^2.1530.0",
