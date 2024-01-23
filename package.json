@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "yarn lint && yarn test && yarn build && npx vercel"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
