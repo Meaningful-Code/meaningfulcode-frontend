@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import shuffle from '@/utils/shuffle';
-import { Project, categories } from '@/models/Project';
 import getProjects from './getProjects';
-import ProjectsContainer from './ProjectsContainer';
 import { categoryFromParams } from './projectUrl';
+import { Project, categories } from '@/models/Project';
+import ProjectsContainer from './ProjectsContainer';
+import HeaderAndMenus from './HeaderAndMenus';
 
 import './style.css';
 
@@ -45,6 +46,18 @@ function getLanguageSet(projects: Project[]): Set<string> {
   return languagesSet;
 }
 
+function PlaceholderHeaderAndMenu() {
+  return (
+    <HeaderAndMenus
+      category={'none'}
+      language={null}
+      languages={[]}
+      search={null}
+      sorting={null}
+    />
+  );
+}
+
 export default async function ProjectPage() {
   let projects = await getProjects();
   projects = projects.filter((project) => {
@@ -53,5 +66,10 @@ export default async function ProjectPage() {
   });
   shuffle(projects);
   const languages = Array.from(getLanguageSet(projects));
-  return <ProjectsContainer projects={projects} languages={languages} />;
+
+  return (
+    <Suspense fallback={<PlaceholderHeaderAndMenu />}>
+      <ProjectsContainer projects={projects} languages={languages} />
+    </Suspense>
+  );
 }
