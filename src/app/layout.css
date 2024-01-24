@@ -1,3 +1,16 @@
+:root {
+  --gray: #888;
+  --white: #fff;
+  --black: #000;
+  --cat-all-color: #1f647d;
+  --cat-health-color: #cc8562;
+  --cat-education-color: #3c9d76;
+  --cat-environment-color: #3c9d76;
+  --cat-society-color: #1f647d;
+  --cat-humanitarian-color: #cc8562;
+  --cat-accessibility-color: #1f647d;
+}
+
 body {
   /* Always show vertical bar to avoid resizes on empty results*/
   overflow-y: scroll;

@@ -25,7 +25,8 @@ export function PageLayout({ children }: { children: React.ReactNode }) {
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
-        <PatchCssStyle />
+        {/* Color patching disabled until dark theme restored */}
+        {/* <PatchCssStyle /> */}
         <div id="root">
           <Header />
           <Container component="main" id="root-container">
