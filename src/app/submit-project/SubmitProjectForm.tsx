@@ -30,10 +30,11 @@ export type ProjectSubmission = {
 };
 
 export default function SubmitProjectForm() {
+  const defaultRepository = 'https://github.com/';
   const [project, setProject] = useState<ProjectSubmission>({
     name: '',
     website: '',
-    repository: '',
+    repository: defaultRepository,
     category: '',
     description: '',
   });
@@ -98,6 +99,7 @@ export default function SubmitProjectForm() {
   return (
     <>
       <Typography variant="h2">Impactful project form</Typography>
+      <br />
       <ReCAPTCHA
         ref={recaptchaRef}
         size="invisible"
@@ -109,8 +111,9 @@ export default function SubmitProjectForm() {
         <TextField label="Website" name="website" onChange={handleChange} />
         <TextField
           error={repositoryError !== ''}
-          label="Repository"
+          label="Github Repository"
           name="repository"
+          defaultValue={defaultRepository}
           onChange={handleChange}
           helperText={repositoryError}
         />
@@ -118,7 +121,7 @@ export default function SubmitProjectForm() {
           label="Category"
           name="category"
           onChange={handleChange}
-          defaultValue={`Accessibility/Education/Environment/Health/Humanitarian/Society`}
+          placeholder="Accessibility, Education, Environment, Health, Humanitarian, Society"
         />
         <TextField
           label="Description"
