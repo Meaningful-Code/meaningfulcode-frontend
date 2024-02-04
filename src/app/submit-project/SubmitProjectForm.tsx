@@ -76,52 +76,22 @@ export default function SubmitProjectForm() {
     [project]
   );
 
-  const nameChanged = useCallback(
-    (e: any) => {
-      const updatedProject = project;
-      updatedProject.name = e.target.value;
-      setProject(updatedProject);
-    },
-    [project]
-  );
-  const websiteChanged = useCallback(
-    (e: any) => {
-      const updatedProject = project;
-      updatedProject.website = e.target.value;
-      setProject(updatedProject);
-    },
-    [project]
-  );
-  const repositoryChanged = useCallback(
-    (e: any) => {
-      const updatedProject = project;
-      const val = e.target.value;
-      updatedProject.repository = val;
-      setProject(updatedProject);
-      if (!val.startsWith('https://github.com/')) {
-        setRepositoryError('Must be valid Github Repository');
-      } else {
-        setRepositoryError('');
+  const handleChange = useCallback((event: any) => {
+    const { name, value } = event.target;
+    if (name === 'repository') {
+      const error = !value.startsWith('https://github.com/')
+        ? 'Must be a valid Github Repository'
+        : '';
+      setRepositoryError(error);
+      if (error !== '') {
+        return;
       }
-    },
-    [project]
-  );
-  const categoryChanged = useCallback(
-    (e: any) => {
-      const updatedProject = project;
-      updatedProject.category = e.target.value;
-      setProject(updatedProject);
-    },
-    [project]
-  );
-  const descriptionChanged = useCallback(
-    (e: any) => {
-      const updatedProject = project;
-      updatedProject.description = e.target.value;
-      setProject(updatedProject);
-    },
-    [project]
-  );
+    }
+    setProject((prevProject) => ({
+      ...prevProject,
+      [name]: value,
+    }));
+  }, []);
 
   const loading = formState === FormState.Submitted;
   const buttonDisabled = loading || repositoryError !== '';
@@ -135,24 +105,27 @@ export default function SubmitProjectForm() {
         onChange={recaptchaHandler}
       />
       <Stack spacing={2}>
-        <TextField label="Project name" onChange={nameChanged} />
-        <TextField label="Website" onChange={websiteChanged} />
+        <TextField label="Project name" name="name" onChange={handleChange} />
+        <TextField label="Website" name="website" onChange={handleChange} />
         <TextField
           error={repositoryError !== ''}
           label="Repository"
-          onChange={repositoryChanged}
+          name="repository"
+          onChange={handleChange}
           helperText={repositoryError}
         />
         <TextField
           label="Category"
-          onChange={categoryChanged}
+          name="category"
+          onChange={handleChange}
           defaultValue={`Accessibility/Education/Environment/Health/Humanitarian/Society`}
         />
         <TextField
           label="Description"
+          name="description"
           multiline
           rows={5}
-          onChange={descriptionChanged}
+          onChange={handleChange}
         />
         <Container disableGutters>
           <Button
@@ -167,18 +140,12 @@ export default function SubmitProjectForm() {
             {loading ? 'Submitting' : 'Submit'}
           </Button>
         </Container>
-        {formState === FormState.Error ? (
-          <Alert severity="error">{errorMessage}</Alert>
-        ) : (
-          ''
-        )}
-        {formState === FormState.Success ? (
+        {formState === FormState.Error && <Alert severity="error">{errorMessage}</Alert>}
+        {formState === FormState.Success && (
           <Alert severity="success">
             Project submitted successfully! You can review the ticket on{' '}
             <a href={ticketUrl}>GitHub</a>. Thank you for your contribution 🎉
           </Alert>
-        ) : (
-          ''
         )}
       </Stack>
     </>
