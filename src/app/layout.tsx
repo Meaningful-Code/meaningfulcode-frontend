@@ -15,7 +15,7 @@ import Footer from '@/components/Footer';
 import './layout.css';
 
 export const metadata = {
-  title: 'Find Open-source projects with a social impact',
+  title: 'Open-source for good',
   description:
     'Pick a cause to support, find Open Source projects to contribute to, and make an impact! Write meaningful code, from environment, to health',
 };

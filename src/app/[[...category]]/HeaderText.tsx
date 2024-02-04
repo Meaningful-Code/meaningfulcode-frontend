@@ -14,14 +14,14 @@ function GenericHeaderText() {
         <b>find Open Source projects</b> willing to make our world a better place .{' '}
         <br />
         From the environment to health, accessibility, and humanitarian, we believe that{' '}
-        <b>code can make a difference</b> when contributed to the right projects{' '}
+        <b>code can make a difference</b>: join open-source for good!{' '}
         <Emoji label="computer" symbol="💻" />.
       </p>
       <p className="description-small">
         <Emoji label="planet" symbol="🌍" /> <b>Pick a cause to support</b>, and{' '}
         <b>find Open Source projects</b> willing to make our world a better place . From
         the environment to health and humanitarian, we believe that{' '}
-        <b>code can make a difference</b> when contributed to the right projects{' '}
+        <b>code can make a difference</b> join open-source for good!{' '}
         <Emoji label="computer" symbol="💻" />.
       </p>
     </HeaderTextContainer>

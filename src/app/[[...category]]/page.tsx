@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const DefaultPageTitle = 'Find Open-source projects with a social impact';
+  const DefaultPageTitle = 'Open-source for good';
   const category = categoryFromParams(params);
   return {
     title: category
