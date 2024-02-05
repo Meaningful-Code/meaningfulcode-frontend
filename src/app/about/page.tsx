@@ -34,7 +34,7 @@ export default function About() {
         contribute to, we hope to accelerate those initiative and their positive impact
         on our society.
       </p>
-      <Typography variant="h2">Contact</Typography>
+      <Typography variant="h2">Reach out</Typography>
       <Button
         variant="outlined"
         href="https://discord.gg/KPAm7wd7fJ"
@@ -46,15 +46,6 @@ export default function About() {
       </Button>
       <Button
         variant="outlined"
-        href="https://github.com/Meaningful-Code/meaningfulcode-frontend"
-        disableElevation
-        color="secondary"
-        startIcon={<GitHubIcon />}
-      >
-        GitHub
-      </Button>
-      <Button
-        variant="outlined"
         href="mailto:contact@meaningfulcode.org"
         disableElevation
         color="secondary"
@@ -62,14 +53,35 @@ export default function About() {
       >
         Email
       </Button>
-      <Typography variant="h2">Source code</Typography>
-      <p>
-        The source code of this website is hosted on{' '}
-        <Link href="https://github.com/Meaningful-Code/meaningfulcode-frontend">
-          GitHub
-        </Link>
-        , contributors are welcome!
-      </p>
+      <Typography variant="h2">Get the source</Typography>
+      <Button
+        variant="outlined"
+        href="https://github.com/Meaningful-Code/meaningfulcode-frontend"
+        disableElevation
+        color="secondary"
+        startIcon={<GitHubIcon />}
+      >
+        GitHub
+      </Button>
+      <p>Contributors are welcome, and source is licensed under GPL-3.0:</p>
+      <ul>
+        <li>
+          The source code of the fronted is available on{' '}
+          <Link href="https://github.com/Meaningful-Code/meaningfulcode-frontend">
+            the Frontend repository
+          </Link>
+        </li>
+        <li>
+          The static list of projects is available on{' '}
+          <Link href="https://github.com/Meaningful-Code/meaningful-projects">
+            the Projects repository
+          </Link>
+        </li>
+        <li>
+          The backend is available to internal contributors, but not open-source yet for
+          security reasons
+        </li>
+      </ul>
       <Typography variant="h2">
         Thank you! <Emoji label="sparks" symbol="🎉" />
       </Typography>
