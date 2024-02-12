@@ -1,17 +1,8 @@
 import getMockProjects from './MockProjects';
 import { Project } from '@/models/Project';
+import getHost from '@/utils/getHost';
 
-const projectsEndpoint = `${getApiUrl()}/api/projects`;
-
-function getApiUrl() {
-  if (process.env.NEXT_PUBLIC_VERCEL_ENV) {
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
-  } else if (process.env.NODE_ENV === 'test') {
-    return 'http://localhost:3000';
-  } else {
-    return 'https://meaningfulcode.org';
-  }
-}
+const projectsEndpoint = `${getHost()}/api/projects`;
 
 export default async function getProjects(): Promise<Project[]> {
   if (process.env.API_MODE === 'stub') {

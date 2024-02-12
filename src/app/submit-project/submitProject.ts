@@ -1,5 +1,7 @@
 'use client';
 
+import getHost from '@/utils/getHost';
+
 export type ProjectSubmission = {
   name: string;
   website: string;
@@ -13,7 +15,7 @@ export default async function submitProject(
   recaptcha: string
 ) {
   try {
-    const submitProjectEndpoint = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/submit-project`;
+    const submitProjectEndpoint = `${getHost()}/api/submit-project`;
     const data = { project, recaptcha };
     const res = await fetch(submitProjectEndpoint, {
       method: 'POST',
