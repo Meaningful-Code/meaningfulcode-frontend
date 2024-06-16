@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import ReCAPTCHA from 'react-google-recaptcha';
 import submitProject from './submitProject';
 
+const RECAPTCHA_SITE_KEY = '6LeuSEYeAAAAAJrZY05dnjlIkU-3EAe4JqDdd3wz';
+
 const enum FormState {
   NotSubmitted,
   Submitted,
@@ -103,7 +105,7 @@ export default function SubmitProjectForm() {
       <ReCAPTCHA
         ref={recaptchaRef}
         size="invisible"
-        sitekey="6LeuSEYeAAAAAJrZY05dnjlIkU-3EAe4JqDdd3wz"
+        sitekey={RECAPTCHA_SITE_KEY}
         onChange={recaptchaHandler}
       />
       <Stack spacing={2}>
