@@ -12,6 +12,8 @@
     "deploy": "yarn lint && yarn test && yarn build && npx vercel"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.598.0",
+    "@aws-sdk/lib-dynamodb": "^3.598.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -20,7 +22,6 @@
     "@mui/material-nextjs": "^5.15.3",
     "@octokit/rest": "^20.0.2",
     "@vercel/node": "^3.0.15",
-    "aws-sdk": "^2.1530.0",
     "axios": "^1.6.5",
     "next": "^14.1.1",
     "react": "^18.2.0",
