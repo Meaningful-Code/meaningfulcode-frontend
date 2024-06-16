@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
+import getHost from '@/utils/getHost';
 import SubmitProjectForm from './SubmitProjectForm';
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function SubmitProject() {
         <li>Or fill the form below</li>
       </ul>
       <br />
-      <SubmitProjectForm />
+      <SubmitProjectForm host={getHost()} />
     </>
   );
 }

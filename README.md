@@ -6,7 +6,7 @@ This repository holds the frontend code of [meaningfulcode.org](https://meaningf
 
 The full list of projects can be seen at https://github.com/Meaningful-Code/meaningful-projects.
 
-The goal of this website is to promote **meaningful** and **opensource** projects looking for new contributors, willing to make a difference. Projects are regrouped in different categories: Health, Education, Environment, Society, and Humanitarian.
+The goal of this website is to promote **meaningful** and **open-source** projects looking for new contributors, willing to make a difference. Projects are regrouped in different categories: Health, Education, Environment, Society, and Humanitarian.
 
 ## Contributing & Supporting
 
@@ -21,7 +21,7 @@ But you can also...
 
 - 🐛 [Report an issue](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+)
 - 💡 [Suggest a new feature](https://github.com/Meaningful-Code/meaningfulcode-frontend/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=Feature%3A+)
-- 💬 Or just let us know what you think on the [Discord](https://discord.gg/KPAm7wd7fJ)!
+- 💬 Or just let us know your thoughts on the [Discord](https://discord.gg/KPAm7wd7fJ)!
 
 ## Build
 
@@ -37,13 +37,13 @@ The rest of the instructions on this page focus on the frontend.
 
 ### Setup
 
-The following steps guide you to setup your environment
+The following steps guide you to setup your environment:
 
 1. Install [Node 20](https://nodejs.org/en/download/package-manager/)
 1. Install [yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 1. Clone this repository, and run `yarn install`
 
-### Development build
+### Run locally without the backend
 
 1. Configure the frontend to use local stub data by creating a `.env.local` file containing
 
@@ -63,13 +63,29 @@ The following steps guide you to setup your environment
    ✓ Ready in 1059ms
    ```
 
+### Run locally with the backend
+
+Note that the backend (`src/app/api`) is not available publicly for security reasons.
+
+1. Checkout the `api` submodule: `git submodule update --init`
+
+2. Set the appropriate environment variables in `.env.local` and add
+
+   ```
+   MEANINGFUL_DEV=1
+   ```
+
+3. Run with `yarn dev`.
+
 #### Environment variables
 
-The `REACT_APP_FORCE_API` environment variable can be set to
+- `REACT_APP_FORCE_API` environment variable can be set to
 
-- `stub`,
-- `local`, API expected at `http://localhost:3001`,
-- or `prod`.
+  - `stub`,
+  - `local`, API expected at `http://localhost:3001`,
+  - or `prod`.
+
+- `MEANINGFUL_DEV` forces using `localhost` for API endpoints
 
 ### Production build
 
