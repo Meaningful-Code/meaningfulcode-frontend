@@ -1,7 +1,5 @@
 'use client';
 
-import getHost from '@/utils/getHost';
-
 export type ProjectSubmission = {
   name: string;
   website: string;
@@ -11,11 +9,12 @@ export type ProjectSubmission = {
 };
 
 export default async function submitProject(
+  host: string,
   project: ProjectSubmission,
   recaptcha: string
 ) {
   try {
-    const submitProjectEndpoint = `${getHost()}/api/submit-project`;
+    const submitProjectEndpoint = `${host}/api/submit-project`;
     const data = { project, recaptcha };
     const res = await fetch(submitProjectEndpoint, {
       method: 'POST',

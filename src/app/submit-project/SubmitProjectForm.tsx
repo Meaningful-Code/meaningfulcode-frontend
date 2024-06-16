@@ -31,7 +31,7 @@ export type ProjectSubmission = {
   description: string;
 };
 
-export default function SubmitProjectForm() {
+export default function SubmitProjectForm({ host }: { host: string }) {
   const defaultRepository = 'https://github.com/';
   const [project, setProject] = useState<ProjectSubmission>({
     name: '',
@@ -66,7 +66,7 @@ export default function SubmitProjectForm() {
         return;
       }
 
-      submitProject(project, token)
+      submitProject(host, project, token)
         .then((url) => {
           setTicketUrl(url);
           setFormState(FormState.Success);
@@ -76,7 +76,7 @@ export default function SubmitProjectForm() {
           setFormState(FormState.Error);
         });
     },
-    [project]
+    [host, project]
   );
 
   const handleChange = useCallback((event: any) => {
