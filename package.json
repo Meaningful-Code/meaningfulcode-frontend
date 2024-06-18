@@ -12,6 +12,7 @@
     "deploy": "yarn lint && yarn test && yarn build && npx vercel"
   },
   "dependencies": {
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.598.0",
     "@aws-sdk/client-dynamodb": "^3.598.0",
     "@aws-sdk/lib-dynamodb": "^3.598.0",
     "@emotion/cache": "^11.11.0",
