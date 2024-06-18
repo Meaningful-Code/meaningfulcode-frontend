@@ -42,6 +42,14 @@ function HeaderLinks() {
       >
         About
       </Button>
+      <Button
+        /* @ts-ignore: color type not properly recognized */
+        color="neutral"
+        component={Link}
+        href="/find-project"
+      >
+        Find projects!
+      </Button>
     </>
   );
 }
