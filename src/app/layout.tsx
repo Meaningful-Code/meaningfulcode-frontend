@@ -9,6 +9,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { lightTheme } from '@/theme';
 import PatchCssStyle from '@/PatchCssStyle';
+
+import { GOOGLE_TAG_ID } from '@/constants/constants';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -53,7 +55,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={open_sans_font.className}>
       <body>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-C9SQS63TJQ" />
+        <Script
+          async
+          src={'https://www.googletagmanager.com/gtag/js?id=' + GOOGLE_TAG_ID}
+        />
         <Script id="gtag">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -61,7 +66,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               dataLayer.push(arguments);
             }
             gtag('js', new Date());
-            gtag('config', 'G-C9SQS63TJQ', {
+            gtag('config', '` +
+            GOOGLE_TAG_ID +
+            `', {
               anonymize_ip: true,
               client_storage: 'none',
               ad_storage: 'denied',
