@@ -12,9 +12,9 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import ReCAPTCHA from 'react-google-recaptcha';
-import submitProject from './submitProject';
 
-const RECAPTCHA_SITE_KEY = '6LeuSEYeAAAAAJrZY05dnjlIkU-3EAe4JqDdd3wz';
+import { RECAPTCHA_SITE_KEY } from '@/constants/constants';
+import submitProject from './submitProject';
 
 const enum FormState {
   NotSubmitted,
