@@ -9,7 +9,6 @@ export default async function getProjects(): Promise<Project[]> {
     return getMockProjects();
   }
 
-  console.log(`Fetching projects from "${projectsEndpoint}"`);
   // start a timer to measure the duration of the fetch
   const res = await fetch(projectsEndpoint, { next: { revalidate: 4 * 3600 } });
   if (!res.ok) {
