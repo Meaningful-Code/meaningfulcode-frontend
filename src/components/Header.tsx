@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu';
+import ScienceIcon from '@mui/icons-material/Science';
 import Link from 'next/link';
 
 import MobileMenu from './MobileMenu';
@@ -47,6 +48,7 @@ function HeaderLinks() {
         color="neutral"
         component={Link}
         href="/find-project"
+        startIcon={<ScienceIcon />}
       >
         Find projects!
       </Button>
