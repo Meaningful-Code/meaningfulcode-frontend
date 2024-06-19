@@ -24,6 +24,10 @@
   display: none;
 }
 
+.sorting {
+  margin: 1em 0;
+}
+
 @media only screen and (max-width: 599px) {
   .categories {
     margin-bottom: 1em;
@@ -51,10 +55,9 @@
   .lg-only-br {
     display: inline;
   }
-}
-
-.sorting {
-  margin: 3em;
+  .sorting {
+    margin: 3em;
+  }
 }
 
 /*-----------------------------------
