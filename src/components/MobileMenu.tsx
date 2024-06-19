@@ -12,46 +12,56 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import AddIcon from '@mui/icons-material/Add';
 import RocketIcon from '@mui/icons-material/Rocket';
+import ScienceIcon from '@mui/icons-material/Science';
 
-export default function MobileMenu(): JSX.Element {
+function MenuButton({
+  href,
+  text,
+  icon,
+}: {
+  href: string;
+  text: string;
+  icon: JSX.Element;
+}) {
   const theme = useTheme();
   const isLightMode = theme.palette.mode === 'light';
   const color = isLightMode ? 'var(--black)' : 'var(--white)';
   return (
+    <ListItem component={Link} href={href}>
+      <ListItemButton>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={text} sx={{ color: color }} />
+      </ListItemButton>
+    </ListItem>
+  );
+}
+
+export default function MobileMenu(): JSX.Element {
+  const buttons = [
+    { href: '/submit-project', text: 'Submit project', icon: <AddIcon /> },
+    { text: 'divider' },
+    { href: '/', text: 'Home', icon: <HomeIcon /> },
+    { href: '/get-started', text: 'Getting started', icon: <RocketIcon /> },
+    { href: '/about', text: 'About', icon: <InfoIcon /> },
+    { href: '/find-project', text: 'Find projects!', icon: <ScienceIcon /> },
+  ];
+  return (
     <List className="mobile-menu">
-      <ListItem component={Link} href="/submit-project">
-        <ListItemButton>
-          <ListItemIcon>
-            <AddIcon />
-          </ListItemIcon>
-          <ListItemText primary="Submit project" sx={{ color: color }} />
-        </ListItemButton>
-      </ListItem>
-      <Divider />
-      <ListItem component={Link} href="/">
-        <ListItemButton>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" sx={{ color: color }} />
-        </ListItemButton>
-      </ListItem>
-      <ListItem component={Link} href="/get-started">
-        <ListItemButton>
-          <ListItemIcon>
-            <RocketIcon />
-          </ListItemIcon>
-          <ListItemText primary="Getting started" sx={{ color: color }} />
-        </ListItemButton>
-      </ListItem>
-      <ListItem component={Link} href="/about">
-        <ListItemButton>
-          <ListItemIcon>
-            <InfoIcon />
-          </ListItemIcon>
-          <ListItemText primary="About" sx={{ color: color }} />
-        </ListItemButton>
-      </ListItem>
+      {buttons.map((button, index) => {
+        if (button.text === 'divider') {
+          return <Divider key={index} />;
+        }
+        return (
+          <MenuButton
+            key={index}
+            // @ts-ignore: href will be present
+            href={button.href}
+            // @ts-ignore: icon will be present
+            icon={button.icon}
+            text={button.text}
+          />
+        );
+      })}
     </List>
   );
 }
