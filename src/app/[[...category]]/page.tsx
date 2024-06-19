@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 
 import shuffle from '@/utils/shuffle';
 import getProjects from './getProjects';
@@ -27,6 +28,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const DefaultPageTitle = 'Open-source for good';
   const category = categoryFromParams(params);
+
+  // Redirect home if category is not valid, as we capture all routes
+  if (category && !categories.includes(category)) {
+    return redirect('/');
+  }
+
   return {
     title: category
       ? `${category.charAt(0).toUpperCase() + category.slice(1)} open-source projects`
