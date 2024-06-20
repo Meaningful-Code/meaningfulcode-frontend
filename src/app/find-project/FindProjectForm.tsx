@@ -49,6 +49,10 @@ export default function FindProjectForm({ host }: { host: string }) {
 
   const recaptchaHandler = useCallback(
     (token: string | null): void => {
+      if (formState !== FormState.Submitted) {
+        // Ignore spurious recaptcha responses
+        return;
+      }
       if (!token) {
         setErrorMessage('Captcha error');
         setFormState(FormState.Error);
@@ -67,7 +71,7 @@ export default function FindProjectForm({ host }: { host: string }) {
           setFormState(FormState.Error);
         });
     },
-    [host, previousPrompt]
+    [formState, host, previousPrompt]
   );
 
   const handleChange = useCallback((event: any) => {
