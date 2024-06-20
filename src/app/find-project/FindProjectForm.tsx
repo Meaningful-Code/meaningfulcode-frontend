@@ -15,7 +15,7 @@ import { RECAPTCHA_SITE_KEY } from '@/constants/constants';
 
 import invokeAgent from './invokeAgent';
 import Skeleton from '@mui/material/Skeleton';
-import { List, ListItem, ListItemText } from '@mui/material';
+import { Grid, List, ListItem, ListItemText } from '@mui/material';
 
 const enum FormState {
   NotSubmitted,
@@ -90,28 +90,34 @@ export default function FindProjectForm({ host }: { host: string }) {
         sitekey={RECAPTCHA_SITE_KEY}
         onChange={recaptchaHandler}
       />
-      <TextField
-        label="Request"
-        name="request"
-        onChange={handleChange}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' && !buttonDisabled) {
-            event.preventDefault();
-            submitCallback();
-          }
-        }}
-        value={prompt}
-        sx={{ m: 1, width: '100ch' }}
-        inputProps={{ maxLength: 100 }}
-      />
-      <IconButton
-        aria-label="send request"
-        disabled={buttonDisabled}
-        onClick={submitCallback}
-        style={{ height: 50, width: 50 }}
-      >
-        {loading ? <CircularProgress size={25} /> : <SendIcon />}
-      </IconButton>
+      <Grid container spacing={2}>
+        <Grid item xs={10}>
+          <TextField
+            label="Request"
+            name="request"
+            onChange={handleChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !buttonDisabled) {
+                event.preventDefault();
+                submitCallback();
+              }
+            }}
+            value={prompt}
+            sx={{ width: '100%' }}
+            inputProps={{ maxLength: 100 }}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <IconButton
+            aria-label="send request"
+            disabled={buttonDisabled}
+            onClick={submitCallback}
+            style={{ height: 50, width: 50 }}
+          >
+            {loading ? <CircularProgress size={25} /> : <SendIcon />}
+          </IconButton>
+        </Grid>
+      </Grid>
       <br />
       <br />
       {formState !== FormState.NotSubmitted && (
