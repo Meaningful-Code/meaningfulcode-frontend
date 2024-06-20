@@ -8,7 +8,7 @@ import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
-import SendIcon from '@mui/icons-material/Send';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 import { RECAPTCHA_SITE_KEY } from '@/constants/constants';
@@ -79,8 +79,8 @@ export default function FindProjectForm({ host }: { host: string }) {
     setPrompt(value);
   }, []);
 
-  const loading = formState === FormState.Submitted;
-  const buttonDisabled = loading || prompt.length === 0;
+  const waitingForAnswer = formState === FormState.Submitted;
+  const sendDisabled = waitingForAnswer || prompt.length === 0;
 
   return (
     <>
@@ -93,11 +93,13 @@ export default function FindProjectForm({ host }: { host: string }) {
       <Grid container spacing={2}>
         <Grid item xs={10}>
           <TextField
-            label="Request"
-            name="request"
+            aria-label="Request to find projects"
+            name="prompt"
+            placeholder="Environment related projects in Python"
+            disabled={waitingForAnswer}
             onChange={handleChange}
             onKeyDown={(event) => {
-              if (event.key === 'Enter' && !buttonDisabled) {
+              if (event.key === 'Enter' && !sendDisabled) {
                 event.preventDefault();
                 submitCallback();
               }
@@ -110,11 +112,11 @@ export default function FindProjectForm({ host }: { host: string }) {
         <Grid item xs={2}>
           <IconButton
             aria-label="send request"
-            disabled={buttonDisabled}
+            disabled={sendDisabled}
             onClick={submitCallback}
             style={{ height: 50, width: 50 }}
           >
-            {loading ? <CircularProgress size={25} /> : <SendIcon />}
+            {waitingForAnswer ? <CircularProgress size={25} /> : <SendRoundedIcon />}
           </IconButton>
         </Grid>
       </Grid>
