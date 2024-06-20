@@ -123,12 +123,12 @@ export default function FindProjectForm({ host }: { host: string }) {
       <br />
       <br />
       {formState !== FormState.NotSubmitted && (
-        <Card style={{ marginRight: '20%' }}>
+        <Card style={{ marginRight: '20%' }} elevation={2}>
           <CardContent>{previousPrompt}</CardContent>
         </Card>
       )}
       <br />
-      <Card style={{ marginLeft: '20%' }}>
+      <Card style={{ marginLeft: '20%', backgroundColor: '#EEFFEE' }} elevation={2}>
         {formState === FormState.Submitted && (
           <CardContent>
             <Skeleton />
