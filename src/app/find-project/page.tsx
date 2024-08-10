@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 
 import getHost from '@/utils/getHost';
+import Emoji from '@/components/Emoji';
 
 import FindProjectForm from './FindProjectForm';
 
@@ -28,6 +29,9 @@ export default async function FindProject() {
       <Alert severity="info">
         This feature is experimental, and the quality of results may vary. We would love
         to hear your <Link href="/about">feedback</Link> if you have time!
+        <br />
+        <Emoji label="sparks" symbol="✨" /> August 10th: I just got updated to be more
+        helpful!
       </Alert>
       <br />
       <br />
