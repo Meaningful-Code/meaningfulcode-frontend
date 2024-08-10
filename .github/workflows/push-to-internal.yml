@@ -1,0 +1,22 @@
+name: Push to private deploy repository
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  push:
+    if: github.actor == github.repository_owner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PUSH }}
+        run: |
+          git remote add target https://${{ secrets.GH_PUSH }}@github.com/Meaningful-Code/meaningfulcode-deploy.git
+          git push target HEAD:${{ github.ref }}
