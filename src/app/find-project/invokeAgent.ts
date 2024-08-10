@@ -1,6 +1,6 @@
 'use client';
 
-export default async function sendPrompt(
+export default async function invokeAgent(
   host: string,
   prompt: string,
   recaptcha: string
