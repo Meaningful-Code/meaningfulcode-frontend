@@ -7,7 +7,7 @@ on:
 
 jobs:
   push:
-    if: github.actor == github.repository_owner
+    if: github.actor == 'Pixep'
     runs-on: ubuntu-latest
 
     steps:
