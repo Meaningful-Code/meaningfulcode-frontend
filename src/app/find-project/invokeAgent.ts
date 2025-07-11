@@ -27,6 +27,7 @@ export default async function invokeAgent(
   } catch (err: any) {
     // eslint-disable-next-line no-console
     console.log(`Error invoking agent: ${err}`);
+    //TODO support i18n
     throw new Error(`Failed to invoke agent`);
   }
 }

@@ -26,6 +26,9 @@ import { ProjectCardListIcon } from './ProjectCardListIcon';
 import { Project } from '@/models/Project';
 import { formatLastUpdateAge } from '@/utils/date';
 
+import { useTranslations } from 'next-intl';
+import { localizeCategories } from '@/utils/categories';
+
 function FeaturedListItem() {
   return (
     <ListItem disableGutters disablePadding>
@@ -71,6 +74,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     lastCommitAgeInDays = Math.floor((nowSeconds - lastCommitTimestamp) / secInADay);
   }
 
+  const t = useTranslations('ProjectCard');
+  const d = useTranslations('Date');
+  const c = useTranslations('Categories');
+  const localizedCategories = localizeCategories(categories, c);
   return (
     <Card
       className={`project-item ${categories.join(' ')} ${isFeatured && 'featured'}`}
@@ -94,7 +101,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <List dense>
           <ListItem disableGutters disablePadding>
             <ProjectCardListIcon avatar={<CategoryIcon type={categories[0]} />} />
-            <ListItemText className="category-label" primary={categories.join(', ')} />
+            <ListItemText
+              className="category-label"
+              primary={localizedCategories.join(', ')}
+            />
             <Chip variant="outlined" icon={<StarIcon />} label={stars} />
           </ListItem>
           {isFeatured && FeaturedListItem()}
@@ -109,7 +119,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <ProjectCardListIcon avatar={<CommitIcon />} />
             <ListItemText
               className="last-update"
-              primary={formatLastUpdateAge(lastCommitAgeInDays)}
+              primary={formatLastUpdateAge(lastCommitAgeInDays, d)}
             />
           </ListItem>
         </List>
@@ -119,7 +129,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <ButtonGroup variant="text" color="secondary" fullWidth>
           {websiteUrl && (
             <Button component={Link} href={websiteUrl} startIcon={<PublicIcon />}>
-              Website
+              {t('website')}
             </Button>
           )}
           {url && <GitHubButton url={url} />}

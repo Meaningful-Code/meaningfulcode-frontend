@@ -1,8 +1,20 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render as rtlRender, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import { lightTheme } from '@/theme';
 
+import { NextIntlClientProvider } from 'next-intl';
+import enMessages from '../../messages/en.json';
 import Footer from './Footer';
+
+const render = (ui: JSX.Element, options = {}) =>
+  rtlRender(
+    <NextIntlClientProvider locale="en" messages={enMessages}>
+      <ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>
+    </NextIntlClientProvider>,
+    options
+  );
 
 describe('Footer Component', () => {
   it('should render the footer with social links', () => {
@@ -18,19 +30,28 @@ describe('Footer Component', () => {
     // Twitter Button
     const twitterButton = screen.getByRole('link', { name: /twitter/i });
     expect(twitterButton).toBeInTheDocument();
-    expect(twitterButton).toHaveAttribute('href', expect.stringContaining('twitter.com/intent/tweet'));
+    expect(twitterButton).toHaveAttribute(
+      'href',
+      expect.stringContaining('twitter.com/intent/tweet')
+    );
     expect(twitterButton).toHaveAttribute('target', '_blank');
 
     // LinkedIn Button
     const linkedInButton = screen.getByRole('link', { name: /linkedin/i });
     expect(linkedInButton).toBeInTheDocument();
-    expect(linkedInButton).toHaveAttribute('href', expect.stringContaining('linkedin.com/shareArticle'));
+    expect(linkedInButton).toHaveAttribute(
+      'href',
+      expect.stringContaining('linkedin.com/shareArticle')
+    );
     expect(linkedInButton).toHaveAttribute('target', '_blank');
 
     // Reddit Button
     const redditButton = screen.getByRole('link', { name: /reddit/i });
     expect(redditButton).toBeInTheDocument();
-    expect(redditButton).toHaveAttribute('href', expect.stringContaining('reddit.com/submit'));
+    expect(redditButton).toHaveAttribute(
+      'href',
+      expect.stringContaining('reddit.com/submit')
+    );
     expect(redditButton).toHaveAttribute('target', '_blank');
   });
 
@@ -42,7 +63,7 @@ describe('Footer Component', () => {
     expect(twitterIcon).toBeInTheDocument();
 
     // LinkedIn Icon
-    const linkedInIcon = screen.getByTestId('LinkedInIcon'); 
+    const linkedInIcon = screen.getByTestId('LinkedInIcon');
     expect(linkedInIcon).toBeInTheDocument();
 
     // Reddit Icon
