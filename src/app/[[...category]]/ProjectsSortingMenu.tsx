@@ -9,6 +9,8 @@ import TextField from '@mui/material/TextField';
 import LanguageDropdown from '@/components/LanguageDropdown';
 import { projectsUrlFromState } from './projectUrl';
 
+import { useTranslations } from 'next-intl';
+
 type SortButtonProps = {
   label: string;
   onClick: React.MouseEventHandler<HTMLAnchorElement>;
@@ -39,11 +41,13 @@ type SearchFilterButtonProps = {
 };
 
 function SearchFilterButton(props: SearchFilterButtonProps) {
+  const t = useTranslations('Generic');
+
   const { onChange, search } = props;
   return (
     <Grid item>
       <TextField
-        label="search"
+        label={t('search')}
         variant="outlined"
         size="small"
         onChange={onChange}
@@ -78,6 +82,7 @@ const ProjectsSortingMenu = ({
   sorting,
   handlers,
 }: ProjectsSortingMenuProps) => {
+  const t = useTranslations('ProjectSortingMenu');
   const router = useRouter();
   const actionHandlers = handlers || {
     sortByStars: () => {
@@ -109,9 +114,9 @@ const ProjectsSortingMenu = ({
 
   return (
     <Grid container justifyContent="center" spacing={0.5} className="sorting">
-      <SortButton label="most starred" onClick={actionHandlers.sortByStars} />
-      <SortButton label="last updated" onClick={actionHandlers.sortByLastCommit} />
-      <SortButton label="bookmarked" onClick={actionHandlers.sortByBookmarked} />
+      <SortButton label={t('mostStarred')} onClick={actionHandlers.sortByStars} />
+      <SortButton label={t('lastUpdated')} onClick={actionHandlers.sortByLastCommit} />
+      <SortButton label={t('bookmarked')} onClick={actionHandlers.sortByBookmarked} />
       <LanguageDropdown
         languages={languages || []}
         language={language}

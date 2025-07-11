@@ -2,6 +2,7 @@ import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import { useTranslations } from 'next-intl';
 
 type LanguageFilterButtonProps = {
   languages: string[];
@@ -11,6 +12,7 @@ type LanguageFilterButtonProps = {
 
 export default function LanguageDropdown(props: LanguageFilterButtonProps) {
   const { languages, language, onChange } = props;
+  const t = useTranslations('Generic');
 
   return (
     <Grid item>
@@ -19,7 +21,7 @@ export default function LanguageDropdown(props: LanguageFilterButtonProps) {
         options={languages}
         renderInput={(params) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
-          <TextField {...params} label="Language" />
+          <TextField {...params} label={t('language')} />
         )}
         onChange={onChange}
         sx={{ width: 200 }}

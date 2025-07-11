@@ -15,6 +15,9 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 import { RECAPTCHA_SITE_KEY } from '@/constants/constants';
 import submitProject from './submitProject';
+import { useTranslations } from 'next-intl';
+import { localizeCategories } from '@/utils/categories';
+import { categories } from '@/models/Project';
 
 const enum FormState {
   NotSubmitted,
@@ -32,6 +35,8 @@ export type ProjectSubmission = {
 };
 
 export default function SubmitProjectForm({ host }: { host: string }) {
+  const t = useTranslations('SubmitProjectForm');
+  const c = useTranslations('Categories');
   const defaultRepository = 'https://github.com/';
   const [project, setProject] = useState<ProjectSubmission>({
     name: '',
@@ -79,28 +84,32 @@ export default function SubmitProjectForm({ host }: { host: string }) {
     [host, project]
   );
 
-  const handleChange = useCallback((event: any) => {
-    const { name, value } = event.target;
-    if (name === 'repository') {
-      const error = !value.startsWith('https://github.com/')
-        ? 'Must be a valid Github Repository'
-        : '';
-      setRepositoryError(error);
-      if (error !== '') {
-        return;
+  const handleChange = useCallback(
+    (event: any) => {
+      const { name, value } = event.target;
+      if (name === 'repository') {
+        const error = !value.startsWith('https://github.com/')
+          ? t('repositoryValidation')
+          : '';
+        setRepositoryError(error);
+        if (error !== '') {
+          return;
+        }
       }
-    }
-    setProject((prevProject) => ({
-      ...prevProject,
-      [name]: value,
-    }));
-  }, []);
+      setProject((prevProject) => ({
+        ...prevProject,
+        [name]: value,
+      }));
+    },
+    [t]
+  );
 
   const loading = formState === FormState.Submitted;
   const buttonDisabled = loading || repositoryError !== '';
+
   return (
     <>
-      <Typography variant="h2">Impactful project form</Typography>
+      <Typography variant="h2">{t('title')}</Typography>
       <br />
       <ReCAPTCHA
         ref={recaptchaRef}
@@ -109,24 +118,24 @@ export default function SubmitProjectForm({ host }: { host: string }) {
         onChange={recaptchaHandler}
       />
       <Stack spacing={2}>
-        <TextField label="Project name" name="name" onChange={handleChange} />
-        <TextField label="Website" name="website" onChange={handleChange} />
+        <TextField label={t('name')} name="name" onChange={handleChange} />
+        <TextField label={t('website')} name="website" onChange={handleChange} />
         <TextField
           error={repositoryError !== ''}
-          label="Github Repository"
+          label={t('repository')}
           name="repository"
           defaultValue={defaultRepository}
           onChange={handleChange}
           helperText={repositoryError}
         />
         <TextField
-          label="Category"
+          label={t('category')}
           name="category"
           onChange={handleChange}
-          placeholder="Accessibility, Education, Environment, Health, Humanitarian, Society"
+          placeholder={localizeCategories(categories, c).join(', ')}
         />
         <TextField
-          label="Description"
+          label={t('description')}
           name="description"
           multiline
           rows={5}
@@ -142,14 +151,15 @@ export default function SubmitProjectForm({ host }: { host: string }) {
               loading ? <CircularProgress size={20} color="neutral" /> : <CheckIcon />
             }
           >
-            {loading ? 'Submitting' : 'Submit'}
+            {loading ? t('submittingCTA') : t('submitCTA')}
           </Button>
         </Container>
         {formState === FormState.Error && <Alert severity="error">{errorMessage}</Alert>}
         {formState === FormState.Success && (
           <Alert severity="success">
-            Project submitted successfully! You can review the ticket on{' '}
-            <a href={ticketUrl}>GitHub</a>. Thank you for your contribution 🎉
+            {t.rich('successfulSubmission', {
+              link: (chunks) => <a href={ticketUrl}>{chunks}</a>,
+            })}
           </Alert>
         )}
       </Stack>

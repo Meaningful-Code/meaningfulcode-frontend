@@ -5,7 +5,10 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { Box } from '@mui/material';
 
+import { useTranslations } from 'next-intl';
+
 export default function Logo() {
+  const t = useTranslations('Logo');
   return (
     <Link href="/">
       <Stack component="h1" className="header" direction="row">
@@ -32,8 +35,9 @@ export default function Logo() {
             Meaningful Code
           </Typography>
           <Typography id="subtitle" color="var(--gray)">
-            Find Open Source projects, <br />
-            contribute, make a difference.
+            {t.rich('claim', {
+              br: () => <br />,
+            })}
           </Typography>
         </Stack>
       </Stack>

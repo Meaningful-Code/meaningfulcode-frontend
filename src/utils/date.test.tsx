@@ -1,6 +1,8 @@
+import { useTranslations } from 'next-intl';
 import { formatLastUpdateAge } from './date';
 
 describe('utils: formatLastUpdateAge', () => {
+  const t = useTranslations('Date');
   test.each([
     [null, 'never'],
     [0, 'today'],
@@ -11,6 +13,6 @@ describe('utils: formatLastUpdateAge', () => {
     [400, '1 year ago'],
     [800, '2 years ago'],
   ])('converts %i days readable output %s', (days, expected) => {
-    expect(formatLastUpdateAge(days)).toBe(expected);
+    expect(formatLastUpdateAge(days, t)).toBe(expected);
   });
 });

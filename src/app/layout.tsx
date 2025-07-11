@@ -14,6 +14,9 @@ import { GOOGLE_TAG_ID } from '@/constants/constants';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
+
 import './layout.css';
 
 export const metadata = {
@@ -51,9 +54,12 @@ const GaPageEvent = dynamic(() => import('@/components/GaPageEvent'), {
   ssr: false,
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en" className={open_sans_font.className}>
+    <html lang={locale} className={open_sans_font.className}>
       <body>
         <Script
           async
@@ -76,7 +82,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             });`}
         </Script>
         <GaPageEvent />
-        <PageLayout>{children}</PageLayout>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <PageLayout>{children}</PageLayout>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

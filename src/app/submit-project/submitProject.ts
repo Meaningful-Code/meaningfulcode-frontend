@@ -27,6 +27,7 @@ export default async function submitProject(
     if (!res.ok) {
       const errData = await res.json();
       const { reason } = errData;
+      //TODO Support i18n
       throw new Error(`Failed to submit project: ${reason}`);
     }
 
@@ -35,6 +36,7 @@ export default async function submitProject(
   } catch (err: any) {
     // eslint-disable-next-line no-console
     console.log(`Error submitting project: ${err}`);
+    //TODO Support i18n
     throw new Error(`Failed to submit project`);
   }
 }

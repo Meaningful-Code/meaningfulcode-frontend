@@ -15,7 +15,10 @@ import Link from 'next/link';
 import MobileMenu from './MobileMenu';
 import Logo from './Logo';
 
+import { useTranslations } from 'next-intl';
+
 function HeaderLinks() {
+  const t = useTranslations('HeaderLinks');
   return (
     <>
       <Button
@@ -25,7 +28,7 @@ function HeaderLinks() {
         component={Link}
         href="/submit-project"
       >
-        Add a project!
+        {t('submitProject')}
       </Button>
       <Button
         /* @ts-ignore: color type not properly recognized */
@@ -33,7 +36,7 @@ function HeaderLinks() {
         component={Link}
         href="/get-started"
       >
-        Get started
+        {t('getStarted')}
       </Button>
       <Button
         /* @ts-ignore: color type not properly recognized */
@@ -41,7 +44,7 @@ function HeaderLinks() {
         component={Link}
         href="/about"
       >
-        About
+        {t('about')}
       </Button>
       <Button
         /* @ts-ignore: color type not properly recognized */
@@ -50,8 +53,9 @@ function HeaderLinks() {
         href="/find-project"
         startIcon={<ScienceIcon />}
       >
-        Find projects!
+        {t('findProject')}
       </Button>
+      <Button>asd</Button>
     </>
   );
 }

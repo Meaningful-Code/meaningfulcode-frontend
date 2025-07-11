@@ -1,0 +1,132 @@
+{
+  "Generic": {
+    "search": "search",
+    "language": "language"
+  },
+  "Logo": {
+    "claim": "Find Open Source projects, <br></br>contribute, make a difference."
+  },
+  "HeaderLinks": {
+    "submitProject": "Add a project!",
+    "getStarted": "Get started",
+    "about": "About",
+    "findProject": "Find projects!"
+  },
+  "Footer": {
+    "share": "Support these projects: Share!"
+  },
+  "HeaderText": {
+    "descriptionLarge": "<emoji1></emoji1> <bold1>Pick a cause to support</bold1>, and <bold2>find Open Source projects</bold2> willing to make our world a better place. <br></br> From the environment to health, accessibility, and humanitarian, we believe that <bold3>code can make a difference</bold3>: join open-source for good! <emoji2></emoji2>.",
+    "descriptionSmall": "<emoji1></emoji1> <bold1>Pick a cause to support</bold1>, and <bold2>find Open Source projects</bold2> willing to make our world a better place. From the environment to health and humanitarian, we believe that <bold3>code can make a difference</bold3> join open-source for good! <emoji2></emoji2>",
+    "environment": "<emoji1></emoji1> <bold1>Eco-friendly</bold1> and <bold2>environmental</bold2> open-source projects, to protect our planet and the life on it <emoji2></emoji2>.<br></br> These projects focus on having a <bold3>positive impact</bold3> on climate change, energy consumption, pollution, or protecting plants and animal life on our planet. <emoji3></emoji3>",
+    "accessibility": "Make our society <bold1>more accessible</bold1> <emoji1></emoji1> by contributing to these open-source projects.<br></br>Using software, we can help tools, and services to be more <bold2>inclusive <br></br>and welcoming</bold2> for people with disabilities <emoji2></emoji2>.",
+    "health": "<emoji1></emoji1> Support research and open-source initiatives to <bold1>improve</bold1> our <bold2>health</bold2> conditions. <br></br> Some projects focus on medical <bold3>knowledge, detection, and treatment</bold3> <emoji2></emoji2> of diseases and health conditions. Others work to improve the public awareness and access to <bold4>information</bold4>, or to help creating <bold5>healthier habits</bold5><emoji3></emoji3>.",
+    "education": "<emoji1></emoji1> Make <bold1>education</bold1> and <bold2>personal growth</bold2> more inclusive by contributing to these projects. <br></br> Let's make learning <emoji2></emoji2> <bold3>more accessible</bold3> and fun for everyone!",
+    "humanitarian": "<emoji1></emoji1> These open-source projects make a difference for <bold1>vulnerable populations</bold1> around the globe and those affected by natural disasters, conflicts, or limited access to essential resources. <br></br> Your contribution can help <bold2>provide what they need</bold2> <emoji2></emoji2>, whether food, shelter, or medical attention.",
+    "society": "<emoji1></emoji1> Do you want to make our <bold1>society</bold1> more <bold2>inclusive</bold2> and <bold3>fair</bold3>? Or maybe provide <bold4>tools for citizens</bold4> to learn, organize, or communicate<emoji2></emoji2>. <br></br> This is what all these projects aim to provide."
+  },
+  "ProjectSortingMenu": {
+    "mostStarred": "most starred",
+    "lastUpdated": "last updated",
+    "bookmarked": "bookmarked"
+  },
+  "ProjectCard": {
+    "website": "website"
+  },
+  "Date": {
+    "today": "today",
+    "ago": "ago",
+    "never": "never",
+    "day": "day ",
+    "days": "days ",
+    "month": "month ",
+    "months": "months ",
+    "year": "year ",
+    "years": "years "
+  },
+  "Categories": {
+    "environment": "environment",
+    "accessibility": "accessibility",
+    "health": "health",
+    "education": "education",
+    "humanitarian": "humanitarian",
+    "society": "society"
+  },
+  "SubmitProject": {
+    "metadataTitle": "Submit a project for good",
+    "title": "Submit a project",
+    "paragraph1": "If you have an impactful project that you want to share with the community, you can: please submit it here!",
+    "list": "<ul><li><link1>Create a pull request</link1> directly on GitHub</li><li><link2>Create an issue</link2> on GitHub</li><li>Or fill the form below</li></ul>"
+  },
+  "SubmitProjectForm": {
+    "title": "Impactful project form",
+    "name": "Project name",
+    "website": "Website",
+    "repository": "GitHub Repository",
+    "category": "Category",
+    "description": "Description",
+    "submitCTA": "Submit",
+    "submittingCTA": "Submitting",
+    "successfulSubmission": "Project submitted successfully! You can review the ticket on <link>GitHub</link>. Thank you for your contribution 🎉",
+    "repositoryValidation": "Must be a valid GitHub Repository"
+  },
+  "GetStarted": {
+    "metadataTitle": "Getting started with open-source",
+    "title": "Get Started",
+    "paragraph1": "Contributing can be daunting at first, but this is the first step of a rewarding journey, using your experience to benefit others while learning and meeting new passionate people.",
+    "section1": {
+      "title": "Every project is different",
+      "paragraph1": "Every project is different, so don't hesitate to look at multiple initiatives to find what makes the most sense to you. Look at their project page and website, issues tagged \"goodfirstissue\", and contact them if you have any questions.",
+      "paragraph2": "To have a better idea of how the team works and how to help, you can also check the contribution guidelines and past pull requests."
+    },
+    "section2": {
+      "title": "You don't need to be an expert, all support matters",
+      "paragraph1": "Depending on your goals and expertise, you may very well find yourself outside of your comfort zone. This is perfectly normal, and part of the learning experience. As long as you are motivated to learn and help, maintainers of open source projects are usually happy to help and guide you, to have your contribution integrated.",
+      "paragraph2": "Contributing to the code base is also one of many ways to help: some need support translating, improving documentation or tutorials, reviewing, or using it. And the simple act of sharing a project with others is also a great way to help."
+    },
+    "section3": {
+      "title": "More inspirational guides to get you started",
+      "intro": "If you want to learn more before diving in, these are some great guides to get you started:",
+      "list": "<ul><li><link1>First timers only: Welcome! Let’s do some open source!</link1></li><li><link2>Make Something Great: Become an Open Source Contributor</link2></li><li><link3>How to Contribute to Open Source</link3></li></ul>"
+    }
+  },
+  "About": {
+    "metadataTitle": "About Meaningfulcode.org",
+    "title": "Why this website?",
+    "paragraph1": "There are many ways to have an impact on our society, and open source is one of those. But finding those impactful projects among all is this challenging, and the open-source map is changing every day. This website helps you find them: projects that matching your aspirations (health, society, environment, ...), and skills.",
+    "paragraph2": "By providing an easier way to find meaningful projects that people truly want to contribute to, we hope to accelerate those initiative and their positive impact on our society.",
+    "reachOut": {
+      "title": "Reach out",
+      "discord": "Discord",
+      "email": "Email"
+    },
+    "source": {
+      "title": "Get the source",
+      "github": "GitHub",
+      "note": "Contributors are welcome, and source is licensed under GPL-3.0:",
+      "item1": "The source code of the frontend is available on <linkFrontend>the Frontend repository</linkFrontend>",
+      "item2": "The static list of projects is available on <linkProjects>the Projects repository</linkProjects>",
+      "item3": "The backend is available to internal contributors, but not open-source yet for security reasons"
+    },
+    "thanks": {
+      "title": "Thank you! <emoji></emoji>",
+      "paragraph1": "We are standing on the shoulders of giants, countless contributions, and this website is no exception. While it would be impossible to list everyone, we wanted to thank:",
+      "item1": "John and Hank Green, for being such an inspiration to help others, along with many others.",
+      "item2": "Fatos Morina, for his article \"<linkArticle>Make a social impact by contributing to these open source projects</linkArticle>\", which kickstarted this project.",
+      "item3": "<linkGitHub>GitHub</linkGitHub> and its ecosystem (for hosting all these projects for free), <linkTriage>Code triage</linkTriage>, React, MUI, Isotope and the people behind those.",
+      "moreThanksIntro": "And more generally, thank you to:",
+      "item4": "all open-source developers",
+      "item5": "the maintainers of meaningful and open-source projects",
+      "item6": "those who shared and continue sharing these projects to a broader audience",
+      "item7": "... and everyone who is giving their time to make a social impact",
+      "closing": "We are all forever grateful."
+    },
+    "people": {
+      "title": "People",
+      "adrien": {
+        "name": "Adrien Leravat",
+        "bio": "Working on embedded software by day, passionate about learning and teaching technology. Feel free to get in touch!"
+      }
+    }
+  }
+}

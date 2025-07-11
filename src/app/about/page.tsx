@@ -13,28 +13,24 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
 import Emoji from '@/components/Emoji';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'About Meaningfulcode.org',
-};
+export async function generateMetadata() {
+  const t = await getTranslations('About');
+  return {
+    title: t('metadataTitle'),
+  };
+}
 
 export default function About() {
+  const t = useTranslations('About');
   return (
     <div id="about">
-      <Typography variant="h1">Why this website?</Typography>
-      <p>
-        There are many ways to have an impact on our society, and open source is one of
-        those. But finding those impactful projects among all is this challenging, and
-        the open-source map is changing every day. This website helps you find them:
-        projects that matching your aspirations (health, society, environment, ...), and
-        skills.
-      </p>
-      <p>
-        By providing an easier way to find meaningful projects that people truly want to
-        contribute to, we hope to accelerate those initiative and their positive impact
-        on our society.
-      </p>
-      <Typography variant="h2">Reach out</Typography>
+      <Typography variant="h1">{t('title')}</Typography>
+      <p>{t('paragraph1')}</p>
+      <p>{t('paragraph2')}</p>
+      <Typography variant="h2">{t('reachOut.title')}</Typography>
       <Button
         variant="outlined"
         href="https://discord.gg/KPAm7wd7fJ"
@@ -42,7 +38,7 @@ export default function About() {
         color="secondary"
         startIcon={<MarkChatUnreadIcon />}
       >
-        Discord
+        {t('reachOut.discord')}
       </Button>
       <Button
         variant="outlined"
@@ -51,9 +47,9 @@ export default function About() {
         color="secondary"
         startIcon={<EmailIcon />}
       >
-        Email
+        {t('reachOut.email')}
       </Button>
-      <Typography variant="h2">Get the source</Typography>
+      <Typography variant="h2">{t('source.title')}</Typography>
       <Button
         variant="outlined"
         href="https://github.com/Meaningful-Code/meaningfulcode-frontend"
@@ -61,65 +57,65 @@ export default function About() {
         color="secondary"
         startIcon={<GitHubIcon />}
       >
-        GitHub
+        {t('source.github')}
       </Button>
-      <p>Contributors are welcome, and source is licensed under GPL-3.0:</p>
+      <p>{t('source.note')}</p>
       <ul>
         <li>
-          The source code of the fronted is available on{' '}
-          <Link href="https://github.com/Meaningful-Code/meaningfulcode-frontend">
-            the Frontend repository
-          </Link>
+          {t.rich('source.item1', {
+            linkFrontend: (chunks) => (
+              <Link href="https://github.com/Meaningful-Code/meaningfulcode-frontend">
+                {chunks}
+              </Link>
+            ),
+          })}
         </li>
         <li>
-          The static list of projects is available on{' '}
-          <Link href="https://github.com/Meaningful-Code/meaningful-projects">
-            the Projects repository
-          </Link>
+          {t.rich('source.item2', {
+            linkProjects: (chunks) => (
+              <Link href="https://github.com/Meaningful-Code/meaningful-projects">
+                {chunks}
+              </Link>
+            ),
+          })}
         </li>
-        <li>
-          The backend is available to internal contributors, but not open-source yet for
-          security reasons
-        </li>
+        <li>{t('source.item3')}</li>
       </ul>
       <Typography variant="h2">
-        Thank you! <Emoji label="sparks" symbol="🎉" />
+        {t.rich('thanks.title', {
+          emoji: () => <Emoji label="sparks" symbol="🎉" />,
+        })}
       </Typography>
-      <p>
-        We are standing on the shoulders of giants, countless contributions, and this
-        website is no exception. While it would be impossible to list everyone, we wanted
-        to thank:
-      </p>
+      <p>{t('thanks.paragraph1')}</p>
       <ul>
+        <li>{t('thanks.item1')}</li>
         <li>
-          John and Hank Green, for being such an inspiration to help others, along with
-          many others
+          {t.rich('thanks.item2', {
+            linkArticle: (chunks) => (
+              <Link href="https://towardsdatascience.com/make-a-social-impact-by-contributing-to-these-open-source-projects-1d6d34e2b8b1">
+                {chunks}
+              </Link>
+            ),
+          })}
         </li>
         <li>
-          Fatos Morina, for his article &quot;
-          <Link href="https://towardsdatascience.com/make-a-social-impact-by-contributing-to-these-open-source-projects-1d6d34e2b8b1">
-            Make a social impact by contributing to these open source projects
-          </Link>
-          &quot;, which kickstarted this project
-        </li>
-        <li>
-          <Link href="https://github.com/">GitHub</Link> and its ecosystem (for hosting
-          all these projects for free),{' '}
-          <Link href="https://www.codetriage.com/">Code triage</Link>, React, MUI,
-          Isotope and the people behind those.
+          {t.rich('thanks.item3', {
+            linkGitHub: (chunks) => <Link href="https://github.com/">{chunks}</Link>,
+            linkTriage: (chunks) => (
+              <Link href="https://www.codetriage.com/">{chunks}</Link>
+            ),
+          })}
         </li>
       </ul>
-      And more generally, thank you to:
+      {t('thanks.moreThanksIntro')}
       <ul>
-        <li>all open-source developers</li>
-        <li>the maintainers of meaningful and open-source projects</li>
-        <li>
-          those who shared and continue sharing these projects to a broader audience
-        </li>
-        <li>... and everyone who is giving their time to make a social impact</li>
+        <li>{t('thanks.item4')}</li>
+        <li>{t('thanks.item5')}</li>
+        <li>{t('thanks.item6')}</li>
+        <li>{t('thanks.item7')}</li>
       </ul>
-      <p>We are all forever grateful.</p>
-      <Typography variant="h2">People</Typography>
+      <p>{t('thanks.closing')}</p>
+      <Typography variant="h2">{t('people.title')}</Typography>
       <List>
         <ListItem>
           <ListItemAvatar>
@@ -128,11 +124,10 @@ export default function About() {
           <ListItemText
             primary={
               <Link href="https://www.linkedin.com/in/adrienleravat/">
-                Adrien Leravat
+                {t('people.adrien.name')}
               </Link>
             }
-            secondary="Working on embedded software by day, passionate about learning and teaching
-            technology. Feel free to get in touch!"
+            secondary={t('people.adrien.bio')}
           />
         </ListItem>
       </List>
