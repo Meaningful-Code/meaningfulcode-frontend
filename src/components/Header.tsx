@@ -55,7 +55,6 @@ function HeaderLinks() {
       >
         {t('findProject')}
       </Button>
-      <Button>asd</Button>
     </>
   );
 }

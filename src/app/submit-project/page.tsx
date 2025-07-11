@@ -1,5 +1,4 @@
 import React from 'react';
-import { Metadata } from 'next';
 
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';

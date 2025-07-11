@@ -30,5 +30,5 @@ export function formatLastUpdateAge(
     }`;
   }
 
-  return lastUpdateText + t('ago');
+  return lastUpdateText + ' ' + t('ago');
 }

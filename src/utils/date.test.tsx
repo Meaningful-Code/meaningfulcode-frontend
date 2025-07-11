@@ -1,8 +1,14 @@
-import { useTranslations } from 'next-intl';
 import { formatLastUpdateAge } from './date';
 
 describe('utils: formatLastUpdateAge', () => {
-  const t = useTranslations('Date');
+  // Fake translation function
+  const t = (key: string) => {
+    const messages: Record<string, string> = {
+      never: 'never',
+      today: 'today',
+    };
+    return messages[key] ?? key;
+  };
   test.each([
     [null, 'never'],
     [0, 'today'],

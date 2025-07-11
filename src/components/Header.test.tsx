@@ -3,11 +3,18 @@ import { render as rtlRender, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from '@/theme';
+import { NextIntlClientProvider } from 'next-intl';
+import enMessages from '../../messages/en.json';
 
 import PageHeader from './Header';
 
 const render = (ui: JSX.Element, options = {}) =>
-  rtlRender(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>, options);
+  rtlRender(
+    <NextIntlClientProvider locale="en" messages={enMessages}>
+      <ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>
+    </NextIntlClientProvider>,
+    options
+  );
 
 describe('PageHeader Component', () => {
   it('should render the header with logo and title', () => {

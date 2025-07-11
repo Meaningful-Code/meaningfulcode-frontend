@@ -37,12 +37,12 @@
     "today": "oggi",
     "ago": "fa",
     "never": "mai",
-    "day": "giorno ",
-    "days": "giorni ",
-    "month": "mese ",
-    "months": "mesi ",
-    "year": "anno ",
-    "years": "anni "
+    "day": "giorno",
+    "days": "giorni",
+    "month": "mese",
+    "months": "mesi",
+    "year": "anno",
+    "years": "anni"
   },
   "Categories": {
     "environment": "ambiente",
